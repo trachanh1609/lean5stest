@@ -67,6 +67,7 @@
     "react-dom": "^15.0.2",
     "react-redux": "^5.0.2",
     "react-router": "^3.0.2",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "tedious": "^2.6.3"
   }
 }
