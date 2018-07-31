@@ -7,6 +7,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './components/App';
 import Home from './components/home/Home';
 import About from './components/about/About';
+import Test from './components/test/Test';
 
 import reducers from './reducers';
 
@@ -21,6 +22,7 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={Home} />;
         <Route path="/about" component={About} />
+        <Route path="/test" component={Test} />
       </Route>
     </Router>
   </Provider>
