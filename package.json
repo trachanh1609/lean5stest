@@ -4,7 +4,7 @@
   "description": "Starter for Express, React, Redux, SCSS applications",
   "scripts": {
     "dev": "webpack-dev-server --watch --colors",
-    "build": "rimraf dist && NODE_ENV=production webpack --colors",
+    "build": "rimraf dist && SET NODE_ENV=production && webpack --colors",
     "start": "NODE_ENV=production PORT=8080 pm2 start ./server.js",
     "backend": "nodemon ./server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
