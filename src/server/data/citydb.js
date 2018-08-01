@@ -1,14 +1,15 @@
 var tedious = require('tedious');
+var config = require('../../../config');
 
 var Connection = tedious.Connection;
 var Request = tedious.Request;
 
 var config = {
-    userName: process.env.DB_USERNAME || 'no_username',
-    password: process.env.DB_PASSWORD || 'no_password',
-    server: process.env.DB_SERVER || 'no_server',
+    userName: process.env.DB_USERNAME || config.userName,
+    password: process.env.DB_PASSWORD || config.password,
+    server: process.env.DB_SERVER || config.server,
     options: {
-        database: process.env.DB_NAME || 'no_dbname',
+        database: process.env.DB_NAME || config.name,
         encrypt: true,
         rowCollectionOnRequestCompletion: true
     }
