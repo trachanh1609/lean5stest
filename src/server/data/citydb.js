@@ -1,18 +1,34 @@
 var tedious = require('tedious');
-var config = require('../../../config');
+
 
 var Connection = tedious.Connection;
 var Request = tedious.Request;
 
-var config = {
-    userName: process.env.DB_USERNAME || config.userName,
-    password: process.env.DB_PASSWORD || config.password,
-    server: process.env.DB_SERVER || config.server,
-    options: {
-        database: process.env.DB_NAME || config.name,
-        encrypt: true,
-        rowCollectionOnRequestCompletion: true
+var isProduction = process.env.NODE_ENV === 'production';
+var config = {};
+if(isProduction) {
+    config = {
+        userName: process.env.DB_USERNAME || '',
+        password: process.env.DB_PASSWORD || '',
+        server: process.env.DB_SERVER || '',
+        options: {
+            database: process.env.DB_NAME || '',
+            encrypt: true,
+            rowCollectionOnRequestCompletion: true
+        }
     }
+} else {
+    var configuration = require('../../../config');
+    config = {
+        userName: process.env.DB_USERNAME || configuration.userName,
+        password: process.env.DB_PASSWORD || configuration.password,
+        server: process.env.DB_SERVER || configuration.server,
+        options: {
+            database: process.env.DB_NAME || configuration.name,
+            encrypt: true,
+            rowCollectionOnRequestCompletion: true
+        }
+    }    
 }
 
 // var createUsers = function(callback) {
