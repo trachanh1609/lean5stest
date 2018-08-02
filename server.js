@@ -1,14 +1,14 @@
 const express = require('express');
 const app = express();
 
-const citiesRouter = require('./src/server/routes/cities');
+const indexRouter = require('./src/server/routes/');
 
 app.use(express.static('./'));
 app.use(express.static('dist'));
 
 
 
-app.use('/api/cities', citiesRouter);
+app.use('/api', indexRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
