@@ -1,7 +1,4 @@
-[![Build Status](https://travis-ci.org/DimiMikadze/express-react-redux-starter.svg?branch=master)](https://travis-ci.org/DimiMikadze/express-react-redux-starter)
-[![dependencies Status](https://david-dm.org/DimiMikadze/express-react-redux-starter/status.svg)](https://david-dm.org/DimiMikadze/express-react-redux-starter)
-
-# Starter for Express, React, Redux, SCSS applications
+# Prototype App using Starter for Express, React, Redux, SCSS applications
 
 ## Features
 
@@ -28,6 +25,21 @@ cd express-react-redux-starter
 
 npm install
 ````
+
+** NOTE **
+
+node-sass might not be installed. Try installing windows-build-tools as an Administrator before installing node-sass
+
+In Windows OS, open CMD as Administrator. Run
+````
+C:\Users\defaultuser>npm install --global windows-build-tools
+````
+
+After that you can install node-sass
+````
+C:\Users\Documents\project>npm install --save node-sass
+````
+After node-sass is installed, *npm run dev* will work
 
 ### Start development server with hot reloading
 
