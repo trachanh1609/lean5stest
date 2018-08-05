@@ -58,8 +58,43 @@ var queryCities = function(callback) {
         }
     });
 };
+var queryCorporations = function(callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        if(err) {
+            callback(err);
+        } else {
+            var request = new Request(
+                "SELECT Corporation_name FROM Corporation",
+                function(err, rowCount, rows) {
+                    callback(err, rowCount, rows);
+                }
+            );
+            connection.execSql(request);
+        }
+    });
+};
+
+var queryRooms = function(callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        if(err) {
+            callback(err);
+        } else {
+            var request = new Request(
+                "SELECT Room_name FROM Room WHERE Office_ID = 1",
+                function(err, rowCount, rows) {
+                    callback(err, rowCount, rows);
+                }
+            );
+            connection.execSql(request);
+        }
+    });
+};
 
 module.exports = {
     // createCities: createCities,
-    queryCities: queryCities
+    queryCities: queryCities,
+    queryCorporations: queryCorporations,
+    queryRooms: queryRooms
 };
