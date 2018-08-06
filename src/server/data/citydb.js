@@ -58,8 +58,61 @@ var queryCities = function(callback) {
         }
     });
 };
+var queryCorporations = function(callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        if(err) {
+            callback(err);
+        } else {
+            var request = new Request(
+                "SELECT Corporation_name FROM Corporation",
+                function(err, rowCount, rows) {
+                    callback(err, rowCount, rows);
+                }
+            );
+            connection.execSql(request);
+        }
+    });
+};
+
+var queryRooms = function(callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        if(err) {
+            callback(err);
+        } else {
+            var request = new Request(
+                "SELECT Room_name FROM Room_new WHERE Office_ID = 1",
+                function(err, rowCount, rows) {
+                    callback(err, rowCount, rows);
+                }
+            );
+            connection.execSql(request);
+        }
+    });
+};
+
+var queryAddQuestion = function(callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        if(err) {
+            callback(err);
+        } else {
+            var request = new Request(
+                "INSERT dbo.Questions_new (Question_text) VALUES ('This question was added from web-server'); SELECT * FROM dbo.Questions_new;",
+                function(err, rowCount, rows) {
+                    callback(err, rowCount, rows);
+                }
+            );
+            connection.execSql(request);
+        }
+    });
+};
 
 module.exports = {
     // createCities: createCities,
-    queryCities: queryCities
+    queryCities: queryCities,
+    queryCorporations: queryCorporations,
+    queryRooms: queryRooms,
+    queryAddQuestion: queryAddQuestion
 };
