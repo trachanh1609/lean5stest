@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const bodyParser = require("body-parser");
 
 const indexRouter = require('./src/server/routes/');
 
@@ -7,7 +8,8 @@ const indexRouter = require('./src/server/routes/');
 app.use(express.static('./'));
 app.use(express.static('dist'));
 
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', indexRouter);
 
