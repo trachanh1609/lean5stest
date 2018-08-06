@@ -8,7 +8,7 @@ const indexRouter = require('./src/server/routes/');
 app.use(express.static('./'));
 app.use(express.static('dist'));
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', indexRouter);
