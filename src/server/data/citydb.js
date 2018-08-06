@@ -92,9 +92,27 @@ var queryRooms = function(callback) {
     });
 };
 
+var queryAddQuestion = function(callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        if(err) {
+            callback(err);
+        } else {
+            var request = new Request(
+                "INSERT dbo.Questions_new (Question_text) VALUES ('This question was added from web-server'); SELECT * FROM dbo.Questions_new;",
+                function(err, rowCount, rows) {
+                    callback(err, rowCount, rows);
+                }
+            );
+            connection.execSql(request);
+        }
+    });
+};
+
 module.exports = {
     // createCities: createCities,
     queryCities: queryCities,
     queryCorporations: queryCorporations,
-    queryRooms: queryRooms
+    queryRooms: queryRooms,
+    queryAddQuestion: queryAddQuestion
 };

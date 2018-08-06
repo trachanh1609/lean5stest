@@ -9,6 +9,8 @@ function Test() {
       <a href="/api/cities">Cities of Metsä Group</a>
       <br/>
       <a href="/api/rooms">Rooms in Äänekoski</a>
+      <br/>
+      <a href="/api/add_question">Add question</a>
     </div>
   )
 }
