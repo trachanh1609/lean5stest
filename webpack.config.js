@@ -7,7 +7,7 @@ var isProduction = process.env.NODE_ENV === 'production';
 var cssOutputPath = isProduction ? '/styles/app.[hash].css' : '/styles/app.css';
 var jsOutputPath = isProduction ? '/scripts/app.[hash].js' : '/scripts/app.js';
 var ExtractSASS = new ExtractTextPlugin(cssOutputPath);
-var port = isProduction ? process.env.PORT || 8080 : process.env.PORT || 3000;
+var port = isProduction ? process.env.PORT || 8080 : process.env.PORT || 3005;
 
 // ------------------------------------------
 // Base
