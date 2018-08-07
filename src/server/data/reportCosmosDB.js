@@ -11,11 +11,13 @@ const config = {
     host: process.env.COSMOS_HOST || configuration.COSMOS_HOST,
     auth: {
         masterKey: process.env.COSMOS_MASTERKEY || configuration.COSMOS_MASTERKEY
-    }
+    },
+    dbID : 'ToDoList',
+    collectionID: 'Items'
 };
 
-var client = new docdb.DocumentClient(config.host, config.auth);
-var itemsLink = docdb.UriFactory.createDocumentCollectionUri('ToDoList', 'Items');
+const client = new docdb.DocumentClient(config.host, config.auth);
+var itemsLink = docdb.UriFactory.createDocumentCollectionUri(config.dbID, config.collectionID);
 // this is equivalent to :
 // var itemsLink = 'dbs/ToDoList/colls/Items'
 
@@ -48,10 +50,20 @@ var queryItem = function(reportID, callback) {
 
 var createItem = function (item, callback) {
 
-    item.date = Date.now();
-    item.completed = false;
-
     client.createDocument(itemsLink, item, function (err, doc) {
+        if (err) {
+            callback(err);
+
+        } else {
+            callback(null, doc);
+        }
+    });
+}
+
+var updateItem = function (item, callback) {
+
+    let itemLink = 'dbs/' + config.dbID + '/colls/' + config.collectionID + '/docs/' + item.id;
+    client.replaceDocument(itemLink, item, function (err, doc) {
         if (err) {
             callback(err);
 
@@ -65,7 +77,7 @@ module.exports = {
     queryItems: queryItems,
     queryItem: queryItem,
     createItem: createItem,
-    // updateItem: updateItem,
+    updateItem: updateItem,
     // deleteItem: deleteItem,
 };
 
