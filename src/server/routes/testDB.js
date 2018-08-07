@@ -36,6 +36,26 @@ router.get('/offices/:reportID', function(req, res, next) {
     });
   });
 
+
+  router.post('/new_audit/', function(req, res, next) {
+    let item = {};
+    item.type = req.body.type || '' ;
+    item.document_number = req.body.document_number || '' ;
+    item.date = Date.now();
+    item.auditor = req.body.auditor || '' ;
+    item.target = req.body.target || '' ;
+    item.target_id = req.body.target_id || '' ;
+    item.office = req.body.office || '' ;
+    item.corporation = req.body.corporation || '' ;
+  
+    db.createAudit(item, function(err, result) {
+      if(err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(result);
+      }
+    });
+  });
 /* GET a specific report. */
 /*
 router.get('/:reportID', function(req, res, next) {

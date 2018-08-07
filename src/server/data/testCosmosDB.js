@@ -59,6 +59,18 @@ var queryOffices = function(reportID, callback) {
         callback(err, results);
     });
 };
+
+var createAudit = function (item, callback) {
+
+    client.createDocument(officeLink, item, function (err, doc) {
+        if (err) {
+            callback(err);
+
+        } else {
+            callback(null, doc);
+        }
+    });
+}
 /*
 var queryItem = function(reportID, callback) {
     
@@ -117,6 +129,7 @@ var deleteItem = function (reportID, callback) {
 module.exports = {
     queryCorporations: queryCorporations,
     queryAll: queryAll,
-    queryOffices: queryOffices
+    queryOffices: queryOffices,
+    createAudit: createAudit
 };
 
