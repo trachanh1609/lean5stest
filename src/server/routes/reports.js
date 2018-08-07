@@ -4,7 +4,7 @@ var db = require('../data/reportCosmosDB');
 
 /* GET report listing. */
 router.get('/', function(req, res, next) {
-  db.queryItems(function(err, results) {
+  db.getItems(function(err, results) {
     if(err) {
       res.status(400).send(err);
     } else {
@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 /* GET a specific report. */
 router.get('/:reportID', function(req, res, next) {
   let reportID = req.params.reportID ;
-  db.queryItem(reportID, function(err, result) {
+  db.getItem(reportID, function(err, result) {
     if(err) {
       res.status(400).send(err);
     } else {

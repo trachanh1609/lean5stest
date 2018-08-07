@@ -17,11 +17,11 @@ const config = {
 };
 
 const client = new docdb.DocumentClient(config.host, config.auth);
-var itemsLink = docdb.UriFactory.createDocumentCollectionUri(config.dbID, config.collectionID);
+// var itemsLink = docdb.UriFactory.createDocumentCollectionUri(config.dbID, config.collectionID);
 // this is equivalent to :
-// var itemsLink = 'dbs/ToDoList/colls/Items'
+const itemsLink = 'dbs/' + config.dbID + '/colls/' + config.collectionID ;
 
-var queryItems = function(callback) {
+var getItems = function(callback) {
     
     var querySpec = {
         query: "SELECT c.id, c.name, c.category, c.date, c.completed FROM c order by c.date",
@@ -33,7 +33,7 @@ var queryItems = function(callback) {
     });
 };
 
-var queryItem = function(reportID, callback) {
+var getItem = function(reportID, callback) {
     
     var querySpec = {
         query: "SELECT c.id, c.name, c.category, c.date, c.completed FROM c WHERE c.id = @ID",
@@ -62,7 +62,7 @@ var createItem = function (item, callback) {
 
 var updateItem = function (item, callback) {
 
-    let itemLink = 'dbs/' + config.dbID + '/colls/' + config.collectionID + '/docs/' + item.id;
+    let itemLink = itemsLink + '/docs/' + item.id;
     client.replaceDocument(itemLink, item, function (err, doc) {
         if (err) {
             callback(err);
@@ -75,8 +75,8 @@ var updateItem = function (item, callback) {
 
 var deleteItem = function (reportID, callback) {
 
-    let itemLink = 'dbs/' + config.dbID + '/colls/' + config.collectionID + '/docs/' + reportID;
-    
+    let itemLink = itemsLink + '/docs/' + item.id;
+
     client.deleteDocument(itemLink, function (err) {
         if (err) {
             callback(err);
@@ -89,8 +89,8 @@ var deleteItem = function (reportID, callback) {
 }
 
 module.exports = {
-    queryItems: queryItems,
-    queryItem: queryItem,
+    getItems: getItems,
+    getItem: getItem,
     createItem: createItem,
     updateItem: updateItem,
     deleteItem: deleteItem,
