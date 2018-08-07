@@ -61,4 +61,18 @@ router.put('/:reportID', function(req, res, next) {
   });
 });
 
+/* Delete a specific report. */
+router.delete('/:reportID', function(req, res, next) {
+
+  let reportID = req.params.reportID ;
+
+  db.deleteItem(reportID, function(err, result) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).send(result);
+    }
+  });
+});
+
 module.exports = router;

@@ -73,11 +73,26 @@ var updateItem = function (item, callback) {
     });
 }
 
+var deleteItem = function (reportID, callback) {
+
+    let itemLink = 'dbs/' + config.dbID + '/colls/' + config.collectionID + '/docs/' + reportID;
+    
+    client.deleteDocument(itemLink, function (err) {
+        if (err) {
+            callback(err);
+
+        } else {
+            let response = {'Message': 'Item is deleted'}
+            callback(err, response);
+        }
+    });
+}
+
 module.exports = {
     queryItems: queryItems,
     queryItem: queryItem,
     createItem: createItem,
     updateItem: updateItem,
-    // deleteItem: deleteItem,
+    deleteItem: deleteItem,
 };
 
