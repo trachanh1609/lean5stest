@@ -13,26 +13,53 @@ const config = {
         masterKey: process.env.COSMOS_MASTERKEY || configuration.COSMOS_MASTERKEY
     },
     dbID : 'ToDoList',
-    collectionID: 'Items'
+    collectionID: 'Office'
 };
 
 const client = new docdb.DocumentClient(config.host, config.auth);
-var itemsLink = docdb.UriFactory.createDocumentCollectionUri(config.dbID, config.collectionID);
+var officeLink = docdb.UriFactory.createDocumentCollectionUri(config.dbID, config.collectionID);
 // this is equivalent to :
-// var itemsLink = 'dbs/ToDoList/colls/Items'
+// var officeLink = 'dbs/ToDoList/colls/Office'
 
-var queryItems = function(callback) {
+var queryCorporations = function(callback) {
     
     var querySpec = {
-        query: "SELECT c.id, c.name, c.category, c.date, c.completed FROM c",
+        query: "SELECT corporations.corp_name FROM c JOIN corporations IN c.corporations WHERE c.id = 'Corporations'",
         parameters: []
     };
 
-    client.queryDocuments(itemsLink, querySpec).toArray((err, results) => {
+    client.queryDocuments(officeLink, querySpec).toArray((err, results) => {
         callback(err, results);
     });
 };
 
+var queryAll = function(callback) {
+    
+    var querySpec = {
+        query: "SELECT * FROM c",
+        parameters: []
+    };
+
+    client.queryDocuments(officeLink, querySpec).toArray((err, results) => {
+        callback(err, results);
+    });
+};
+
+var queryOffices = function(reportID, callback) {
+    var id = parseInt(reportID);
+    var querySpec = {
+        query: "SELECT offices.office_name, offices.id, offices.corporation_id FROM c JOIN offices IN c.offices WHERE c.id = 'Offices' AND offices.corporation_id = @ID",
+        parameters: [{
+            name: '@ID',
+            value: id
+        }]
+    };
+
+    client.queryDocuments(officeLink, querySpec).toArray((err, results) => {
+        callback(err, results);
+    });
+};
+/*
 var queryItem = function(reportID, callback) {
     
     var querySpec = {
@@ -47,7 +74,6 @@ var queryItem = function(reportID, callback) {
         callback(err, results);
     });
 };
-
 var createItem = function (item, callback) {
 
     client.createDocument(itemsLink, item, function (err, doc) {
@@ -87,12 +113,10 @@ var deleteItem = function (reportID, callback) {
         }
     });
 }
-
+*/
 module.exports = {
-    queryItems: queryItems,
-    queryItem: queryItem,
-    createItem: createItem,
-    updateItem: updateItem,
-    deleteItem: deleteItem,
+    queryCorporations: queryCorporations,
+    queryAll: queryAll,
+    queryOffices: queryOffices
 };
 

@@ -27,7 +27,7 @@ var queryCorporations = function(callback) {
             callback(err);
         } else {
             var request = new Request(
-                "SELECT Corporation_name FROM Corporation",
+                "SELECT Corporation_ID, Corporation_name FROM Corporation",
                 function(err, rowCount, rows) {
                     callback(err, rowCount, rows);
                 }
