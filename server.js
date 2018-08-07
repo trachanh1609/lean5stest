@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require("body-parser");
-
+const cors = require('cors');
 const indexRouter = require('./src/server/routes/');
 
 
@@ -11,7 +11,7 @@ app.use(express.static('dist'));
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/api', indexRouter);
+app.use('/api', cors(), indexRouter);
 
 
 app.get('*', (req, res) => {
