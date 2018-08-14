@@ -11,7 +11,14 @@ const OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
 
 
 const isProduction = process.env.NODE_ENV === 'production';
-let configuration = {};
+var configuration = {
+  creds: {
+    skipUserProfile: true, // for AzureAD should be set to true.
+    responseType: 'id_token code', // for login only flows use id_token. For accessing resources use `id_token code`
+    responseMode: 'form_post', // For login only flows we should have token passed back to us in a POST
+    issuer: false,
+  } 
+};
 if(!isProduction) {
     configuration = require('./config');
 }
@@ -51,7 +58,7 @@ passport.use(new OIDCStrategy({
   skipUserProfile: configuration.creds.skipUserProfile || true,
   responseType: configuration.creds.responseType || 'id_token code',
   responseMode: configuration.creds.responseMode || 'form_post',
-  allowHttpForRedirectUrl: configuration.creds.allowHttpForRedirectUrl || false,
+  allowHttpForRedirectUrl: process.env.AADallowHttpForRedirectUrl || configuration.creds.allowHttpForRedirectUrl,
 },
 function(iss, sub, profile, accessToken, refreshToken, done) {
   if (!profile.upn) {
