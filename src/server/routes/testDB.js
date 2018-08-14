@@ -24,6 +24,17 @@ router.get('/corporations', function(req, res, next) {
     });
   });
 
+  router.get('/offices', function(req, res, next) {
+    
+    db.queryAllOffices(function(err, results) {
+      if(err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(results);
+      }
+    });
+  });
+
 /* GET offices listing. */
 router.get('/offices/:reportID', function(req, res, next) {
     let reportID = req.params.reportID;
@@ -36,19 +47,51 @@ router.get('/offices/:reportID', function(req, res, next) {
     });
   });
 
+  router.get('/targets/:reportID', function(req, res, next) {
+    let reportID = req.params.reportID;
+    db.queryTargets(reportID, function(err, results) {
+      if(err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(results);
+      }
+    });
+  });
+
+  router.get('/questions/:reportID', function(req, res, next) {
+    let reportID = req.params.reportID;
+    db.queryQuestions(reportID, function(err, results) {
+      if(err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(results);
+      }
+    });
+  });
+
+  router.get('/questionText/:reportID', function(req, res, next) {
+    let reportID = req.params.reportID;
+    db.queryQuestionText(reportID, function(err, results) {
+      if(err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(results);
+      }
+    });
+  });
 
   router.post('/new_audit/', function(req, res, next) {
     let item = {};
-    item.type = req.body.type || '' ;
-    item.document_number = req.body.document_number || '' ;
+    item.type = 'Audit_case' ;
     item.date = Date.now();
     item.auditor = req.body.auditor || '' ;
-    item.target = req.body.target || '' ;
     item.target_id = req.body.target_id || '' ;
-    item.office = req.body.office || '' ;
-    item.corporation = req.body.corporation || '' ;
+    item.target_name = req.body.target_name || '' ;
+    item.office_name = req.body.office_name || '' ;
+    item.corporation_name = req.body.corporation_name || '' ;
+    item.comment = req.body.comment || '' ;
   
-    db.createAudit(item, function(err, result) {
+    db.createItem(item, function(err, result) {
       if(err) {
         res.status(400).send(err);
       } else {
@@ -56,44 +99,107 @@ router.get('/offices/:reportID', function(req, res, next) {
       }
     });
   });
-/* GET a specific report. */
-/*
-router.get('/:reportID', function(req, res, next) {
-  let reportID = req.params.reportID ;
-  db.queryItem(reportID, function(err, result) {
-    if(err) {
-      res.status(400).send(err);
-    } else {
-      res.status(200).send(result);
-    }
+
+  router.post('/result/', function(req, res, next) {
+    let item = {};
+    item.type = 'Results' ;
+    item.audit_id = req.body.audit_id || '' ;
+    item.question_id = req.body.question_id || '' ;
+    item.grade = req.body.grade || '' ;
+    item.comment = req.body.comment || '' ;
+  
+    db.createItem(item, function(err, result) {
+      if(err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(result);
+      }
+    });
   });
-});
 
- POST , create a new item. 
-router.post('/', function(req, res, next) {
-  let item = {};
-  item.name = req.body.name || '' ;
-  item.category = req.body.category || '' ;
-  item.date = Date.now();
-  item.completed = false;
-
-  db.createItem(item, function(err, result) {
-    if(err) {
-      res.status(400).send(err);
-    } else {
-      res.status(200).send(result);
-    }
+  router.post('/new_corporation/', function(req, res, next) {
+    let item = {};
+    item.type = req.body.type || '' ;
+    item.corporation_name = req.body.corporation_name || '' ;
+  
+    db.createItem(item, function(err, result) {
+      if(err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(result);
+      }
+    });
   });
-});
 
- REPLACE a specific report. 
-router.put('/:reportID', function(req, res, next) {
+  router.post('/new_office/', function(req, res, next) {
+    let item = {};
+    item.type = req.body.type || '' ;
+    item.office_name = req.body.office_name || '' ;
+    item.corporation_id = req.body.corporation_id || '' ;
+  
+    db.createItem(item, function(err, result) {
+      if(err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(result);
+      }
+    });
+  });
+
+  router.post('/new_target/', function(req, res, next) {
+    let item = {};
+    item.type = req.body.type || '' ;
+    item.target_name = req.body.target_name || '' ;
+    item.office_id = req.body.office_id || '' ;
+
+  
+    db.createItem(item, function(err, result) {
+      if(err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(result);
+      }
+    });
+  });
+
+  router.post('/new_question/', function(req, res, next) {
+    let item = {};
+    item.type = req.body.type || '' ;
+    item.question_text = req.body.question_text || '' ;
+      
+    db.createItem(item, function(err, result) {
+      if(err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(result);
+      }
+    });
+  });
+
+  router.post('/link/', function(req, res, next) {
+    let item = {};
+    item.type = req.body.type || '' ;
+    item.question_id = req.body.question_id || '' ;
+    item.target_id = req.body.target_id || '' ;
+      
+    db.createItem(item, function(err, result) {
+      if(err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(result);
+      }
+    });
+  });
+
+  // REPLACE a specific report. 
+router.put('/updateResult/:reportID', function(req, res, next) {
   let item = {};
   item.id = req.params.reportID ;
-  item.name = req.body.name ;
-  item.category = req.body.category ;
-  item.date = Date.now();
-  item.completed = req.body.completed ;
+  item.type = "Results" ;
+  item.audit_id = req.body.audit_id || '' ;
+  item.question_id = req.body.question_id || '' ;
+  item.grade = req.body.grade || '' ;
+  item.comment = req.body.comment || '' ;
 
   db.updateItem(item, function(err, result) {
     if(err) {
@@ -104,8 +210,12 @@ router.put('/:reportID', function(req, res, next) {
   });
 });
 
- Delete a specific report. 
-router.delete('/:reportID', function(req, res, next) {
+
+
+ 
+
+// Delete a specific report. 
+router.delete('/delete/:reportID', function(req, res, next) {
 
   let reportID = req.params.reportID ;
 
@@ -117,5 +227,5 @@ router.delete('/:reportID', function(req, res, next) {
     }
   });
 });
-*/
+
 module.exports = router;

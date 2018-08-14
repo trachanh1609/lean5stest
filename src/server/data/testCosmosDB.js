@@ -24,7 +24,7 @@ var officeLink = docdb.UriFactory.createDocumentCollectionUri(config.dbID, confi
 var queryCorporations = function(callback) {
     
     var querySpec = {
-        query: "SELECT corporations.corp_name FROM c JOIN corporations IN c.corporations WHERE c.id = 'Corporations'",
+        query: "SELECT c.corporation_name, c.id FROM c WHERE c.type = 'Corporation'",
         parameters: []
     };
 
@@ -45,13 +45,70 @@ var queryAll = function(callback) {
     });
 };
 
-var queryOffices = function(reportID, callback) {
-    var id = parseInt(reportID);
+var queryAllOffices = function(callback) {
+    
     var querySpec = {
-        query: "SELECT offices.office_name, offices.id, offices.corporation_id FROM c JOIN offices IN c.offices WHERE c.id = 'Offices' AND offices.corporation_id = @ID",
+        query: "SELECT c.office_name, c.id, c.corporation_id FROM c WHERE c.type = 'Office'",
+        parameters: []
+    };
+
+    client.queryDocuments(officeLink, querySpec).toArray((err, results) => {
+        callback(err, results);
+    });
+};
+
+var queryOffices = function(reportID, callback) {
+    
+    var querySpec = {
+        query: "SELECT c.office_name, c.id, c.corporation_id FROM c WHERE c.type = 'Office' AND c.corporation_id = @ID",
         parameters: [{
             name: '@ID',
-            value: id
+            value: reportID
+        }]
+    };
+
+    client.queryDocuments(officeLink, querySpec).toArray((err, results) => {
+        callback(err, results);
+    });
+};
+
+var queryTargets = function(reportID, callback) {
+    
+    var querySpec = {
+        query: "SELECT c.target_name, c.id, c.office_id FROM c WHERE c.type = 'Target' AND c.office_id = @ID",
+        parameters: [{
+            name: '@ID',
+            value: reportID
+        }]
+    };
+
+    client.queryDocuments(officeLink, querySpec).toArray((err, results) => {
+        callback(err, results);
+    });
+};
+
+var queryQuestions = function(reportID, callback) {
+    
+    var querySpec = {
+        query: "SELECT c.question_id FROM c WHERE c.type = 'Question-Target-Link' AND c.target_id = @ID",
+        parameters: [{
+            name: '@ID',
+            value: reportID
+        }]
+    };
+
+    client.queryDocuments(officeLink, querySpec).toArray((err, results) => {
+        callback(err, results);
+    });
+};
+
+var queryQuestionText = function(reportID, callback) {
+    
+    var querySpec = {
+        query: "SELECT c.question_text FROM c WHERE c.id = @ID",
+        parameters: [{
+            name: '@ID',
+            value: reportID
         }]
     };
 
@@ -71,24 +128,10 @@ var createAudit = function (item, callback) {
         }
     });
 }
-/*
-var queryItem = function(reportID, callback) {
-    
-    var querySpec = {
-        query: "SELECT c.id, c.name, c.category, c.date, c.completed FROM c WHERE c.id = @ID",
-        parameters: [{
-            name: '@ID',
-            value: reportID
-        }]
-    };
 
-    client.queryDocuments(itemsLink, querySpec).toArray((err, results) => {
-        callback(err, results);
-    });
-};
 var createItem = function (item, callback) {
 
-    client.createDocument(itemsLink, item, function (err, doc) {
+    client.createDocument(officeLink, item, function (err, doc) {
         if (err) {
             callback(err);
 
@@ -125,11 +168,18 @@ var deleteItem = function (reportID, callback) {
         }
     });
 }
-*/
+
 module.exports = {
     queryCorporations: queryCorporations,
     queryAll: queryAll,
     queryOffices: queryOffices,
-    createAudit: createAudit
+    queryAllOffices: queryAllOffices,
+    queryTargets: queryTargets,
+    queryQuestions: queryQuestions,
+    queryQuestionText:queryQuestionText,
+    createAudit: createAudit,
+    createItem: createItem,
+    updateItem: updateItem,
+    deleteItem:deleteItem
 };
 
