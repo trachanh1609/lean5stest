@@ -45,7 +45,7 @@ passport.use(new OIDCStrategy({
   redirectUrl: process.env.AADreturnURL || configuration.creds.returnURL,
   realm: process.env.AADrealm || configuration.creds.realm,
   clientID: process.env.AADclientID || configuration.creds.clientID,
-  clientSecret: process.env.AADclientSeret || configuration.creds.clientSecret,
+  clientSecret: process.env.AADclientSecret || configuration.creds.clientSecret,
   oidcIssuer: configuration.creds.issuer || false,
   identityMetadata: process.env.AADidentityMetadata || configuration.creds.identityMetadata,
   skipUserProfile: configuration.creds.skipUserProfile || true,
