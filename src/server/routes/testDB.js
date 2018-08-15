@@ -83,12 +83,12 @@ router.get('/offices/:reportID', function(req, res, next) {
   router.post('/new_audit/', function(req, res, next) {
     let item = {};
     item.type = 'Audit_case' ;
-    item.date = Date.now();
+    item.date = req.body.date || '';
     item.auditor = req.body.auditor || '' ;
-    item.target_id = req.body.target_id || '' ;
-    item.target_name = req.body.target_name || '' ;
-    item.office_name = req.body.office_name || '' ;
-    item.corporation_name = req.body.corporation_name || '' ;
+    item.target_id = req.body.target || '' ;
+    item.target_name = req.body.target.value || '' ;
+    item.office_name = req.body.office.value || '' ;
+    item.corporation_name = req.body.corporation.value || '' ;
     item.comment = req.body.comment || '' ;
   
     db.createItem(item, function(err, result) {

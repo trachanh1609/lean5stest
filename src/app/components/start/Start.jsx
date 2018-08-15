@@ -1,12 +1,13 @@
 import React from 'react';
 
 
-const API_URL = "http://localhost:3000";
+//const API_URL = "http://localhost:3000";
+const API_URL = "";
 
 
-var corpId = "";
-var officeId = "";
-var targetId = "";
+var corpId = "-";
+var officeId = "-";
+var targetId = "-";
 
 
 class Office extends React.Component {
@@ -26,7 +27,7 @@ class Office extends React.Component {
       );
     });
     return (
-      <select ref="office" style={{width: "200px"}} onChange={this.handleOfficeChange}>
+      <select ref="office" name="office" style={{width: "200px"}} onChange={this.handleOfficeChange}>
       <option>Toimipisete</option>
       {offices}
       </select>
@@ -48,7 +49,7 @@ class Target extends React.Component {
       );
     });
     return (
-      <select ref="target" onChange = {this.handleTargetChange} style={{width: "200px"}}>
+      <select ref="target" name="target" onChange = {this.handleTargetChange} style={{width: "200px"}}>
       <option>Kohde</option>
       {targets}</select>
     )
@@ -68,10 +69,6 @@ class Demo extends React.Component{
 
 componentDidMount() {
   this.getCorporations();
-  this.getOffices();
-  this.getTargets();
-
-  
 }
 
 getCorporations = () => {
@@ -96,6 +93,7 @@ getCorporations = () => {
 getOffices = () => {
   var self = this;
   let url = API_URL + "/api/testDB/offices/"+corpId;
+  
   fetch(url)
   .then(function(response) {
     return response.json();
@@ -136,19 +134,20 @@ handleCorporationChange = () => {
 
 submitButtonPressed = () => {
   alert("Here will be implemented POST method to create Audit_case with following details:\nCorporation: " + corpId + "\nOffice id: "+ officeId + "\nTarget id: "+targetId + "\nDate: "+this.refs.inputDate.value+"\nUser: "+this.refs.inputUser.value);
+
 }
 
 render() {
   return (
     <div>
       <h1>Demonstration version</h1>
-      <form onSubmit={this.submitButtonPressed}>
+      <form method="POST" action={API_URL+"/api/testDB/new_audit/"}>
       <table  style={{alignItems: 'center',display: 'flex',  justifyContent:'center'}}>
       <tbody>
         <tr>
           
           <td>
-            <select ref="corporation" onChange={this.handleCorporationChange} style={{width: "200px"}}>
+            <select ref="corporation" name="corporation" onChange={this.handleCorporationChange} style={{width: "200px"}}>
             <option>Yhtiö</option>
             {
               this.state.corporations.map(corporation=> {
@@ -186,7 +185,7 @@ render() {
           <td>
             
             
-            <input ref="inputDate" type="date" style={{width: "200px"}} required/>
+            <input ref="inputDate" type="date" name="date" style={{width: "200px"}} required/>
           </td>
         </tr>
         <tr>
@@ -195,7 +194,7 @@ render() {
           <td>
             
             
-            <input ref="inputUser" type="text" placeholder="user" style={{width: "200px"}} required/>
+            <input ref="inputUser" type="text" name ="auditor" placeholder="user" style={{width: "200px"}} required/>
           </td>
         </tr>
         </tbody>
