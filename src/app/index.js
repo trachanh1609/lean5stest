@@ -11,6 +11,8 @@ import Test from './components/test/Test';
 import Start from './components/start/Start';
 import Dashboard from './components/dashboard/dashboard';
 
+import Administration from './components/start/Administration'
+
 import reducers from './reducers';
 
 import './components/bundle.scss';
@@ -27,6 +29,8 @@ ReactDOM.render(
         <Route path="/about" component={About} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/test" component={Test} />
+        
+        <Route path="/administration" component={Administration} />
       </Route>
     </Router>
   </Provider>

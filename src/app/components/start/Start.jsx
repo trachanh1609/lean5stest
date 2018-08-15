@@ -1,8 +1,8 @@
 import React from 'react';
 
 
-//const API_URL = "http://localhost:3000";
-const API_URL = "";
+const API_URL = "http://localhost:3000";
+//const API_URL = "";
 
 
 var corpId = "-";
@@ -154,9 +154,11 @@ render() {
                 return(<option value={corporation.id}>{corporation.corporation_name}</option>)
               })
             }
+            
             </select>
             
           </td>
+          
         </tr>
         
 
@@ -168,6 +170,7 @@ render() {
             <Office offices = {this.state.offices} getTargets = {this.getTargets}/>
             
           </td>
+          
         </tr>
 
         <tr>
@@ -178,6 +181,7 @@ render() {
             <Target targets = {this.state.targets}/>
             
           </td>
+          
         </tr>
         <tr>
           
@@ -187,6 +191,7 @@ render() {
             
             <input ref="inputDate" type="date" name="date" style={{width: "200px"}} required/>
           </td>
+          <td></td>
         </tr>
         <tr>
           
@@ -194,14 +199,21 @@ render() {
           <td>
             
             
-            <input ref="inputUser" type="text" name ="auditor" placeholder="user" style={{width: "200px"}} required/>
+            <input ref="inputUser" type="text" name ="auditor" placeholder="Auditor" style={{width: "200px"}} required/>
           </td>
+          <td></td>
         </tr>
         </tbody>
         
         </table>
-        <button type="submit">Start</button>
+        <button type="submit">Creat Audit case</button>
         </form>
+        <br/>
+        <br/>
+        <br/>
+        <div>
+        <a href="/administration">DB administration</a>
+        </div>
     </div>
 
   )

@@ -95,7 +95,7 @@ router.get('/offices/:reportID', function(req, res, next) {
       if(err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send(result);
+        res.status(200).redirect('http://localhost:3005/administration');
       }
     });
   });
@@ -112,21 +112,21 @@ router.get('/offices/:reportID', function(req, res, next) {
       if(err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send(result);
+        res.status(200).redirect('http://localhost:3005/administration');
       }
     });
   });
 
   router.post('/new_corporation/', function(req, res, next) {
     let item = {};
-    item.type = req.body.type || '' ;
+    item.type = 'Corporation' ;
     item.corporation_name = req.body.corporation_name || '' ;
   
     db.createItem(item, function(err, result) {
       if(err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send(result);
+        res.status(200).redirect('http://localhost:3005/administration');
       }
     });
   });
@@ -141,7 +141,7 @@ router.get('/offices/:reportID', function(req, res, next) {
       if(err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send(result);
+        res.status(200).redirect('http://localhost:3005/administration');
       }
     });
   });
@@ -157,7 +157,7 @@ router.get('/offices/:reportID', function(req, res, next) {
       if(err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send(result);
+        res.status(200).redirect('http://localhost:3005/administration');
       }
     });
   });
@@ -171,7 +171,7 @@ router.get('/offices/:reportID', function(req, res, next) {
       if(err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send(result);
+        res.status(200).redirect('http://localhost:3005/administration');
       }
     });
   });
@@ -186,7 +186,7 @@ router.get('/offices/:reportID', function(req, res, next) {
       if(err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send(result);
+        res.status(200).redirect('http://localhost:3005/administration');
       }
     });
   });
@@ -223,7 +223,7 @@ router.delete('/delete/:reportID', function(req, res, next) {
     if(err) {
       res.status(400).send(err);
     } else {
-      res.status(200).send(result);
+      res.status(200).redirect('http://localhost:3005/administration');
     }
   });
 });
