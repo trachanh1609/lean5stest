@@ -85,6 +85,8 @@ class Test extends React.Component{
         <a href="/api/testDB/corporations">Corporations</a>
         <br/>
         <a href="/api/testDB/offices">All offices</a>
+        <br/>
+        <a href="/public/add_office.html">Add office</a>
       </div>
     )
   }

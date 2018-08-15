@@ -8,6 +8,7 @@ import App from './components/App';
 import Home from './components/home/Home';
 import About from './components/about/About';
 import Test from './components/test/Test';
+import Start from './components/start/Start';
 
 import reducers from './reducers';
 
@@ -21,6 +22,7 @@ ReactDOM.render(
     <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Home} />;
+        <Route path="/start" component={Start} />
         <Route path="/about" component={About} />
         <Route path="/test" component={Test} />
       </Route>

@@ -133,7 +133,7 @@ router.get('/offices/:reportID', function(req, res, next) {
 
   router.post('/new_office/', function(req, res, next) {
     let item = {};
-    item.type = req.body.type || '' ;
+    item.type = req.body.type || 'Office' ;
     item.office_name = req.body.office_name || '' ;
     item.corporation_id = req.body.corporation_id || '' ;
   

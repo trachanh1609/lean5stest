@@ -4,9 +4,9 @@ const bodyParser = require("body-parser");
 const cors = require('cors');
 const indexRouter = require('./src/server/routes/');
 
-
 app.use(express.static('./'));
 app.use(express.static('dist'));
+
 
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
