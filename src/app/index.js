@@ -9,6 +9,7 @@ import Home from './components/home/Home';
 import About from './components/about/About';
 import Test from './components/test/Test';
 import Start from './components/start/Start';
+import Dashboard from './components/dashboard/dashboard';
 
 import reducers from './reducers';
 
@@ -24,6 +25,7 @@ ReactDOM.render(
         <IndexRoute component={Home} />;
         <Route path="/start" component={Start} />
         <Route path="/about" component={About} />
+        <Route path="/dashboard" component={Dashboard} />
         <Route path="/test" component={Test} />
       </Route>
     </Router>
