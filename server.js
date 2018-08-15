@@ -122,7 +122,11 @@ app.get('/errorPage', function(req, res){
   res.send('This is the error page')
 });
 
-app.use('/api', cors(),ensureAuthenticated, indexRouter);
+// this will require authentication for route /api.
+// app.use('/api', cors(),ensureAuthenticated, indexRouter);
+// this turn off authentication, used for development.
+app.use('/api', cors(), indexRouter);
+
 
 app.get('*', (req, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
