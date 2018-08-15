@@ -1,14 +1,8 @@
 import React from 'react';
+
+
 const API_URL = "http://localhost:3000";
 
-/*
-const isProduction = process.env.NODE_ENV === 'production';
-if(isProduction) {
-  const API_URL = "http://localhost:3000";
-} else {
-  const API_URL = "http://localhost:3000";
-}
-*/
 
 var corpId = "";
 var officeId = "";
@@ -83,12 +77,14 @@ componentDidMount() {
 getCorporations = () => {
   var self = this;
   let url = API_URL + "/api/testDB/corporations";
+  
   fetch(url)
   .then(function(response) {
     return response.json();
   })
   .then(function(json){
     self.setState({corporations: json});
+    
   })
   .catch(function(err){
     console.error(err)
