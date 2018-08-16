@@ -43,7 +43,7 @@ class Administration extends React.Component {
     render() {
         return (
             <div className="container home">
-                <h1>Administration</h1>
+                <h1>Administration panel</h1>
                 <h3>List of corporations in database</h3>
                 <div style={{alignItems: 'center',display: 'flex',  justifyContent:'center'}}>
                 <table>
@@ -63,13 +63,36 @@ class Administration extends React.Component {
                     }
                     
                 </table>
+                
+                <h4>Add a new corporation</h4>
+                <form method="POST" action={API_URL+"/api/testDB/new_corporation/"}>
+                    <input type="text" name="corporation_name" placeholder="Enter corporation name"/>
+                    <button type="submit">Add</button>
+                </form>
                 </div>
-                    <h4>Add a new corporation</h4>
-              <form method="POST" action={API_URL+"/api/testDB/new_corporation/"}>
-                  <input type="text" name="corporation_name" placeholder="Enter corporation name"/>
+                <div style={{alignItems: 'center',display: 'flex',  justifyContent:'center'}}>
+                <h3>Factories in database</h3>
+                
+                <select ref="corporation" name="corporation" onChange={this.handleCorporationChange} style={{width: "200px"}}>
+                    <option value="all">All corporations</option>
+                    {
+                    this.state.corporations.map(corporation=> {
+                        return(<option value={corporation.id}>{corporation.corporation_name}</option>)
+                    })
+                    }
+            
+                </select>
+                <button onClick={this.showOffices}>Show</button>
+                <br/>
+                
+                    <h4>Add a new factory</h4>
+              <form method="POST" action={API_URL+"/api/testDB/new_office/"}>
+                  <input type="text" name="office_name" placeholder="Enter factory name"/>
                   <button type="submit">Add</button>
               </form>
+              </div>
             </div>
+            
           )
     }
     

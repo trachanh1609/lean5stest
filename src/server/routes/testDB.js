@@ -223,7 +223,7 @@ router.delete('/delete/:reportID', function(req, res, next) {
     if(err) {
       res.status(400).send(err);
     } else {
-      res.status(200).redirect('http://localhost:3005/administration');
+      res.status(200).send(result);
     }
   });
 });
