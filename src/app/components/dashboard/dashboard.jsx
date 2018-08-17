@@ -14,6 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import {drawerMenu} from './drawerMenu';
+import ProfileMenu from './profileMenu';
 
 const drawerWidth = 240;
 const transistionSpeed = 'width 0.5s';
@@ -64,6 +65,11 @@ const styles = theme => ({
     flexGrow: 1,
     marginTop: 64,
   },
+  profileMenu: {
+  },
+  filler:{
+    flexGrow: 1
+  }
 });
 
 class Dashboard extends React.Component{
@@ -106,6 +112,8 @@ class Dashboard extends React.Component{
             <Typography variant="title" color="inherit" noWrap>
               Lean 5S
             </Typography>
+            <div className={classes.filler}></div>
+            <ProfileMenu className={classes.profileMenu}/>
           </Toolbar>
         </AppBar>
         <Drawer
