@@ -28,7 +28,7 @@ const styles = theme => ({
     display: 'flex',
   },
   appBar: {
-    zIndex: 10,
+    zIndex: 1201, // zIndex of drawer is 1200
     transition: transistionSpeed
   },
   appBarShift: {
@@ -44,7 +44,7 @@ const styles = theme => ({
     display: 'none',
   },
   drawerPaper: {
-    position: 'relative',
+    // position: 'relative',  // affecting border-right of drawer
     whiteSpace: 'nowrap',
     width: drawerWidth,
     transition: transistionSpeed,
@@ -52,7 +52,7 @@ const styles = theme => ({
   drawerPaperClose: {
     overflowX: 'hidden',
     transition: transistionSpeed,
-    width: 0,
+    width: 72,
   },
   toolbar: {
     display: 'flex',
@@ -62,6 +62,7 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
+    marginTop: 64,
   },
 });
 
@@ -103,7 +104,7 @@ class Dashboard extends React.Component{
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              Mini variant drawer
+              Lean 5S
             </Typography>
           </Toolbar>
         </AppBar>
@@ -115,6 +116,9 @@ class Dashboard extends React.Component{
           open={this.state.open}
         >
           <div className={classes.toolbar}>
+            <Typography variant="title" color="inherit">
+                Metsä Group
+            </Typography>
             <IconButton onClick={this.handleDrawerClose}>
               <ChevronLeftIcon />
             </IconButton>
