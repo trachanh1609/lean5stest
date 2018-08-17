@@ -213,6 +213,8 @@ render() {
         <br/>
         <div>
         <a href="/administration">DB administration</a>
+        <br/>
+        <a href="/administration_local">DB administration (local)</a>
         </div>
     </div>
 
