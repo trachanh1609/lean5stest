@@ -63,8 +63,10 @@ class Administration extends React.Component {
                     }
                     
                 </table>
-                
+                </div>
+                <div style={{alignItems: 'center',display: 'flex',  justifyContent:'center'}}>
                 <h4>Add a new corporation</h4>
+                <br/>
                 <form method="POST" action={API_URL+"/api/testDB/new_corporation/"}>
                     <input type="text" name="corporation_name" placeholder="Enter corporation name"/>
                     <button type="submit">Add</button>
@@ -72,7 +74,7 @@ class Administration extends React.Component {
                 </div>
                 <div style={{alignItems: 'center',display: 'flex',  justifyContent:'center'}}>
                 <h3>Factories in database</h3>
-                
+                <br/>
                 <select ref="corporation" name="corporation" onChange={this.handleCorporationChange} style={{width: "200px"}}>
                     <option value="all">All corporations</option>
                     {
@@ -84,7 +86,7 @@ class Administration extends React.Component {
                 </select>
                 <button onClick={this.showOffices}>Show</button>
                 <br/>
-                
+                <br/>
                     <h4>Add a new factory</h4>
               <form method="POST" action={API_URL+"/api/testDB/new_office/"}>
                   <input type="text" name="office_name" placeholder="Enter factory name"/>

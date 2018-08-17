@@ -12,6 +12,7 @@ import Start from './components/start/Start';
 import Dashboard from './components/dashboard/dashboard';
 
 import Administration from './components/start/Administration'
+import AdministrationLocal from './components/start/AdministrationLocal'
 
 import reducers from './reducers';
 
@@ -29,8 +30,8 @@ ReactDOM.render(
         <Route path="/about" component={About} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/test" component={Test} />
-        
         <Route path="/administration" component={Administration} />
+        <Route path="/administration_local" component={AdministrationLocal} />
       </Route>
     </Router>
   </Provider>
