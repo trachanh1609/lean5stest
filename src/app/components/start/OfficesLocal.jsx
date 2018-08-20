@@ -4,6 +4,7 @@ import Panel from './Panel';
 const API_URL = "http://localhost:4000/api2/audits";
 
 
+
 class OfficesLocal extends React.Component {
     constructor(props){
         super(props);
@@ -122,12 +123,15 @@ class OfficesLocal extends React.Component {
     }
 
     fillTable = () => {
+       
         this.state.selectedOffice.map(o=> {
             this.refs.table_office_id.value = o.id;
+            
             this.refs.table_office_name.value = o.office_name;
             this.refs.table_corporation_id.value = o.corporation_id;
-            this.refs.table_corporation_name.value = o.corporation_name;
+
         });
+        this.corporationNameById();
     }
 
     showOffice = (id) => {
@@ -150,11 +154,15 @@ class OfficesLocal extends React.Component {
           console.error(err)
         });
         console.log('showOffice running');
+      
+    }
+    corporationNameById = () => {
+        var corp_id = "";
         
-
-        
-        
-
+        this.state.corporations.map(corp => {
+            if (this.refs.table_corporation_id.value == corp.id)
+                this.refs.table_corporation_name.value = corp.corporation_name;
+        });
     }
 
     findCorporationNameById = () => {
@@ -180,12 +188,13 @@ class OfficesLocal extends React.Component {
     }
     
     updateItem = () => {
-        var update_id = this.refs.table_office_id;
+        var update_id = this.refs.table_office_id.value;
+        alert("in update");
         axios.put(API_URL+'/'+update_id, {
-            "type": 'Office',
-            "office_name": this.refs.table_office_name.value,
-            "corporation_name": this.refs.table_corporation_name.value,
-            "corporation_id": this.refs.table_corporation_id.value
+            type: 'Office',
+            office_name: this.refs.table_office_name.value,
+            corporation_name: this.refs.table_corporation_name.value,
+            corporation_id: this.refs.table_corporation_id.value
           })
           .then(function (response) {
             console.log(response);
@@ -195,6 +204,7 @@ class OfficesLocal extends React.Component {
             console.log(error);
           });
     }
+
       render() {
         return (
             <div className="container home">
@@ -223,13 +233,15 @@ class OfficesLocal extends React.Component {
                                     var name = office.office_name;
                                     
                                     
-                                    return (<tr><td> {id}</td>
-                                    <td>{name}</td>
-                                    <td>
-                                    
-                                    
-                                    <input type="radio" name="office_radio" value = {id} onClick={this.handleRadio.bind(this,id)}/>
-                                    </td></tr>)
+                                    return (
+                                    <tr>
+                                        <td>
+                                            <input type="radio" name="office_radio" value = {id} onClick={this.handleRadio.bind(this,id)}/>
+                                        </td>
+                                        <td>
+                                            {name}
+                                        </td>
+                                    </tr>)
                             })
                         }
                     </tbody>
@@ -258,7 +270,8 @@ class OfficesLocal extends React.Component {
                      Corporation name: </td><td><input ref="table_corporation_name"/></td></tr>
                      <tr><td>
                      Corporation id: </td><td><input ref="table_corporation_id"/></td></tr>
-                     <tr><td><button onClick={this.updateItem}>Update (not working)</button></td><td><button onClick={this.deleteItem}>Delete</button></td></tr>
+                     
+                     <tr><td><button onClick={this.updateItem}>Update</button></td><td><button onClick={this.deleteItem}>Delete</button></td></tr>
                                  
                          
                          
