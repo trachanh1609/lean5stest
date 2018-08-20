@@ -25,7 +25,7 @@ const transistionSpeed = 'width 0.5s';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 430,
+    height: '100vh',
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -147,7 +147,7 @@ class Dashboard extends React.Component{
           
         </Drawer>
         <main className={classNames(classes.content, !this.state.open && classes.contentClose )}>
-          <div className={classes.toolbar} />
+          {/* <div className={classes.toolbar} /> */}
           <MainContent />
         </main>
       </div>
