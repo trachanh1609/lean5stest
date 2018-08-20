@@ -5,10 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import ListIcon from '@material-ui/icons/List';
-import SendIcon from '@material-ui/icons/Send';
 import SettingsIcon from '@material-ui/icons/Settings';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ReportIcon from '@material-ui/icons/Report';
 
 export const drawerMenu = (
   <div>

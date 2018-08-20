@@ -15,8 +15,11 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import {drawerMenu} from './drawerMenu';
 import ProfileMenu from './profileMenu';
+import MainContent from './mainContent';
 
 const drawerWidth = 240;
+const drawerWidthClose = 72;
+const appBarHeight = 64;
 const transistionSpeed = 'width 0.5s';
 
 const styles = theme => ({
@@ -53,7 +56,7 @@ const styles = theme => ({
   drawerPaperClose: {
     overflowX: 'hidden',
     transition: transistionSpeed,
-    width: 72,
+    width: drawerWidthClose,
   },
   toolbar: {
     display: 'flex',
@@ -63,7 +66,15 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    marginTop: 64,
+    marginTop: appBarHeight,
+    transition: transistionSpeed,
+    paddingLeft: drawerWidth,
+  },
+  contentClose: {
+    flexGrow: 1,
+    marginTop: appBarHeight,
+    transition: transistionSpeed,
+    paddingLeft: drawerWidthClose,
   },
   profileMenu: {
   },
@@ -135,9 +146,9 @@ class Dashboard extends React.Component{
           <List>{drawerMenu}</List>
           
         </Drawer>
-        <main className={classes.content}>
+        <main className={classNames(classes.content, !this.state.open && classes.contentClose )}>
           <div className={classes.toolbar} />
-          <Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
+          <MainContent />
         </main>
       </div>
     )
