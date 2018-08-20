@@ -1,5 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+
+import Panel from './Panel';
+
+
 const API_URL = "http://localhost:4000/api2/audits";
 
 var buttonCorp = "Show";
@@ -254,8 +258,8 @@ class AdministrationLocal extends React.Component {
         return (
             <div className="container home">
                 <h1>Administration panel</h1>
-                <br/>
-                <br/>
+                <Panel/>
+              
                    
                  <div className="bordered">
                 <h3>List of corporations in database</h3>
