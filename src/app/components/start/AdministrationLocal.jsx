@@ -253,7 +253,7 @@ class AdministrationLocal extends React.Component {
                     <br/>
                 </div>  
                 <br/>
-                <div className="bordered">
+                <div className="bordered details">
                     <h3>Details</h3>
                     <table>
                     

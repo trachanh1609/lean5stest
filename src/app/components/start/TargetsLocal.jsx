@@ -2,27 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import Panel from './Panel';
 const API_URL = "http://localhost:4000/api2/audits";
-var detailsVisibility = "invisible";
 
-class ListOfCorporations extends React.Component {
-    constructor(props) {
-        super(props);
-      }
-    componentDidMount() {
-        
-    }
-    render() {
-        
-       
-            return (<text></text>)
-           
-    
-    }
-    
-  
-}
 
-class OfficesLocal extends React.Component {
+class TargetsLocal extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -126,17 +108,12 @@ class OfficesLocal extends React.Component {
     }
     
     clearForm = () => {
-        detailsVisibility = "invisible";
         this.refs.table_office_id.value = '';
             this.refs.table_office_name.value = '';
             this.refs.table_corporation_id.value = '';
             this.refs.table_corporation_name.value = '';
-            
     }
-    
-
-    showOfficeDetails = (id) => {
-        detailsVisibility = "bordered details";
+    handleRadio = (id) => {
         this.showOffice(id);
         
         
@@ -154,7 +131,6 @@ class OfficesLocal extends React.Component {
 
         });
         this.corporationNameById();
-        
     }
 
     showOffice = (id) => {
@@ -187,19 +163,12 @@ class OfficesLocal extends React.Component {
                 this.refs.table_corporation_name.value = corp.corporation_name;
         });
     }
-    updateButtonPressed = () => {
-        this.updateItem();
-        setTimeout(function() {this.getOffices()}.bind(this), 500);
-    }
 
-    selectPressed = () => {
-        this.getOffices();
-        this.clearForm();
-    }
     
     
-    updateItem = (nextFunction) => {
+    updateItem = () => {
         var update_id = this.refs.table_office_id.value;
+        alert("in update");
         axios.put(API_URL+'/'+update_id, {
             type: 'Office',
             office_name: this.refs.table_office_name.value,
@@ -208,7 +177,6 @@ class OfficesLocal extends React.Component {
           })
           .then(function (response) {
             console.log(response);
-            
            
           })
           .catch(function (error) {
@@ -226,7 +194,7 @@ class OfficesLocal extends React.Component {
                 <h3>List of offices/factories</h3>
                 
                 Select corporation:  
-                <select ref="corp" onChange={this.selectPressed}>
+                <select ref="corp" onChange={this.getOffices}>
                     <option value="all">All corporations</option>
                     {this.state.corporations.map(corporation=> {
                         return (<option value={corporation.id}>{corporation.corporation_name}</option>)
@@ -246,13 +214,11 @@ class OfficesLocal extends React.Component {
                                     
                                     return (
                                     <tr>
-                                       
                                         <td>
-                                            {name}
+                                            <input type="radio" name="office_radio" value = {id} onClick={this.handleRadio.bind(this,id)}/>
                                         </td>
                                         <td>
-                                            
-                                            <button onClick={this.showOfficeDetails.bind(this, id)}>...</button>
+                                            {name}
                                         </td>
                                     </tr>)
                             })
@@ -268,7 +234,7 @@ class OfficesLocal extends React.Component {
                 <br/>
                 </div>    
                 <br/>    
-                <div className={detailsVisibility}>
+                <div className="bordered details">
                 <table>
                     
                        
@@ -288,7 +254,7 @@ class OfficesLocal extends React.Component {
                      <ListOfCorporations list={this.state.corporations}/>
                      
                      </td></tr>
-                     <tr><td><button onClick={this.updateButtonPressed}>Update</button></td><td><button onClick={this.deleteItem}>Delete</button></td></tr>
+                     <tr><td><button onClick={this.updateItem}>Update</button></td><td><button onClick={this.deleteItem}>Delete</button></td></tr>
                                  
                          
                          
@@ -305,4 +271,4 @@ class OfficesLocal extends React.Component {
 
 }
 
-export default OfficesLocal;
+export default TargetsLocal;

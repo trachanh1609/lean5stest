@@ -294,14 +294,10 @@
     },
     {
       "type": "Office",
-      "office_name": "Test office 2",
+      "office_name": "Vantaa",
+      "corporation_name": "Metsä Fibre",
       "corporation_id": "48951182-d62c-e4cc-65a7-3d601a9cea4c",
-      "id": "26407f80-414d-6314-7e58-f456edfc245d",
-      "_rid": "abJWAL+WG7suAAAAAAAAAA==",
-      "_self": "dbs/abJWAA==/colls/abJWAL+WG7s=/docs/abJWAL+WG7suAAAAAAAAAA==/",
-      "_etag": "\"0000a165-0000-0000-0000-5b716a5a0000\"",
-      "_attachments": "attachments/",
-      "_ts": 1534159450
+      "id": "26407f80-414d-6314-7e58-f456edfc245d"
     },
     {
       "type": "Audit_case",
@@ -462,62 +458,46 @@
       "_ts": 1534340179
     },
     {
-      "type": "Corporation",
-      "corporation_name": "Super new",
-      "id": "cHgdIGf"
-    },
-    {
       "type": "Office",
-      "office_name": "Office in Group",
+      "office_name": "Espoo",
+      "corporation_name": "Metsä Group",
       "corporation_id": "e85ab150-0436-2d6f-76f4-c5e68e5d1e44",
       "id": "UjAWqjt"
     },
     {
       "type": "Office",
-      "office_name": "At Fibre",
+      "office_name": "Oulu",
+      "corporation_name": "Metsä Fibre",
       "corporation_id": "48951182-d62c-e4cc-65a7-3d601a9cea4c",
       "id": "xPQ96wI"
     },
     {
       "type": "Office",
-      "office_name": "fibre bibre",
+      "office_name": "Kuopio",
+      "corporation_name": "Metsä Group",
       "corporation_id": "e85ab150-0436-2d6f-76f4-c5e68e5d1e44",
       "id": "depNdvc"
     },
     {
-      "type": "Corporation",
-      "corporation_name": "New new new",
-      "id": "gw3lGHQ"
-    },
-    {
       "type": "Office",
-      "office_name": "new new new",
+      "office_name": "Hamina",
+      "corporation_name": "Metsä Group",
       "corporation_id": "e85ab150-0436-2d6f-76f4-c5e68e5d1e44",
       "id": "W9Cfn7J"
     },
     {
       "type": "Office",
-      "office_name": "bbbbord",
+      "office_name": "Kouvola",
+      "corporation_name": "Metsä Board",
       "corporation_id": "0d6af80e-9a2b-af3f-b60f-ef504d055e33",
       "id": "IvmTGjs"
     },
     {
       "type": "Office",
-      "office_name": "grouuuup",
+      "office_name": "Helsinki",
+      "corporation_name": "Metsä Group",
       "corporation_id": "e85ab150-0436-2d6f-76f4-c5e68e5d1e44",
       "id": "Bk219M4"
-    },
-    {
-      "type": "Office",
-      "office_name": "bbbb",
-      "corporation_name": "Bbb",
-      "corporation_id": "0d6af80e-9a2b-af3f-b60f-ef504d055e33",
-      "id": "WtWLbJi"
-    },
-    {
-      "type": "Corporation",
-      "corporation_name": "55555",
-      "id": "SAttSyN"
     }
   ]
 }
