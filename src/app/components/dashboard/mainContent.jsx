@@ -10,8 +10,9 @@ import Grid from '@material-ui/core/Grid';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+
+import DataTable from './dataTable';
 
 const styles = theme => ({
     root: {
@@ -148,9 +149,7 @@ class MainContent extends React.Component {
                     </div>
                     <div className={classes.tableContainer}>
                         <Paper className={classes.paper} elevation={3} square={true}>
-                            <Typography variant="title" color="inherit" >
-                                Data Table
-                            </Typography>
+                            <DataTable />
                         </Paper>
                     </div>
                 </Paper>
