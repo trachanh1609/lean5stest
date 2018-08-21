@@ -3,7 +3,23 @@ import axios from 'axios';
 import Panel from './Panel';
 const API_URL = "http://localhost:4000/api2/audits";
 
-
+class ListOfCorporations extends React.Component {
+    constructor(props) {
+        super(props);
+      }
+    componentDidMount() {
+        
+    }
+    render() {
+        
+       
+            return (<text></text>)
+           
+    
+    }
+    
+  
+}
 
 class OfficesLocal extends React.Component {
     constructor(props){
@@ -270,7 +286,11 @@ class OfficesLocal extends React.Component {
                      Corporation name: </td><td><input ref="table_corporation_name"/></td></tr>
                      <tr><td>
                      Corporation id: </td><td><input ref="table_corporation_id"/></td></tr>
+                     <tr><td>
+                    
+                     <ListOfCorporations list={this.state.corporations}/>
                      
+                     </td></tr>
                      <tr><td><button onClick={this.updateItem}>Update</button></td><td><button onClick={this.deleteItem}>Delete</button></td></tr>
                                  
                          
