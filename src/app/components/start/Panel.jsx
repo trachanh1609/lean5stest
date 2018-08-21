@@ -15,6 +15,9 @@ function Panel() {
           <li>
             <Link to="/administration_local/targets">Targets</Link>
           </li>
+          <li>
+            <Link to="/administration_local/questions">Questions</Link>
+          </li>
           
         </ul>
       </nav>

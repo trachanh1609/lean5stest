@@ -15,6 +15,7 @@ import Administration from './components/start/Administration';
 import AdministrationLocal from './components/start/AdministrationLocal';
 import OfficesLocal from './components/start/OfficesLocal';
 import TargetsLocal from './components/start/TargetsLocal';
+import QuestionsLocal from './components/start/QuestionsLocal';
 
 
 import reducers from './reducers';
@@ -37,6 +38,7 @@ ReactDOM.render(
         <Route path="/administration_local" component={AdministrationLocal} />
         <Route path="/administration_local/offices" component={OfficesLocal} />
         <Route path="/administration_local/targets" component={TargetsLocal} />
+        <Route path="/administration_local/questions" component={QuestionsLocal} />
         
       </Route>
     </Router>

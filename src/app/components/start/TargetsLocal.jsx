@@ -10,8 +10,7 @@ class TargetsLocal extends React.Component {
         this.state = {
           corporations: [],
           offices: [],
-          selectedOffice: []
-          
+          targets: []
           
         };
     }
@@ -19,6 +18,7 @@ class TargetsLocal extends React.Component {
     componentDidMount() {
         this.getCorporations();
         this.getOffices();
+        
     }
 
     getCorporations = () => {
@@ -37,15 +37,17 @@ class TargetsLocal extends React.Component {
         .catch(function(err){
           console.error(err)
         });
-      
+        
         console.log('getCorporations running');
+       
     }
 
     getOffices = () => {
         var self = this;
         let url;
-        if (this.refs.corp.value == "all") url = API_URL + "?type=Office";
-        else url = API_URL + "?type=Office&corporation_id="+this.refs.corp.value;
+        if (this.refs.selectedCorporationId.value == "all") url = API_URL + "?type=Office";
+        else url = API_URL + "?type=Office&corporation_id="+this.refs.selectedCorporationId.value;
+        
         fetch(url)
         .then(function(response) {
           return response.json();
@@ -56,35 +58,44 @@ class TargetsLocal extends React.Component {
         .catch(function(err){
           console.error(err)
         });
+        
         console.log('getOffices running');
+       
     }  
-    
-    switchButton = (index, id, name, corp_name) => {
-        switch (index) {
-            
-            case "show_offices":
-                
-                this.getOffices();
-                //selectedCorporationName = this.corporationById(this.refs.corporation.value);
-                
-                break;
-        }
+
+    getTargets = () => {
+        var self = this;
+        let url;
+        if (this.refs.selectedOfficeId.value == "all") url = API_URL + "?type=Target";
+        else url = API_URL + "?type=Target&office_id="+this.refs.selectedOfficeId.value;
+        
+        fetch(url)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(json){
+            self.setState({targets: json});
+        })
+        .catch(function(err){
+          console.error(err)
+        });
+        
+        console.log('getOffices running');
+       
     }
-
-    postOffice = () => {
+    
+    postItem = () => {
             
-        if (this.refs.corp.value == "all") {
-            alert("Please select corporation first");
-                
+        if ((this.refs.selectedOfficeId.value == "all") || (this.refs.selectedCorporationId.value == "all")) {
+            alert("Please select corporation and office/factory first");
+        
         } else {
-            
-            
-            axios.post(API_URL, {
-                type: 'Office',
-                office_name: this.refs.new_office_name.value,
-                corporation_id: this.refs.corp.value
-                
 
+            axios.post(API_URL, {
+                type: 'Target',
+                target_name: this.refs.newTargetName.value,
+                office_id: this.refs.selectedOfficeId.value,
+                corporation_id: this.refs.selectedCorporationId.value
             })
             .then(function (response) {
                 console.log(response);
@@ -94,86 +105,58 @@ class TargetsLocal extends React.Component {
             .catch(function (error) {
                 console.log(error);
             });  
-            setTimeout(function() {this.getOffices()}.bind(this), 1000);   
+            setTimeout(function() {this.getTargets()}.bind(this), 1000);   
         }
     }
 
-    deleteItem = (id, name, type) => {
-        var del_id = this.refs.table_office_id.value;
+    deleteItem = () => {
+        var del_id = this.refs.detailsTargetId.value;
         axios.delete(API_URL+'/'+del_id);
             //alert("Item '"+ name + "' was successfully deleted" );
             
-        setTimeout(function() {this.getOffices()}.bind(this), 500);
-        this.clearForm();
+        setTimeout(function() {this.getTargets()}.bind(this), 500);
+        
+        
     }
     
-    clearForm = () => {
-        this.refs.table_office_id.value = '';
-            this.refs.table_office_name.value = '';
-            this.refs.table_corporation_id.value = '';
-            this.refs.table_corporation_name.value = '';
-    }
-    handleRadio = (id) => {
-        this.showOffice(id);
+    showTarget = (id) => {
         
-        
-        setTimeout(function() {this.fillTable()}.bind(this), 100); 
-        
-    }
-
-    fillTable = () => {
-       
-        this.state.selectedOffice.map(o=> {
-            this.refs.table_office_id.value = o.id;
+        this.state.targets.map(t=> {
+            if (t.id == id) {
+                this.refs.detailsTargetId.value = t.id;
             
-            this.refs.table_office_name.value = o.office_name;
-            this.refs.table_corporation_id.value = o.corporation_id;
-
-        });
-        this.corporationNameById();
+            this.refs.detailsTargetName.value = t.target_name;
+            this.refs.detailsOfficeId.value = t.office_id;
+            this.refs.detailsCorporationId.value = t.corporation_id;
+            this.officeNameById(t.office_id);
+            this.corporationNameById(t.corporation_id);
+            }
+        });     
+        
     }
 
-    showOffice = (id) => {
-        
-        var self = this;
-        let url = API_URL + "?id=" + id;
-        
-        
-        fetch(url)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(json){
-            
-            self.setState({selectedOffice: json});
-            
-
-        })
-        .catch(function(err){
-          console.error(err)
-        });
-        console.log('showOffice running');
-      
-    }
-    corporationNameById = () => {
-        var corp_id = "";
-        
+    corporationNameById = (id) => {
         this.state.corporations.map(corp => {
-            if (this.refs.table_corporation_id.value == corp.id)
-                this.refs.table_corporation_name.value = corp.corporation_name;
+            if (id == corp.id)
+                this.refs.detailsCorporationName.value = corp.corporation_name;
         });
     }
+    
+    officeNameById = (id) => {
+        this.state.offices.map(office => {
+            if (id == office.id)
+                this.refs.detailsOfficeName.value = office.office_name;
+        });
+    }
+    
 
-    
-    
     updateItem = () => {
-        var update_id = this.refs.table_office_id.value;
-        alert("in update");
+        var update_id = this.refs.detailsTargetId.value;
         axios.put(API_URL+'/'+update_id, {
-            type: 'Office',
-            office_name: this.refs.table_office_name.value,
-            corporation_name: this.refs.table_corporation_name.value,
-            corporation_id: this.refs.table_corporation_id.value
+            type: 'Target',
+            target_name: this.refs.detailsTargetName.value,
+            corporation_id: this.refs.detailsCorporationId.value,
+            office_id: this.refs.detailsOfficeId.value
           })
           .then(function (response) {
             console.log(response);
@@ -184,85 +167,115 @@ class TargetsLocal extends React.Component {
           });
     }
 
-      render() {
+    updatePressed = () => {
+        this.updateItem();
+        setTimeout(function() {this.getTargets()}.bind(this), 500);
+    }
+
+    render() {
         return (
             <div className="container home">
                 <h1>Administration panel</h1>
                 <Panel/>
      
-                 <div className="bordered">    
-                <h3>List of offices/factories</h3>
-                
-                Select corporation:  
-                <select ref="corp" onChange={this.getOffices}>
-                    <option value="all">All corporations</option>
-                    {this.state.corporations.map(corporation=> {
-                        return (<option value={corporation.id}>{corporation.corporation_name}</option>)
-                    })}
-                </select>
-                
-                <button onClick={this.switchButton.bind(this,'hide_offices')}>Hide</button>
+                <div className="bordered">    
+                <h3>List of targets</h3>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Select corporation:</td>
+                            <td>
+                                <select ref="selectedCorporationId" onChange={this.getOffices}>
+                                    <option value="all">not selected</option>
+                                    {this.state.corporations.map(corporation=> {
+                                    return (<option value={corporation.id}>{corporation.corporation_name}</option>)
+                                    })}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Select office/factory:</td>
+                            <td>
+                                <select ref="selectedOfficeId" onChange={this.getTargets}>
+                                    <option value="all">not selected</option>
+                                    {this.state.offices.map(office=> {
+                                    return (<option value={office.id}>{office.office_name}</option>)
+                                    })}
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <br/>
-                <div className="center">
-                    <table className="table" ref="officesTable">
+                
+                
+                    <table>
                     <tbody>
                         {
-                            this.state.offices.map(office=> {
-                                    var id = office.id;
-                                    var name = office.office_name;
-                                    
-                                    
+                            this.state.targets.map(target=> {
+                                    var id = target.id;
+                                    var name = target.target_name;
                                     return (
                                     <tr>
                                         <td>
-                                            <input type="radio" name="office_radio" value = {id} onClick={this.handleRadio.bind(this,id)}/>
+                                            {id}
                                         </td>
                                         <td>
                                             {name}
+                                        </td>
+                                        <td>
+                                            <button onClick={this.showTarget.bind(this, id)}>...</button>
                                         </td>
                                     </tr>)
                             })
                         }
                     </tbody>
                     </table>
+                <div className="center">
+                    <h4>Add a new target: </h4>
+                    
+                    <input ref="newTargetName" type="text" placeholder="Enter name"/>
+                    <button onClick={this.postItem}>Add</button>
                 </div>
-                <h4>Add a new office/factory</h4>
-                <input ref="new_office_name" type="text" placeholder="Enter name"/>
-               
-                <button onClick={this.postOffice}>Add</button>
+                </div>
                 <br/>
                 <br/>
-                </div>    
-                <br/>    
-                <div className="bordered details">
-                <table>
-                    
-                       
-                                    <tbody>
-                                    <tr>
+                <br/>   
+                <div className = "bordered details"> 
+                
+                    <table>
+                    <tbody>
+                        <tr>
+                            <td>Target id:</td>
+                            <td><input ref="detailsTargetId" type="text"  disabled/></td>
+                        </tr>
+                        <tr>
+                            <td>Name:</td>
+                            <td><input ref="detailsTargetName"/></td>
+                        </tr>
+                        <tr>
+                            <td>Office name:</td>
+                            <td><input ref="detailsOfficeName" disabled/></td>
+                        </tr>
+                        <tr>
                             <td>Office id:</td>
-                     <td><input ref="table_office_id" type="text"  disabled/></td></tr>
-                     <tr>
-                     <td>
-                    Name:</td><td><input ref="table_office_name"/></td></tr>
-                     <tr><td>
-                     Corporation name: </td><td><input ref="table_corporation_name"/></td></tr>
-                     <tr><td>
-                     Corporation id: </td><td><input ref="table_corporation_id"/></td></tr>
-                     <tr><td>
-                    
-                     <ListOfCorporations list={this.state.corporations}/>
-                     
-                     </td></tr>
-                     <tr><td><button onClick={this.updateItem}>Update</button></td><td><button onClick={this.deleteItem}>Delete</button></td></tr>
-                                 
-                         
-                         
-                         </tbody>
-                    
-                    
-                    
+                            <td><input ref="detailsOfficeId" disabled/></td>
+                        </tr>
+                        <tr>
+                            <td>Corporation name:</td>
+                            <td><input ref="detailsCorporationName"disabled/></td>
+                        </tr>
+                        <tr>
+                            <td>Corporation id:</td>
+                            <td><input ref="detailsCorporationId" disabled/></td>
+                        </tr>
+                        <tr>
+                            <td><button onClick={this.updatePressed}>Update</button></td>
+                            <td><button onClick={this.deleteItem}>Delete</button></td>
+                        </tr>
+                    </tbody>
                     </table>
+                
                 </div>
                 <br/>            
             </div>            

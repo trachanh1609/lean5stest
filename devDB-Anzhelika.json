@@ -126,17 +126,6 @@
       "_ts": 1533720432
     },
     {
-      "type": "Target",
-      "target_name": "Cellar",
-      "office_id": "39fc8024-fc28-6a67-e024-32eb45c5fcb8",
-      "id": "1b07ebaa-b4a9-c4ca-073b-176196efa960",
-      "_rid": "abJWAL+WG7scAAAAAAAAAA==",
-      "_self": "dbs/abJWAA==/colls/abJWAL+WG7s=/docs/abJWAL+WG7scAAAAAAAAAA==/",
-      "_etag": "\"00004a01-0000-0000-0000-5b6ab7b50000\"",
-      "_attachments": "attachments/",
-      "_ts": 1533720501
-    },
-    {
       "type": "Question",
       "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
       "id": "a8dc4c9e-dd17-439f-be72-9118d82e9074",
@@ -180,12 +169,7 @@
       "type": "Question-Target-Link",
       "question_id": "a8dc4c9e-dd17-439f-be72-9118d82e9074",
       "target_id": "91ef9fdb-b0f0-f2c5-5cc2-53e83cccb720",
-      "id": "4d78bf7e-ac56-4a74-a9e2-a9211d19861e",
-      "_rid": "abJWAL+WG7siAAAAAAAAAA==",
-      "_self": "dbs/abJWAA==/colls/abJWAL+WG7s=/docs/abJWAL+WG7siAAAAAAAAAA==/",
-      "_etag": "\"00005301-0000-0000-0000-5b6abb9e0000\"",
-      "_attachments": "attachments/",
-      "_ts": 1533721502
+      "id": "4d78bf7e-ac56-4a74-a9e2-a9211d19861e"
     },
     {
       "type": "Question-Target-Link",
@@ -219,17 +203,6 @@
       "_etag": "\"0000a201-0000-0000-0000-5b6abc040000\"",
       "_attachments": "attachments/",
       "_ts": 1533721604
-    },
-    {
-      "type": "Question-Target-Link",
-      "question_id": "4f38b70c-6ed1-0dd3-fbb6-5f16deedba54",
-      "target_id": "750e51e6-daee-4d9f-9859-dad4feaf5cc2",
-      "id": "a4187546-4eed-3eb9-fe86-ce5053bd25b8",
-      "_rid": "abJWAL+WG7snAAAAAAAAAA==",
-      "_self": "dbs/abJWAA==/colls/abJWAL+WG7s=/docs/abJWAL+WG7snAAAAAAAAAA==/",
-      "_etag": "\"0000b501-0000-0000-0000-5b6ac8f10000\"",
-      "_attachments": "attachments/",
-      "_ts": 1533724913
     },
     {
       "type": "Audit_case",
@@ -498,6 +471,148 @@
       "corporation_name": "Metsä Group",
       "corporation_id": "e85ab150-0436-2d6f-76f4-c5e68e5d1e44",
       "id": "Bk219M4"
+    },
+    {
+      "type": "Target",
+      "target_name": "Warehouse at Espoo",
+      "office_id": "UjAWqjt",
+      "corporation_id": "e85ab150-0436-2d6f-76f4-c5e68e5d1e44",
+      "id": "XQuxp5E"
+    },
+    {
+      "type": "Target",
+      "target_name": "Warehouse",
+      "corporation_id": "e85ab150-0436-2d6f-76f4-c5e68e5d1e44",
+      "office_id": "b4a18c57-0b9a-357b-f859-17a82d937e3b",
+      "id": "Hkj2_s4"
+    },
+    {
+      "type": "Target",
+      "target_name": "Second floor",
+      "corporation_id": "e85ab150-0436-2d6f-76f4-c5e68e5d1e44",
+      "office_id": "b4a18c57-0b9a-357b-f859-17a82d937e3b",
+      "id": "Jib5Q9z"
+    },
+    {
+      "type": "Target",
+      "target_name": "Cellar",
+      "office_id": "39fc8024-fc28-6a67-e024-32eb45c5fcb8",
+      "corporation_id": "e85ab150-0436-2d6f-76f4-c5e68e5d1e44",
+      "id": "nQXErJ~"
+    },
+    {
+      "type": "Question",
+      "question_text": "Are operators using materials in the correct order?",
+      "id": "qMrWpWy"
+    },
+    {
+      "type": "Question",
+      "question_text": "Do employees follow each step of standard work instructions?",
+      "id": "CvMPy_M"
+    },
+    {
+      "type": "Question",
+      "question_text": "Floors clean, vacummed & mopped.  ",
+      "id": "sXCNZKo"
+    },
+    {
+      "type": "Question",
+      "question_text": "Walls clean",
+      "id": "ILOG2BO"
+    },
+    {
+      "type": "Question",
+      "question_text": "Tiles screens are clean",
+      "id": "noIGzp9"
+    },
+    {
+      "type": "Question",
+      "question_text": "All equipment is in a clean condition",
+      "id": "0yB8nUe"
+    },
+    {
+      "type": "Question",
+      "question_text": "Bin emptied",
+      "id": "Uenx~6X"
+    },
+    {
+      "type": "Target",
+      "target_name": "Warehouse",
+      "office_id": "0561a227-121a-349c-676a-3f92aabb911f",
+      "corporation_id": "48951182-d62c-e4cc-65a7-3d601a9cea4c",
+      "id": "Mq6Y5AR"
+    },
+    {
+      "type": "Target",
+      "target_name": "Storeroom",
+      "office_id": "0561a227-121a-349c-676a-3f92aabb911f",
+      "corporation_id": "48951182-d62c-e4cc-65a7-3d601a9cea4c",
+      "id": "tGm3WPf"
+    },
+    {
+      "type": "Target",
+      "target_name": "First floor",
+      "office_id": "b4a18c57-0b9a-357b-f859-17a82d937e3b",
+      "corporation_id": "e85ab150-0436-2d6f-76f4-c5e68e5d1e44",
+      "id": "MhQtZsu"
+    },
+    {
+      "type": "Target",
+      "target_name": "Roof",
+      "corporation_id": "e85ab150-0436-2d6f-76f4-c5e68e5d1e44",
+      "office_id": "b4a18c57-0b9a-357b-f859-17a82d937e3b",
+      "id": "S9_htLl"
+    },
+    {
+      "type": "Target",
+      "target_name": "Warehouse",
+      "office_id": "26407f80-414d-6314-7e58-f456edfc245d",
+      "corporation_id": "48951182-d62c-e4cc-65a7-3d601a9cea4c",
+      "id": "gGbD9nY"
+    },
+    {
+      "type": "Target",
+      "target_name": "Storeroom",
+      "office_id": "d995a291-d32d-4840-b361-975564351c8d",
+      "corporation_id": "0d6af80e-9a2b-af3f-b60f-ef504d055e33",
+      "id": "R3SOgKu"
+    },
+    {
+      "type": "Target",
+      "target_name": "Boxroom",
+      "office_id": "d995a291-d32d-4840-b361-975564351c8d",
+      "corporation_id": "0d6af80e-9a2b-af3f-b60f-ef504d055e33",
+      "id": "Cr7WlUN"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "sXCNZKo",
+      "target_id": "Hkj2_s4",
+      "id": "PuDeh7x"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "noIGzp9",
+      "target_id": "Hkj2_s4",
+      "id": "MaECiVH"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "Uenx~6X",
+      "target_id": "Hkj2_s4",
+      "id": "0mazr4P"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "CvMPy_M",
+      "target_id": "Hkj2_s4",
+      "id": "ypc3Hl0"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "0yB8nUe",
+      "target_id": "Hkj2_s4",
+      "id": "XYMm8L1"
     }
   ]
 }
