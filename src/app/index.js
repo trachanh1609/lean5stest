@@ -9,6 +9,7 @@ import Home from './components/home/Home';
 import About from './components/about/About';
 import Test from './components/test/Test';
 import Start from './components/start/Start';
+import StartLocal from './components/start/StartLocal';
 import Dashboard from './components/dashboard/dashboard';
 
 import Administration from './components/start/Administration';
@@ -31,6 +32,7 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={Home} />;
         <Route path="/start" component={Start} />
+        <Route path="/start_local" component={StartLocal} />
         <Route path="/about" component={About} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/test" component={Test} />
