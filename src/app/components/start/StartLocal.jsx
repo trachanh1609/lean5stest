@@ -20,7 +20,7 @@ class QuestionText extends React.Component {
                 if (q.id == id) text = q.question_text;
             });
             
-        return (<td colspan="3" style={{backgroundColor: "lightgrey"}}><br/>{text}</td>);
+        return (<td colSpan="3" style={{backgroundColor: "lightgrey"}}><br/>{text}</td>);
         
         
     }
@@ -42,8 +42,7 @@ class StartLocal extends React.Component {
     }
     componentDidMount() {
         this.getCorporations();
-        /// for development only
-        this.startPressed();
+        
         
     }
 
@@ -147,19 +146,19 @@ class StartLocal extends React.Component {
         
     }
     startPressed = () => {
-        /*
+        
         var corporation_id = this.refs.selectedCorporationId.value;
         var office_id = this.refs.selectedOfficeId.value;
         var target_id = this.refs.selectedTargetId.value;
         var date = this.refs.selectedDate.value;
         var auditor = this.refs.selectedAuditor.value;
-        */
+        /*
        var corporation_id = "e85ab150-0436-2d6f-76f4-c5e68e5d1e44";
        var office_id = "b4a18c57-0b9a-357b-f859-17a82d937e3b";
        var target_id = "Hkj2_s4";
        var date = "2018-08-22";
        var auditor = "Super Auditor";
-
+*/
         if (corporation_id == "all" || office_id == "all" || target_id == "all") alert("Please fill all fields");
         else {
             this.postAuditCase(corporation_id,office_id,target_id,date,auditor);
@@ -167,10 +166,69 @@ class StartLocal extends React.Component {
             //setTimeout(function() {this.getAuditId()}.bind(this),1500);
             //setTimeout(function() {this.showQuestions()}.bind(this), 2000);
             
-            
+            this.refs.target_id.value = target_id;
             setTimeout(function() {this.showQuestions(target_id)}.bind(this), 1000); 
         }
     }
+
+    postResult = (audit_case_id, target_id, question_id, grade, comment) => {
+        axios.post("http://localhost:4000/api2/audits", {
+            type: 'Results',
+            audit_id: audit_case_id,
+            target_id: target_id,
+            question_id: question_id,
+            grade: grade,
+            comment: comment
+            
+        })
+        .then(function (response) {
+            console.log(response);
+            
+            
+        })
+        .catch(function (error) {
+            console.log(error);
+            
+        });  
+        //alert("Audit_case_id = "+audit_case_id+"\nTarget id = "+ target_id + "\nQuestion id = "+question_id+"\nGrade = "+grade);
+    }
+    readyClicked = () => {
+        var audit_case_id = this.refs.audit_case_id.value;
+        var target_id = this.refs.target_id.value;
+        //alert("audit case id = "+audit_case_id+"\ntarget id = "+target_id);
+        this.state.questions_for_target.map(q=>{
+            if (document.getElementById(q.question_id+"-01").checked) {
+                var grade = document.getElementById(q.question_id+"-01").value;
+                this.postResult(audit_case_id, target_id, q.question_id, grade);
+
+                //this.sleep(2000);
+            } else if (document.getElementById(q.question_id+"-02").checked){
+                var grade = document.getElementById(q.question_id+"-02").value;
+                this.postResult(audit_case_id, target_id, q.question_id, grade);
+                //this.sleep(2000);
+            } else if (document.getElementById(q.question_id+"-03").checked){
+                var grade = document.getElementById(q.question_id+"-03").value;
+                this.postResult(audit_case_id, target_id, q.question_id, grade);
+                //this.sleep(2000);
+            }
+            
+        });
+        alert("Ready!");
+        //location.reload(); 
+        var link = "http://localhost:4000/api2/audits?type=Results&audit_id="+audit_case_id;
+        this.sleep(1500);
+        location.href = link;
+    }
+
+    sleep = (milliseconds) => {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+          if ((new Date().getTime() - start) > milliseconds){
+            break;
+          }
+        }
+      }
+
     render() {
        
         
@@ -178,6 +236,7 @@ class StartLocal extends React.Component {
             <div className="container home">
                 <h1>Demonstration version</h1>
                 <h5><a href="..\administration_local">Open administration panel</a></h5>
+                <h5><a href="..\results">Open audit results</a></h5>
                 <div className="bordered center details">
                 <table>
                     <tbody>
@@ -216,12 +275,17 @@ class StartLocal extends React.Component {
                         </tr>
                         <tr>
                             <td>
-                                <input ref="selectedDate" type="date" required/>
+                                <input ref="selectedDate" type="date"/>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input ref="selectedAuditor" value="User_name_from_account"disabled/>
+                                <select ref="selectedAuditor">
+                                    <option value="Antti Auditoija">Antti Auditoija</option>
+                                    <option value="Markku Tarkastaja">Markku Tarkastaja</option>
+                                    <option value="Juha Seikkailija">Juha Seikkailija</option>
+                                </select>
+                                
                             </td>
                         </tr>
                         <tr>
@@ -234,15 +298,16 @@ class StartLocal extends React.Component {
 
                 </div>
                 
-                <input style={{margin: "20px"}} placeholder="audit case id" ref="audit_case_id"/>
-                
+                Audit id:<input style={{margin: "20px"}} placeholder="audit case id" ref="audit_case_id"/>
+                Target id:<input style={{margin: "20px"}} placeholder="target id" ref="target_id"/>
                 <div className={q_visibility}>
                     <h3>Audit questions</h3>
+                    
                     <table>
-                    <tbody>
+                    
                         {this.state.questions_for_target.map(question => {
                             return (
-                                <span>
+                                <tbody>
                                 <tr>
                                     
                                         <QuestionText q_id = {question.question_id} questions = {this.state.questions}/>
@@ -251,20 +316,21 @@ class StartLocal extends React.Component {
                                     
                                 </tr>
                                 <tr>
-                                    <td style={{width: "200px"}}><input type="radio" name={question.question_id + "grade"} value={question.question_id}/>Good</td>
-                                    <td style={{width: "200px"}}><input type="radio" name={question.question_id + "grade"} value={question.question_id}/>Ok</td>
-                                    <td style={{width: "200px"}}><input type="radio" name={question.question_id + "grade"} value={question.question_id}/>Bad</td>
+                                    <td style={{width: "200px"}}><input type="radio" id={question.question_id+"-01"} name={question.question_id} value="5"/>Good</td>
+                                    <td style={{width: "200px"}}><input type="radio" id={question.question_id+"-02"} name={question.question_id} value="3"/>Ok</td>
+                                    <td style={{width: "200px"}}><input type="radio" id={question.question_id+"-03"} name={question.question_id} value="0"/>Bad</td>
                                     
                                 </tr>
                                 <tr>
-                                    <td colspan="3" style={{backgroundColor: "black"}}></td>
+                                    <td colSpan="3" style={{backgroundColor: "black"}}></td>
                                 </tr>
-                                   </span> 
+                                   </tbody> 
                             )
                         })}
                         
-                    </tbody>
+                    
                     </table>
+                    <button onClick={this.readyClicked}>Ready</button>
 
                 </div>
             </div>

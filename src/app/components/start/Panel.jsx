@@ -18,6 +18,9 @@ function Panel() {
           <li>
             <Link to="/administration_local/questions">Questions</Link>
           </li>
+          <li>
+            <Link to="/administration_local/audit_cases">Audits</Link>
+          </li>
           
         </ul>
       </nav>

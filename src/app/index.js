@@ -17,6 +17,8 @@ import AdministrationLocal from './components/start/AdministrationLocal';
 import OfficesLocal from './components/start/OfficesLocal';
 import TargetsLocal from './components/start/TargetsLocal';
 import QuestionsLocal from './components/start/QuestionsLocal';
+import AuditLocal from './components/start/AuditLocal';
+import ResultsLocal from './components/start/ResultsLocal';
 
 
 import reducers from './reducers';
@@ -41,6 +43,8 @@ ReactDOM.render(
         <Route path="/administration_local/offices" component={OfficesLocal} />
         <Route path="/administration_local/targets" component={TargetsLocal} />
         <Route path="/administration_local/questions" component={QuestionsLocal} />
+        <Route path="/administration_local/audit_cases" component={AuditLocal} />
+        <Route path="/results" component={ResultsLocal} />
         
       </Route>
     </Router>
