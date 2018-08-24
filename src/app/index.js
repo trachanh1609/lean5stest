@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import thunk from 'redux-thunk';
 
 import App from './components/App';
 import Home from './components/home/Home';
@@ -22,8 +23,15 @@ import reducers from './reducers';
 
 import './components/bundle.scss';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
-const store = createStoreWithMiddleware(reducers);
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const store = createStoreWithMiddleware(
+  reducers,
+  {
+    posts: [],
+    user: 'Vinny',
+  },
+  window.devToolsExtension && window.devToolsExtension()
+);
 
 ReactDOM.render(
   <Provider store={store}>

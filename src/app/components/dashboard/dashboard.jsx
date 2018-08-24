@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { updateUser } from '../../actions/userActions';
+import { apiRequest } from '../../actions/postsActions';
 
 import classNames from 'classnames';
 import Drawer from '@material-ui/core/Drawer';
@@ -92,6 +95,16 @@ class Dashboard extends React.Component{
       open: false,
       reports: [],
     };
+
+    this.onUpdateUser = this.onUpdateUser.bind(this);
+  }
+
+  componentDidMount() {
+
+  }
+
+  onFetchPosts = () => {
+    this.props.onApiRequest();
   }
 
   handleDrawerOpen = () => {
@@ -102,9 +115,14 @@ class Dashboard extends React.Component{
     this.setState({ open: false });
   };
 
+  onUpdateUser() {
+    this.props.onUpdateUser('Sammy');
+  }
+
   render () {
     const {classes} = this.props ;
-
+  
+    console.log(this.props.posts);  
     return (
       <div className={classes.root}>
         <AppBar
@@ -124,7 +142,9 @@ class Dashboard extends React.Component{
               Lean 5S
             </Typography>
             <div className={classes.filler}></div>
-            <ProfileMenu className={classes.profileMenu}/>
+            <div onClick={this.onUpdateUser}>Update User</div>
+            <div onClick={this.onFetchPosts}>Fetch Posts</div>
+            <ProfileMenu className={classes.profileMenu} user={this.props.user} />
           </Toolbar>
         </AppBar>
         <Drawer
@@ -148,6 +168,16 @@ class Dashboard extends React.Component{
         </Drawer>
         <main className={classNames(classes.content, !this.state.open && classes.contentClose )}>
           {/* <div className={classes.toolbar} /> */}
+          <ul>
+              {
+                Array.isArray( this.props.posts.data) && this.props.posts.data.length ?
+                  this.props.posts.data.map(post=>{
+                    return <li key={post.id}>{post.id}- {post.title} - {post.author}</li>;
+                  }) :
+                  <li>{this.props.posts.error}</li>
+                 
+              }
+          </ul>
           <MainContent />
         </main>
       </div>
@@ -159,4 +189,42 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Dashboard);
+const mapStateToProps = (state, props) => {
+  return {
+    posts : state.posts,
+    user : state.user,
+    aRandomProp : `Hello ${state.user}`,
+  }
+};
+
+// Working
+const mapActionsToProps = {
+  onUpdateUser : updateUser,
+  onApiRequest : apiRequest,
+};
+
+// Working
+// import { bindActionCreators } from 'redux';
+// const mapActionsToProps = (dispatch, props) => {
+//   console.log(props)
+//   return bindActionCreators({
+//     onUpdateUser: updateUser
+//   }, dispatch);
+// }
+
+// Not working
+// const mapActionsToProps = dispatch => {
+//   return {
+//     onUpdateUser : dispatch(updateUser),
+//   }
+// };
+
+// Working . This is actually mapDispatchToProps
+// const mapActionsToProps = dispatch => {
+//   return {
+//     onUpdateUser : name => dispatch(updateUser(name)),    // working. props.onUpdateUser is a function
+//     // onUpdateUser : dispatch(updateUser('Some Name')),  // OK, but dispatch is executed immediately.
+//   }
+// };
+
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Dashboard));

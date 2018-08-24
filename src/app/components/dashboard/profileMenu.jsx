@@ -28,7 +28,7 @@ class ProfileMenu extends React.Component {
           variant="text"
           color="inherit"
         >
-          firstname.lastname@example.com
+          {this.props.user}
         </Button>
         <Menu
           id="simple-menu"
