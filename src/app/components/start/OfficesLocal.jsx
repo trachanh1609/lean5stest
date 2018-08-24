@@ -1,26 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 import Panel from './Panel';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
+
 const API_URL = "http://localhost:4000/api2/audits";
 var detailsVisibility = "invisible";
 
-class ListOfCorporations extends React.Component {
-    constructor(props) {
-        super(props);
-      }
-    componentDidMount() {
-        
-    }
-    render() {
-        
-       
-            return (<text></text>)
-           
-    
-    }
-    
-  
-}
+
 
 class OfficesLocal extends React.Component {
     constructor(props){
@@ -28,7 +19,8 @@ class OfficesLocal extends React.Component {
         this.state = {
           corporations: [],
           offices: [],
-          selectedOffice: []
+          selectedOffice: [],
+          joins: []
           
           
         };
@@ -76,18 +68,22 @@ class OfficesLocal extends React.Component {
         });
         console.log('getOffices running');
     }  
+    getJoins = (id, type) => {
+        var self = this;
+        let url = API_URL + "?"+ type + "=" + id;
+        fetch(url)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(json){
+            self.setState({joins: json});
+        })
+        .catch(function(err){
+          console.error(err)
+        });
+       
+    }  
     
-    switchButton = (index, id, name, corp_name) => {
-        switch (index) {
-            
-            case "show_offices":
-                
-                this.getOffices();
-                //selectedCorporationName = this.corporationById(this.refs.corporation.value);
-                
-                break;
-        }
-    }
 
     postOffice = () => {
             
@@ -154,6 +150,8 @@ class OfficesLocal extends React.Component {
 
         });
         this.corporationNameById();
+        var link = "#factoryDetails";
+        location.href=link;
         
     }
 
@@ -215,7 +213,25 @@ class OfficesLocal extends React.Component {
             console.log(error);
           });
     }
+    joinsMap = () => {
+        var num = 0;
+        var joins = "";
+        this.state.joins.map(j=>{
+            num++;
+            joins += num + ") Document type: "+j.type+"\nDocument id: "+j.id+"\n--------------------------------\n";
+        });
+         
+        
+        alert(this.state.selectedOffice.office_name + " has " + num + " connected documents\n---------------------------------\n"+joins);
+    }
 
+    showJoins = () => {
+        
+        this.getJoins(this.refs.table_office_id.value,"office_id");
+        setTimeout(function() {this.joinsMap()}.bind(this), 1000);
+        
+
+    }
       render() {
         return (
             <div className="container home">
@@ -223,7 +239,7 @@ class OfficesLocal extends React.Component {
                 <Panel/>
      
                  <div className="bordered">    
-                <h3>List of offices/factories</h3>
+                <h3>List of factories ("Toimipisteet")</h3>
                 
                 Select corporation:  
                 <select ref="corp" onChange={this.selectPressed}>
@@ -233,11 +249,19 @@ class OfficesLocal extends React.Component {
                     })}
                 </select>
                 
-                <button onClick={this.switchButton.bind(this,'hide_offices')}>Hide</button>
+                
                 <br/>
                 <div className="center">
-                    <table className="table" ref="officesTable">
-                    <tbody>
+                    <Table className="Table" ref="officesTable">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell></TableCell>
+                            <TableCell>id</TableCell>
+                            <TableCell>Factory</TableCell>
+                            <TableCell>Corporation</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
                         {
                             this.state.offices.map(office=> {
                                     var id = office.id;
@@ -245,20 +269,30 @@ class OfficesLocal extends React.Component {
                                     
                                     
                                     return (
-                                    <tr>
-                                       
-                                        <td>
-                                            {name}
-                                        </td>
-                                        <td>
+                                    <TableRow>
+                                        <TableCell>
                                             
                                             <button onClick={this.showOfficeDetails.bind(this, id)}>...</button>
-                                        </td>
-                                    </tr>)
+                                        </TableCell>
+                                       <TableCell>
+                                            {id}
+                                        </TableCell>
+                                        <TableCell>
+                                            {name}
+                                        </TableCell>
+                                        
+                                            {this.state.corporations.map(c=> {
+                                                if (c.id == office.corporation_id) {
+                                                    return (<TableCell>{c.corporation_name}</TableCell>);
+                                                }
+                                            })}
+                                        
+                                        
+                                    </TableRow>)
                             })
                         }
-                    </tbody>
-                    </table>
+                    </TableBody>
+                    </Table>
                 </div>
                 <h4>Add a new office/factory</h4>
                 <input ref="new_office_name" type="text" placeholder="Enter name"/>
@@ -269,34 +303,31 @@ class OfficesLocal extends React.Component {
                 </div>    
                 <br/>    
                 <div className={detailsVisibility}>
-                <table>
+                <a name="factoryDetails"/>
+                <Table>
                     
-                       
-                                    <tbody>
-                                    <tr>
-                            <td>Office id:</td>
-                     <td><input ref="table_office_id" type="text"  disabled/></td></tr>
-                     <tr>
-                     <td>
-                    Name:</td><td><input ref="table_office_name"/></td></tr>
-                     <tr><td>
-                     Corporation name: </td><td><input ref="table_corporation_name"/></td></tr>
-                     <tr><td>
-                     Corporation id: </td><td><input ref="table_corporation_id"/></td></tr>
-                     <tr><td>
-                    
-                     <ListOfCorporations list={this.state.corporations}/>
+                                    <TableBody>
+                                    <TableRow>
+                            <TableCell>Office id:</TableCell>
+                     <TableCell><input ref="table_office_id" type="text"  disabled/></TableCell></TableRow>
+                     <TableRow>
+                     <TableCell>
+                    Name:</TableCell><TableCell><input ref="table_office_name"/></TableCell></TableRow>
+                     <TableRow><TableCell>
+                     Corporation name: </TableCell><TableCell><input ref="table_corporation_name" disabled/></TableCell></TableRow>
+                     <TableRow><TableCell>
+                     Corporation id: </TableCell><TableCell><input ref="table_corporation_id" disabled/></TableCell></TableRow>
                      
-                     </td></tr>
-                     <tr><td><button onClick={this.updateButtonPressed}>Update</button></td><td><button onClick={this.deleteItem}>Delete</button></td></tr>
+                     <TableRow><TableCell><button onClick={this.updateButtonPressed}>Update</button></TableCell>
+                     <TableCell><button onClick={this.deleteItem}>Delete</button><Button onClick={this.showJoins}>Show joins</Button></TableCell></TableRow>
                                  
                          
                          
-                         </tbody>
+                         </TableBody>
                     
                     
                     
-                    </table>
+                    </Table>
                 </div>
                 <br/>            
             </div>            

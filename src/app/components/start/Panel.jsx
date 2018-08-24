@@ -10,7 +10,7 @@ function Panel() {
             <Link to="/administration_local">Corporations</Link>
           </li>
           <li>
-            <Link to="/administration_local/offices">Offices</Link>
+            <Link to="/administration_local/offices">Factories</Link>
           </li>
           <li>
             <Link to="/administration_local/targets">Targets</Link>
@@ -20,6 +20,9 @@ function Panel() {
           </li>
           <li>
             <Link to="/administration_local/audit_cases">Audits</Link>
+          </li>
+          <li>
+            <Link to="/start_local">Demo</Link>
           </li>
           
         </ul>

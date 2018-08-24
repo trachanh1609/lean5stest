@@ -3,10 +3,15 @@ import axios from 'axios';
 
 import Panel from './Panel';
 
-
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
 const API_URL = "http://localhost:4000/api2/audits";
 
-var buttonCorp = "Show";
+var buttonCorp = "Load";
 
 var selectedCorporation = '';
 var selectedOffice = '';
@@ -23,10 +28,11 @@ class AdministrationLocal extends React.Component {
     }
 
     componentDidMount() {
-        //this.getCorporations();
-        //this.getOffices();
+     
+        
     }
 
+    
     getCorporations = () => {
         var self = this;
         let url = API_URL + "?type=Corporation";
@@ -101,13 +107,13 @@ class AdministrationLocal extends React.Component {
     switchButton = (index, id, name, corp_name) => {
         switch (index) {
             case "corporations":
-                if (buttonCorp == "Show") {
+                if (buttonCorp == "Load") {
                     this.getCorporations();
                     buttonCorp = "Hide";
                     
                 } else {
                     this.setState({corporationsList: []});
-                    buttonCorp = "Show";             
+                    buttonCorp = "Load";             
                 }
                 break;
             case "show_offices":
@@ -170,6 +176,8 @@ class AdministrationLocal extends React.Component {
     showCorporationDetails = (id) => {
         this.findDetails(id);
         setTimeout(function() {this.fillTable()}.bind(this), 100);
+        var link = "#details";
+        location.href=link;
     }
 
     findDetails = (id) => {
@@ -226,25 +234,27 @@ class AdministrationLocal extends React.Component {
               
                    
                 <div className="bordered">
-                    <h3>List of corporations in database</h3>
+                    <h3>List of corporations in database ("Yhtiöt")</h3>
                     <button onClick={this.switchButton.bind(this,'corporations')}>{buttonCorp}</button>
+                    <br/><br/>
                     <div className="center">
-                        <table className="table">
-                        <tbody>
+                        <Table className="table">
+                        <TableBody>
+                            
                             {
                                 this.state.corporationsList.map(corporation=> {
                                         var id = corporation.id;
                                         var name = corporation.corporation_name;
-                                        return (<tr><td> {corporation.id}</td>
-                                        <td>{corporation.corporation_name}</td>
-                                        <td>
-                                        <button onClick={this.showCorporationDetails.bind(this, id)}>...</button>
-                                        <button onClick={this.deleteItem.bind(this,id, name, 'corporation')}>-</button>
-                                        </td></tr>)
+                                        return (<TableRow>
+                                            <TableCell> <button onClick={this.showCorporationDetails.bind(this, id)}>...</button></TableCell>
+                                            <TableCell> {corporation.id}</TableCell>
+                                            <TableCell>{corporation.corporation_name}</TableCell>
+                                            <TableCell><button onClick={this.deleteItem.bind(this,id, name, 'corporation')}>Delete</button></TableCell>
+                                        </TableRow>)
                                 })
                             }
-                            </tbody>
-                        </table>
+                            </TableBody>
+                        </Table>
                     </div>
                     <h4>Add a new corporation</h4>
                     <input ref="new_corporation" type="text" name="corporation_name" placeholder="Enter corporation name"/>
@@ -254,16 +264,17 @@ class AdministrationLocal extends React.Component {
                 </div>  
                 <br/>
                 <div className="bordered details">
+                    <a name="details"/>
                     <h3>Details</h3>
-                    <table>
+                    <Table>
                     
                        
-                    <tbody>
-                        <tr><td>Corporation id:</td><td><input ref="table_corp_id" type="text"  disabled/></td></tr>
-                        <tr><td> Name:</td><td><input ref="table_corp_name"/></td></tr>
-                        <tr><td><button onClick={this.updateItem.bind(this, this.getCorporations)}>Update</button></td><td><button onClick={this.deleteCorporation}>Delete</button></td></tr>
-                    </tbody> 
-                    </table>
+                    <TableBody>
+                        <TableRow><TableCell>Corporation id:</TableCell><TableCell><input ref="table_corp_id" type="text"  disabled/></TableCell></TableRow>
+                        <TableRow><TableCell> Name:</TableCell><TableCell><input ref="table_corp_name"/></TableCell></TableRow>
+                        <TableRow><TableCell><button onClick={this.updateItem.bind(this, this.getCorporations)}>Update</button></TableCell><TableCell><button onClick={this.deleteCorporation}>Delete</button></TableCell></TableRow>
+                    </TableBody> 
+                    </Table>
                 </div>
                  
                 <br/>

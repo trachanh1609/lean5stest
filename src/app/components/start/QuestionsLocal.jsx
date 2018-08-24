@@ -1,6 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import Panel from './Panel';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 const API_URL = "http://localhost:4000/api2/audits";
 
 class QuestionText extends React.Component {
@@ -16,7 +21,7 @@ class QuestionText extends React.Component {
                 if (q.id == id) text = q.question_text;
             });
             
-        return (<td>{text}</td>);
+        return (<TableCell style={{textAlign:"left"}}>{text}</TableCell>);
         
         
     }
@@ -299,49 +304,51 @@ class QuestionsLocal extends React.Component {
                 <div className="bordered"> 
                 <h3> All questions in database</h3>
                 <br/>
-                    <table>
-                    <tbody>
+                    <Table>
+                    <TableBody>
                         {
                             this.state.questions.map(qt=> {
                                     
                                     return (
-                                    <tr>
+                                    <TableRow>
                                         
-                                        <td>
+                                        <TableCell>
                                             <button onClick={this.showQuestionDetails.bind(this,qt.id)}>...</button>
-                                        </td>
-                                        <td>
+                                        </TableCell>
+                                        <TableCell style={{textAlign:"left"}}>
                                             {qt.question_text}
-                                        </td>
+                                        </TableCell>
                                         
                                             
                                             
                                         
                                         
-                                    </tr>)
+                                    </TableRow>)
                             })
                         }
-                    </tbody>
-                    </table>
+                    </TableBody>
+                    </Table>
                     <div className="details">
                     <h4>Details</h4>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>id:</td>
-                                <td><input ref="updateQuestionId" disabled/></td>
-                            </tr>
-                            <tr>
-                            <td>question text</td>
-                                <td><input ref="updateQuestionText"/></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><button onClick={this.updateQuestionPressed.bind(this,"question")}>Update</button></td>
-                                <td><button onClick={this.deleteQuestionPressed}>Delete</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <Table>
+                        <TableBody>
+                            <TableRow>
+                                <TableCell>id:</TableCell>
+                                <TableCell><input ref="updateQuestionId" disabled/></TableCell>
+                            </TableRow>
+                            <TableRow>
+                            <TableCell>question text</TableCell>
+                                <TableCell><input ref="updateQuestionText"/></TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell></TableCell>
+                                <TableCell>
+                                    <button onClick={this.updateQuestionPressed.bind(this,"question")}>Update</button>
+                                    <button onClick={this.deleteQuestionPressed}>Delete</button>
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
                     </div>
                     <div className="center details">
                     
@@ -355,67 +362,67 @@ class QuestionsLocal extends React.Component {
                 <br/>
                 <div className="bordered details">    
                 <h3>List of questions for target</h3>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Select corporation:</td>
-                            <td>
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell>Select corporation:</TableCell>
+                            <TableCell>
                                 <select ref="selectedCorporationId" onChange={this.getOffices}>
                                     <option value="all">not selected</option>
                                     {this.state.corporations.map(corporation=> {
                                     return (<option value={corporation.id}>{corporation.corporation_name}</option>)
                                     })}
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Select office/factory:</td>
-                            <td>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Select factory:</TableCell>
+                            <TableCell>
                                 <select ref="selectedOfficeId" onChange={this.getTargets}>
                                     <option value="all">not selected</option>
                                     {this.state.offices.map(office=> {
                                     return (<option value={office.id}>{office.office_name}</option>)
                                     })}
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Select target:</td>
-                            <td>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Select target:</TableCell>
+                            <TableCell>
                                 <select ref="selectedTargetId" onChange={this.getQuestionsForTargets}>
                                     <option value="all">not selected</option>
                                     {this.state.targets.map(t=> {
                                     return (<option value={t.id}>{t.target_name}</option>)
                                     })}
                                 </select>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
                
                 <br/>
                 
-                    <table>
-                    <tbody>
+                    <Table>
+                    <TableBody>
                         {
                             this.state.questionTagretLinks.map(qt=> {
                                     
                                     return (
-                                    <tr>
+                                    <TableRow>
                                         
-                                        <td>
+                                        <TableCell>
                                             <button onClick={this.showDetails.bind(this,qt.id)}>...</button>
-                                        </td>
+                                        </TableCell>
                                         <QuestionText q_id = {qt.question_id} questions = {this.state.questions}/>
                                             
                                             
                                         
                                         
-                                    </tr>)
+                                    </TableRow>)
                             })
                         }
-                    </tbody>
-                    </table>
+                    </TableBody>
+                    </Table>
                 
                     <br/>
                     Add a new question: 
@@ -434,35 +441,35 @@ class QuestionsLocal extends React.Component {
                 </select>
                 <button onClick={this.addQuestionForTargetPressed}>Add</button>
                 <br/>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Id:</td>
-                            <td><input ref="detailsId" type="text"  disabled/></td>
-                        </tr>
-                        <tr>
-                            <td>Question id:</td>
-                            <td><input ref="detailsQuestionId" disabled/></td>
-                        </tr>
-                        <tr>
-                            <td>Question text:</td>
-                            <td><input ref="detailsQuestionText" disabled/></td>
-                        </tr>
-                        <tr>
-                            <td>Target id:</td>
-                            <td><input ref="detailsTargetId" disabled/></td>
-                        </tr>
-                        <tr>
-                            <td>Target name:</td>
-                            <td><input ref="detailsTargetName" disabled/></td>
-                        </tr>
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell>Id:</TableCell>
+                            <TableCell><input ref="detailsId" type="text"  disabled/></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Question id:</TableCell>
+                            <TableCell><input ref="detailsQuestionId" disabled/></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Question text:</TableCell>
+                            <TableCell><input ref="detailsQuestionText" disabled/></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Target id:</TableCell>
+                            <TableCell><input ref="detailsTargetId" disabled/></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Target name:</TableCell>
+                            <TableCell><input ref="detailsTargetName" disabled/></TableCell>
+                        </TableRow>
                         
-                        <tr>
-                            <td></td>
-                            <td><button onClick={this.deleteClicked}>Delete</button></td>
-                        </tr>
-                    </tbody>
-                    </table>
+                        <TableRow>
+                            <TableCell></TableCell>
+                            <TableCell><button onClick={this.deleteClicked}>Delete</button></TableCell>
+                        </TableRow>
+                    </TableBody>
+                    </Table>
                 </div>     
 
                 <br/>

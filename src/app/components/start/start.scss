@@ -21,7 +21,7 @@ h3 {
 }
 
 .bordered {
-  border: 10px solid darkolivegreen;
+  border: 2px solid darkolivegreen;
   box-shadow: 0px 0px 20px #888888;
   width: 600px;
   margin: auto;
@@ -37,10 +37,27 @@ h3 {
 }
 
 tr { background-color: white }
-tr:hover { background-color: greenyellow};
+tr:hover { background-color: greenyellow}
+
+.finger:hover {
+  cursor: pointer;
+}
+
 
 .invisible {
   display: none
 }
 
-td {padding: 10px;}
+td, th {padding: 5px;}
+
+select {
+  margin: 5px;
+}
+
+input {
+  margin: 5px;
+}
+
+button {
+  margin: 5px;
+}

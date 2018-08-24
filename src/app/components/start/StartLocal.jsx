@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import Panel from './Panel';
+
 
 const API_URL = "http://localhost:4000/api2/audits";
 
-var audit_id = "";
+
 var q_visibility = "invisible";
 
 class QuestionText extends React.Component {
@@ -42,6 +42,7 @@ class StartLocal extends React.Component {
     }
     componentDidMount() {
         this.getCorporations();
+        
         
         
     }
@@ -94,9 +95,17 @@ class StartLocal extends React.Component {
 
     }
 
+    handleResponse = (response) => {
+        
+        
+        //alert(response.data.id);
+        this.refs.audit_case_id.value = response.data.id;
+            
+        
+    }
     
 
-    postAuditCase = (corporation_id,office_id,target_id,date,auditor) => {
+    postAuditCase = (corporation_id,office_id,target_id,date,auditor,fun) => {
         
         axios.post(API_URL, {
             type: 'Audit_case',
@@ -109,6 +118,8 @@ class StartLocal extends React.Component {
         })
         .then(function (response) {
             console.log(response);
+            fun(response);
+            
         })
         .catch(function (error) {console.log(error);});  
         
@@ -153,19 +164,15 @@ class StartLocal extends React.Component {
         var date = this.refs.selectedDate.value;
         var auditor = this.refs.selectedAuditor.value;
         /*
-       var corporation_id = "e85ab150-0436-2d6f-76f4-c5e68e5d1e44";
-       var office_id = "b4a18c57-0b9a-357b-f859-17a82d937e3b";
-       var target_id = "Hkj2_s4";
-       var date = "2018-08-22";
-       var auditor = "Super Auditor";
+       var corporation_id = "xxxx";
+       var office_id = "xxxx";
+       var target_id = "xxxx";
+       var date = "xxx";
+       var auditor = "xxx";
 */
         if (corporation_id == "all" || office_id == "all" || target_id == "all") alert("Please fill all fields");
         else {
-            this.postAuditCase(corporation_id,office_id,target_id,date,auditor);
-            //setTimeout(function() {this.getAuditCases()}.bind(this),1000);
-            //setTimeout(function() {this.getAuditId()}.bind(this),1500);
-            //setTimeout(function() {this.showQuestions()}.bind(this), 2000);
-            
+            this.postAuditCase(corporation_id,office_id,target_id,date,auditor, this.handleResponse);
             this.refs.target_id.value = target_id;
             setTimeout(function() {this.showQuestions(target_id)}.bind(this), 1000); 
         }
@@ -215,7 +222,9 @@ class StartLocal extends React.Component {
         });
         alert("Ready!");
         //location.reload(); 
-        var link = "http://localhost:4000/api2/audits?type=Results&audit_id="+audit_case_id;
+        //var link = "http://localhost:4000/api2/audits?type=Results&audit_id="+audit_case_id;
+        var link = "..\\results";
+        
         this.sleep(1500);
         location.href = link;
     }

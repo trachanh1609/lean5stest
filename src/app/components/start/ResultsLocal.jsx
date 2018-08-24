@@ -4,6 +4,33 @@ import Panel from './Panel';
 const API_URL = "http://localhost:4000/api2/audits";
 
 
+class OfficeName extends React.Component {
+    constructor(props){
+        super(props);
+        
+    }
+    render() {
+        var office_name;
+        this.props.offices.map(o=> {
+            if (o.id == this.props.office_id) office_name=o.office_name;
+        })
+        return (<td>{office_name}</td>)
+    }
+}
+
+class CorporationName extends React.Component {
+    constructor(props){
+        super(props);
+        
+    }
+    render() {
+        var name;
+        this.props.corporations.map(c=> {
+            if (c.id == this.props.corporation_id) name=c.corporation_name;
+        })
+        return (<td>{name}</td>)
+    }
+}
 
 
 
@@ -42,14 +69,50 @@ class ResultsLocal extends React.Component {
             results: [],
             audits: [],
             targets: [],
-            questions: []
+            questions: [],
+            offices: [],
+            corporations: []
         }
     }
     componentDidMount() {
         this.getTargets();
         this.getQuestions();
+        this.getOffices();
+        this.getCorporations();
     }
-    
+    getCorporations = () => {
+        var self = this;
+        let url;
+        url = API_URL + "?type=Corporation";
+        
+        fetch(url)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(json){
+            self.setState({corporations: json});
+        })
+        .catch(function(err){
+          console.error(err)
+        });       
+    }
+    getOffices = () => {
+        var self = this;
+        let url;
+        url = API_URL + "?type=Office";
+       
+        fetch(url)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(json){
+            self.setState({offices: json});
+        })
+        .catch(function(err){
+          console.error(err)
+        });
+
+    } 
     getQuestions = () => {
         var self = this;
         let url;
@@ -129,7 +192,9 @@ class ResultsLocal extends React.Component {
         return (
             <div>
         <h1>Audit results</h1>
+        <h5><a href="..\start_local">Start new audit</a></h5>
         <select ref="selectedAuditor" onChange={this.showResults}>
+            <option value="all">Select auditor</option>
             <option value="Antti Auditoija">Antti Auditoija</option>
             <option value="Markku Tarkastaja">Markku Tarkastaja</option>
             <option value="Juha Seikkailija">Juha Seikkailija</option>
@@ -145,19 +210,29 @@ class ResultsLocal extends React.Component {
                         <tr>
                             <th style={{width:"150px"}}>Audit Id</th>
                             <th style={{width:"150px"}}>Date</th>
-                            <th style={{width:"150px"}}>Target Id</th>
-                            <th style={{width:"150px"}}>Target Name</th>
+                            
+                            <th style={{width:"150px"}}>Target</th>
+                            <th style={{width:"150px"}}>Factory</th>
+                            <th style={{width:"150px"}}>Corporation</th>
+
                         </tr>
                         <tr>
                             <td>{audit.id}</td>
                             <td>{audit.date}</td>
-                            <td>{audit.target_id}</td>
+                            
+                            
                             <TargetName targets={this.state.targets} t_id = {audit.target_id} />
+                            <OfficeName offices={this.state.offices} office_id = {audit.office_id} />
+                            <CorporationName corporations={this.state.corporations} corporation_id = {audit.corporation_id} />
                         </tr>
                     </tbody>
                 </table>
                 <table>
                     <tbody>
+                        <tr>
+                        <th>Grade</th>
+                        <th style={{textAlign:"left"}}>Question text</th>
+                        </tr>
                         {
                             this.state.results.map(r=>{
                                 if (r.audit_id == audit.id) {
@@ -179,7 +254,9 @@ class ResultsLocal extends React.Component {
 
                     </tbody>
                 </table>
-                </div>)
+                
+                </div>);
+                
             })
         }
         

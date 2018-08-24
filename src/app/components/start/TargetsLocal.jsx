@@ -1,6 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import Panel from './Panel';
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
 const API_URL = "http://localhost:4000/api2/audits";
 
 
@@ -180,57 +187,57 @@ class TargetsLocal extends React.Component {
      
                 <div className="bordered">    
                 <h3>List of targets</h3>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Select corporation:</td>
-                            <td>
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell>Select corporation:</TableCell>
+                            <TableCell>
                                 <select ref="selectedCorporationId" onChange={this.getOffices}>
                                     <option value="all">not selected</option>
                                     {this.state.corporations.map(corporation=> {
                                     return (<option value={corporation.id}>{corporation.corporation_name}</option>)
                                     })}
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Select office/factory:</td>
-                            <td>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Select office/factory:</TableCell>
+                            <TableCell>
                                 <select ref="selectedOfficeId" onChange={this.getTargets}>
                                     <option value="all">not selected</option>
                                     {this.state.offices.map(office=> {
                                     return (<option value={office.id}>{office.office_name}</option>)
                                     })}
                                 </select>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
                 <br/>
                 
                 
-                    <table>
-                    <tbody>
+                    <Table>
+                    <TableBody>
                         {
                             this.state.targets.map(target=> {
                                     var id = target.id;
                                     var name = target.target_name;
                                     return (
-                                    <tr>
-                                        <td>
+                                    <TableRow>
+                                        <TableCell>
                                             {id}
-                                        </td>
-                                        <td>
+                                        </TableCell>
+                                        <TableCell>
                                             {name}
-                                        </td>
-                                        <td>
+                                        </TableCell>
+                                        <TableCell>
                                             <button onClick={this.showTarget.bind(this, id)}>...</button>
-                                        </td>
-                                    </tr>)
+                                        </TableCell>
+                                    </TableRow>)
                             })
                         }
-                    </tbody>
-                    </table>
+                    </TableBody>
+                    </Table>
                 <div className="center">
                     <h4>Add a new target: </h4>
                     
@@ -243,38 +250,38 @@ class TargetsLocal extends React.Component {
                 <br/>   
                 <div className = "bordered details"> 
                 
-                    <table>
-                    <tbody>
-                        <tr>
-                            <td>Target id:</td>
-                            <td><input ref="detailsTargetId" type="text"  disabled/></td>
-                        </tr>
-                        <tr>
-                            <td>Name:</td>
-                            <td><input ref="detailsTargetName"/></td>
-                        </tr>
-                        <tr>
-                            <td>Office name:</td>
-                            <td><input ref="detailsOfficeName" disabled/></td>
-                        </tr>
-                        <tr>
-                            <td>Office id:</td>
-                            <td><input ref="detailsOfficeId" disabled/></td>
-                        </tr>
-                        <tr>
-                            <td>Corporation name:</td>
-                            <td><input ref="detailsCorporationName"disabled/></td>
-                        </tr>
-                        <tr>
-                            <td>Corporation id:</td>
-                            <td><input ref="detailsCorporationId" disabled/></td>
-                        </tr>
-                        <tr>
-                            <td><button onClick={this.updatePressed}>Update</button></td>
-                            <td><button onClick={this.deleteItem}>Delete</button></td>
-                        </tr>
-                    </tbody>
-                    </table>
+                    <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell>Target id:</TableCell>
+                            <TableCell><input ref="detailsTargetId" type="text"  disabled/></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Name:</TableCell>
+                            <TableCell><input ref="detailsTargetName"/></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Office name:</TableCell>
+                            <TableCell><input ref="detailsOfficeName" disabled/></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Office id:</TableCell>
+                            <TableCell><input ref="detailsOfficeId" disabled/></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Corporation name:</TableCell>
+                            <TableCell><input ref="detailsCorporationName"disabled/></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Corporation id:</TableCell>
+                            <TableCell><input ref="detailsCorporationId" disabled/></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell><button onClick={this.updatePressed}>Update</button></TableCell>
+                            <TableCell><button onClick={this.deleteItem}>Delete</button></TableCell>
+                        </TableRow>
+                    </TableBody>
+                    </Table>
                 
                 </div>
                 <br/>            
