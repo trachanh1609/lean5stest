@@ -1,166 +1,50 @@
 import React from 'react';
 import axios from 'axios';
-import Panel from './Panel';
+import UserPanel from '../../elements/UserPanel';
+import { Link } from 'react-router';
 const API_URL = "http://localhost:4000/api2/audits";
+import { connect } from 'react-redux';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import {createAudit, updateSelectedCorporation, updateSelectedDate, updateSelectedFactory, updateSelectedTarget } from "../../actions/index";
+import Button from '@material-ui/core/Button';
 
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        startedAudit: state.startedAudit
+    }
+};
 
-class OfficeName extends React.Component {
-    constructor(props){
-        super(props);
-        
-    }
-    render() {
-        var office_name;
-        this.props.offices.map(o=> {
-            if (o.id == this.props.office_id) office_name=o.office_name;
-        })
-        return (<td>{office_name}</td>)
-    }
-}
+const mapDispatchToProps = dispatch => {
+    return {
+      createAudit: startedAudit => dispatch(createAudit(startedAudit)),
+      updateSelectedTarget: selectedTarget => dispatch(updateSelectedTarget(selectedTarget)),
+      updateSelectedFactory: selectedFactory => dispatch(updateSelectedFactory(selectedFactory)),
+      updateSelectedCorporation: selectedCorporation => dispatch(updateSelectedCorporation(selectedCorporation)),
+      updateSelectedDate: selectedDate => dispatch(updateSelectedDate(selectedDate))
+    };
+  }
 
-class CorporationName extends React.Component {
-    constructor(props){
-        super(props);
-        
-    }
-    render() {
-        var name;
-        this.props.corporations.map(c=> {
-            if (c.id == this.props.corporation_id) name=c.corporation_name;
-        })
-        return (<td>{name}</td>)
-    }
-}
-
-
-
-class TargetName extends React.Component {
-    constructor(props){
-        super(props);
-    }
-
-    render() {
-        var target_name;
-        this.props.targets.map(t => {
-            if (t.id == this.props.t_id) target_name = t.target_name;
-        })
-        return (<td>{target_name}</td>)
-    }
-    
-}
-
-class QuestionText extends React.Component {
-    constructor(props){
-        super(props);
-    }
-    render() {
-            var text = "";
-            var id = this.props.q_id;
-            this.props.questions.map(q => {
-                if (q.id == id) text = q.question_text;
-            });
-        return (<td style={{textAlign:"left"}}>{text}</td>);
-    }
-}
 class ResultsLocal extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            results: [],
-            audits: [],
-            targets: [],
-            questions: [],
-            offices: [],
-            corporations: []
+            audits: []
         }
     }
     componentDidMount() {
-        this.getTargets();
-        this.getQuestions();
-        this.getOffices();
-        this.getCorporations();
+        this.loadData();
     }
-    getCorporations = () => {
-        var self = this;
-        let url;
-        url = API_URL + "?type=Corporation";
-        
-        fetch(url)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(json){
-            self.setState({corporations: json});
-        })
-        .catch(function(err){
-          console.error(err)
-        });       
-    }
-    getOffices = () => {
-        var self = this;
-        let url;
-        url = API_URL + "?type=Office";
-       
-        fetch(url)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(json){
-            self.setState({offices: json});
-        })
-        .catch(function(err){
-          console.error(err)
-        });
 
-    } 
-    getQuestions = () => {
-        var self = this;
-        let url;
-        url = API_URL + "?type=Question";
-        
-        fetch(url)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(json){
-            self.setState({questions: json});
-        })
-        .catch(function(err){
-          console.error(err)
-        });
-    }
-    getTargets = () => {
-        var self = this;
-        let url = API_URL + "?type=Target";
-        fetch(url)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(json){
-            self.setState({targets: json});
-        })
-        .catch(function(err){
-          console.error(err)
-        });
-        
-        console.log('getOffices running');
-       
-    }
-    getResults = (auditor) => {
-        var self = this;
-        let url = API_URL + "?type=Results";
-        fetch(url)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(json){
-            self.setState({results: json});
-        })
-        .catch(function(err){
-          console.error(err)
-        });
-        
-        
+    loadData = () => {
+        setTimeout(function() {this.getAudits(this.refs.selectedAuditor.value)}.bind(this),500);
+        //this.getAudits(this.refs.selectedAuditor.value);
+        setTimeout(function() {this.showResults()}.bind(this),1000);
+        //this.showResults();
     }
 
     getAudits = (auditor) => {
@@ -180,20 +64,62 @@ class ResultsLocal extends React.Component {
     }
 
     showResults = () => {
-        this.getAudits(this.refs.selectedAuditor.value);
-        this.getResults(this.refs.selectedAuditor.value);
         
-
+        
+        var tempData = this.state.audits;
+        tempData.sort(function(a,b) {
+            if(a.date < b.date) return 1;
+            if(a.date > b.date) return -1;
+            return 0;
+        } );
+        
+        this.setState({audits: tempData});
+        
+   
     }
+
+    modify = (id) => {
+        var modifAudit = [];
+        this.state.audits.map(audit=>{
+            if(audit.id == id) modifAudit = audit;
+        });
+        this.saveAuditDataToStore(modifAudit);
+    }
+
+    saveAuditDataToStore = (audit) => {
+        
+        this.props.createAudit(audit);
+
+        /* in data security purposes better to retreave only needed data
+        this.props.createAudit({
+            id: audit.id,
+            target_id: audit.target_id,
+            target_name: audit.target_name,
+            office_id: audit.office_id,
+            corporation_id: audit.corporation_id,
+            corporation_name: audit.corporation_name,
+            date: audit.date,
+            auditor: this.props.user.name,
+            results: audit.results
+        });*/
+        this.props.updateSelectedTarget({id:audit.target_id,name:audit.target_name});
+        this.props.updateSelectedCorporation({id:audit.corporation_id,name:audit.corporation_name});
+        this.props.updateSelectedFactory({id:audit.office_id,name:audit.office_name});
+        this.props.updateSelectedDate(audit.date);
+    }
+
     render() {
         
             
             
         return (
             <div>
+                <UserPanel/>
+                <br/>
         <h1>Audit results</h1>
-        <h5><a href="..\start_local">Start new audit</a></h5>
-        <select ref="selectedAuditor" onChange={this.showResults}>
+
+        
+        <select ref="selectedAuditor" onChange={this.loadData} defaultValue={this.props.user.name}>
             <option value="all">Select auditor</option>
             <option value="Antti Auditoija">Antti Auditoija</option>
             <option value="Markku Tarkastaja">Markku Tarkastaja</option>
@@ -205,56 +131,72 @@ class ResultsLocal extends React.Component {
             this.state.audits.map(audit => {
                 return(
                     <div className="bordered">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th style={{width:"150px"}}>Audit Id</th>
-                            <th style={{width:"150px"}}>Date</th>
+                <Table>
+                    <TableHead>
+                    
+                        <TableRow>
+                            <TableCell style={{width:"150px"}}>Audit Id</TableCell>
+                            <TableCell style={{width:"150px"}}>Date</TableCell>
                             
-                            <th style={{width:"150px"}}>Target</th>
-                            <th style={{width:"150px"}}>Factory</th>
-                            <th style={{width:"150px"}}>Corporation</th>
+                            <TableCell style={{width:"150px"}}>Target</TableCell>
+                            <TableCell style={{width:"150px"}}>Factory</TableCell>
+                            <TableCell style={{width:"150px"}}>Corporation</TableCell>
+                            <TableCell style={{width:"150px"}}>Av.grade</TableCell>
+                            
 
-                        </tr>
-                        <tr>
-                            <td>{audit.id}</td>
-                            <td>{audit.date}</td>
-                            
-                            
-                            <TargetName targets={this.state.targets} t_id = {audit.target_id} />
-                            <OfficeName offices={this.state.offices} office_id = {audit.office_id} />
-                            <CorporationName corporations={this.state.corporations} corporation_id = {audit.corporation_id} />
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <tbody>
-                        <tr>
-                        <th>Grade</th>
-                        <th style={{textAlign:"left"}}>Question text</th>
-                        </tr>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell>{audit.id}</TableCell>
+                            <TableCell>{audit.date}</TableCell>
+                            <TableCell>{audit.target_name}</TableCell>
+                            <TableCell>{audit.office_name}</TableCell>
+                            <TableCell>{audit.corporation_name}</TableCell>
+                            <TableCell>{audit.average_grade}</TableCell>
+                        </TableRow>
+                    </TableBody>
+                    </Table>
+                    <Table ref={audit.id}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell style={{width:"80px"}}>Grade</TableCell>
+                            <TableCell style={{textAlign:"left"}}>Question text</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
                         {
-                            this.state.results.map(r=>{
-                                if (r.audit_id == audit.id) {
+                            audit.results.map(r=>{
+                                
                                     return (
-                                        <tr>
-                                            <td>{r.grade}</td>
-                                            <QuestionText questions={this.state.questions} q_id={r.question_id}/>
-                                        </tr>
-                                    //<Result results={this.state.results} result_id={r.id} audit_id = {audit.id} questions={this.state.questions}/>
+                                        <TableRow>
+                                            <TableCell>{r.grade}</TableCell>
+                                            <TableCell style={{textAlign:"left"}}>{r.question_text}</TableCell>
+                                            
+                                        </TableRow>
+                                    
                                 );
-                                }
+                                
                             })
                             
                         }
                         
                         
+                        <TableRow>
+                            <TableCell>Comments</TableCell>
+                            <TableCell style={{textAlign:"left"}}>{audit.comments}</TableCell>
+                        </TableRow>
+                        
                         
                         
 
-                    </tbody>
-                </table>
-                
+                    </TableBody>
+                </Table>
+                <Link to="/audit_questions" style={{ textDecoration: 'none' }}>
+                    <Button onClick={this.modify.bind(this,audit.id)} variant="outlined" color="primary" size="small">
+                        Modify
+                    </Button>
+                </Link>
                 </div>);
                 
             })
@@ -267,4 +209,4 @@ class ResultsLocal extends React.Component {
         
     }
 }
-export default ResultsLocal;
+export default connect(mapStateToProps,mapDispatchToProps)(ResultsLocal);

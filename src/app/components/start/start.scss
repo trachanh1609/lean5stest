@@ -8,8 +8,6 @@
 .center {
   align-items: center;
   justify-content: center;
-  display: flex;
-  
 }
 
 .table {
@@ -23,11 +21,25 @@ h3 {
 .bordered {
   border: 2px solid darkolivegreen;
   box-shadow: 0px 0px 20px #888888;
-  width: 600px;
+  width: 1000px;
   margin: auto;
   border-radius: 15px;
   padding: 15px;
   margin-top: 20px;
+}
+
+.flying {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  margin-top: 300px;
+  margin: auto;
+  box-shadow: 0px 0px 270px black;
+  background-color: white;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 
 
@@ -61,3 +73,30 @@ input {
 button {
   margin: 5px;
 }
+
+.report {
+  width: 80%;
+  margin: auto;
+}
+
+.whiteText {
+  color: white;
+}
+
+.smallText {
+  font-size: 8px;
+}
+
+.red {
+  background-color: rgb(173, 204, 250);
+}
+
+.select {
+  width: 200px;
+}
+
+table {
+  margin: auto;
+}
+
+

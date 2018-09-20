@@ -21,16 +21,6 @@
       "id": "v0t11pB"
     },
     {
-      "type": "Corporation",
-      "corporation_name": "Metsä Super",
-      "id": "8ZgjCym"
-    },
-    {
-      "type": "Corporation",
-      "corporation_name": "Metsä Puper",
-      "id": "Y4Qc8TH"
-    },
-    {
       "type": "Office",
       "office_name": "Jyväskylä",
       "corporation_name": "Metsä Group",
@@ -397,435 +387,1538 @@
     {
       "type": "Audit_case",
       "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
       "office_id": "4TbGQIH",
-      "target_id": "mPDlzoy",
-      "date": "2018-07-31",
-      "auditor": "Antti Auditoija",
-      "id": "qPlE~SA"
-    },
-    {
-      "type": "Results",
-      "audit_id": "qPlE~SA",
-      "target_id": "mPDlzoy",
-      "question_id": "u9MRoux",
-      "grade": "5",
-      "id": "l4KvTmE"
-    },
-    {
-      "type": "Results",
-      "audit_id": "qPlE~SA",
-      "target_id": "mPDlzoy",
-      "question_id": "3GaPAQ9",
-      "grade": "3",
-      "id": "Kj1GwFf"
-    },
-    {
-      "type": "Results",
-      "audit_id": "qPlE~SA",
-      "target_id": "mPDlzoy",
-      "question_id": "4RBIJsB",
-      "grade": "0",
-      "id": "PDSv9Pn"
-    },
-    {
-      "type": "Results",
-      "audit_id": "eFrLzWF",
-      "target_id": "PwOM7fh",
-      "question_id": "t637cuJ",
-      "grade": "0",
-      "id": "4e5RN1i"
-    },
-    {
-      "type": "Results",
-      "audit_id": "eFrLzWF",
-      "target_id": "PwOM7fh",
-      "question_id": "QOIWKBL",
-      "grade": "3",
-      "id": "RGBbwHP"
-    },
-    {
-      "type": "Results",
-      "audit_id": "ooO0CEU",
-      "target_id": "PwOM7fh",
-      "question_id": "t637cuJ",
-      "grade": "0",
-      "id": "kFfMe_V"
-    },
-    {
-      "type": "Results",
-      "audit_id": "r6bHB26",
-      "target_id": "mgIMSox",
-      "question_id": "Id5TKmx",
-      "grade": "5",
-      "id": "PjnMJK8"
-    },
-    {
-      "type": "Office",
-      "office_name": "Imatra",
-      "corporation_id": "v0t11pB",
-      "id": "kumRSH3"
-    },
-    {
-      "type": "Target",
+      "office_name": "Jyväskylä",
+      "target_id": "k7zGAfN",
       "target_name": "Second floor",
-      "office_id": "5B~XID7",
-      "corporation_id": "~TBV0ir",
-      "id": "MlU2XGS"
-    },
-    {
-      "type": "Target",
-      "target_name": "Backyard",
-      "office_id": "kumRSH3",
-      "corporation_id": "v0t11pB",
-      "id": "L~vWue0"
-    },
-    {
-      "type": "Question-Target-Link",
-      "question_id": "Id5TKmx",
-      "target_id": "L~vWue0",
-      "id": "S2qjPqV"
-    },
-    {
-      "type": "Question-Target-Link",
-      "question_id": "sUZgG2x",
-      "target_id": "L~vWue0",
-      "id": "u1mzfYT"
+      "date": "2018-09-12",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "100"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "started",
+      "average_grade": 100,
+      "id": "vaIeN5x"
     },
     {
       "type": "Question-Target-Link",
-      "question_id": "aDNTsuQ",
-      "target_id": "L~vWue0",
-      "id": "AQenxt4"
-    },
-    {
-      "type": "Results",
-      "audit_id": "GnDtlF3",
-      "target_id": "L~vWue0",
-      "question_id": "Id5TKmx",
-      "grade": "3",
-      "id": "ON21F_E"
-    },
-    {
-      "type": "Results",
-      "audit_id": "GnDtlF3",
-      "target_id": "L~vWue0",
-      "question_id": "sUZgG2x",
-      "grade": "0",
-      "id": "H92CT1y"
-    },
-    {
-      "type": "Audit_case",
-      "corporation_id": "v0t11pB",
-      "office_id": "kumRSH3",
-      "target_id": "L~vWue0",
-      "date": "2018-08-08",
-      "auditor": "Markku Tarkastaja",
-      "id": "cgtGf5n"
-    },
-    {
-      "type": "Results",
-      "audit_id": "cgtGf5n",
-      "target_id": "L~vWue0",
-      "question_id": "Id5TKmx",
-      "grade": "5",
-      "id": "slDBJYd"
-    },
-    {
-      "type": "Results",
-      "audit_id": "cgtGf5n",
-      "target_id": "L~vWue0",
-      "question_id": "sUZgG2x",
-      "grade": "5",
-      "id": "r5iE6Q2"
-    },
-    {
-      "type": "Results",
-      "audit_id": "cgtGf5n",
-      "target_id": "L~vWue0",
-      "question_id": "aDNTsuQ",
-      "grade": "5",
-      "id": "AlPbdPA"
+      "question_id": "U74~xmD",
+      "target_id": "PwOM7fh",
+      "id": "UnkxbFX"
     },
     {
       "type": "Audit_case",
       "corporation_id": "bKf3rYa",
+      "corporation_name": "Metsä Fibre",
       "office_id": "fRjc_yw",
+      "office_name": "Laukaa",
       "target_id": "PwOM7fh",
-      "date": "2018-08-13",
-      "auditor": "Juha Seikkailija",
-      "id": "xBg3Y0w"
-    },
-    {
-      "type": "Results",
-      "audit_id": "xBg3Y0w",
-      "target_id": "PwOM7fh",
-      "question_id": "t637cuJ",
-      "grade": "5",
-      "id": "1lahBMO"
-    },
-    {
-      "type": "Results",
-      "audit_id": "xBg3Y0w",
-      "target_id": "PwOM7fh",
-      "question_id": "QOIWKBL",
-      "grade": "3",
-      "id": "dbe~Vjv"
-    },
-    {
-      "type": "Results",
-      "audit_id": "xBg3Y0w",
-      "target_id": "PwOM7fh",
-      "question_id": "m1ARPTU",
-      "grade": "5",
-      "id": "xpGPs~c"
+      "target_name": "Warehouse",
+      "date": "2018-08-26",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "t637cuJ",
+          "question_text": "Floors clean, vacummed & mopped.",
+          "grade": "100"
+        },
+        {
+          "question_id": "QOIWKBL",
+          "question_text": "Bin emptied",
+          "grade": "50"
+        },
+        {
+          "question_id": "m1ARPTU",
+          "question_text": "Tiles screens are clean",
+          "grade": "50"
+        },
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "0"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "id": "fpg6q~t",
+      "average_grade": 40
     },
     {
       "type": "Audit_case",
       "corporation_id": "~TBV0ir",
-      "office_id": "e7Fq~FS",
-      "target_id": "4p5nZc~",
-      "date": "2018-08-22",
-      "auditor": "Antti Auditoija",
-      "id": "R0_kX7z"
-    },
-    {
-      "type": "Results",
-      "audit_id": "R0_kX7z",
-      "target_id": "4p5nZc~",
-      "question_id": "u9MRoux",
-      "grade": "0",
-      "id": "jfdXme_"
-    },
-    {
-      "type": "Results",
-      "audit_id": "R0_kX7z",
-      "target_id": "4p5nZc~",
-      "question_id": "3GaPAQ9",
-      "grade": "0",
-      "id": "e6cErlF"
-    },
-    {
-      "type": "Results",
-      "audit_id": "R0_kX7z",
-      "target_id": "4p5nZc~",
-      "question_id": "Id5TKmx",
-      "grade": "0",
-      "id": "vnZNHmr"
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "k7zGAfN",
+      "target_name": "Second floor",
+      "date": "2018-08-31",
+      "auditor": "Juha Seikkailija",
+      "results": [
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "100"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "id": "quLiGoz",
+      "average_grade": 100
     },
     {
       "type": "Audit_case",
       "corporation_id": "~TBV0ir",
-      "office_id": "e7Fq~FS",
-      "target_id": "4p5nZc~",
-      "date": "2018-08-20",
-      "auditor": "Markku Tarkastaja",
-      "id": "R8RnHzF"
-    },
-    {
-      "type": "Results",
-      "audit_id": "R8RnHzF",
-      "target_id": "4p5nZc~",
-      "question_id": "u9MRoux",
-      "grade": "3",
-      "id": "E4B4JsH"
-    },
-    {
-      "type": "Results",
-      "audit_id": "R8RnHzF",
-      "target_id": "4p5nZc~",
-      "question_id": "3GaPAQ9",
-      "grade": "5",
-      "id": "L~JcZR4"
-    },
-    {
-      "type": "Results",
-      "audit_id": "R8RnHzF",
-      "target_id": "4p5nZc~",
-      "question_id": "Id5TKmx",
-      "grade": "3",
-      "id": "ojc9hED"
-    },
-    {
-      "type": "Question-Target-Link",
-      "question_id": "u9MRoux",
-      "target_id": "tc_4Gky",
-      "id": "8gHQMGS"
-    },
-    {
-      "type": "Question-Target-Link",
-      "question_id": "3GaPAQ9",
-      "target_id": "tc_4Gky",
-      "id": "KWmFzRz"
-    },
-    {
-      "type": "Question-Target-Link",
-      "question_id": "Id5TKmx",
-      "target_id": "tc_4Gky",
-      "id": "xcO_FXw"
-    },
-    {
-      "type": "Question-Target-Link",
-      "question_id": "4RBIJsB",
-      "target_id": "tc_4Gky",
-      "id": "slSYygS"
-    },
-    {
-      "type": "Question-Target-Link",
-      "question_id": "QOIWKBL",
-      "target_id": "tc_4Gky",
-      "id": "Y8yN9ye"
-    },
-    {
-      "type": "Question-Target-Link",
-      "question_id": "U74~xmD",
-      "target_id": "tc_4Gky",
-      "id": "AhC3XOo"
-    },
-    {
-      "type": "Audit_case",
-      "corporation_id": "MNRBbc8",
-      "office_id": "eu8UO45",
-      "target_id": "tc_4Gky",
-      "date": "2018-07-29",
-      "auditor": "Juha Seikkailija",
-      "id": "6lH1COC"
-    },
-    {
-      "type": "Results",
-      "audit_id": "6lH1COC",
-      "target_id": "tc_4Gky",
-      "question_id": "u9MRoux",
-      "grade": "5",
-      "id": "ENq6u06"
-    },
-    {
-      "type": "Results",
-      "audit_id": "6lH1COC",
-      "target_id": "tc_4Gky",
-      "question_id": "3GaPAQ9",
-      "grade": "5",
-      "id": "R1Wyk9z"
-    },
-    {
-      "type": "Results",
-      "audit_id": "6lH1COC",
-      "target_id": "tc_4Gky",
-      "question_id": "Id5TKmx",
-      "grade": "5",
-      "id": "_0xX1~~"
-    },
-    {
-      "type": "Results",
-      "audit_id": "6lH1COC",
-      "target_id": "tc_4Gky",
-      "question_id": "4RBIJsB",
-      "grade": "3",
-      "id": "Ap9wPu5"
-    },
-    {
-      "type": "Audit_case",
-      "corporation_id": "MNRBbc8",
-      "office_id": "eu8UO45",
-      "target_id": "tc_4Gky",
-      "date": "2018-08-03",
-      "auditor": "Markku Tarkastaja",
-      "id": "9VbyLVY"
-    },
-    {
-      "type": "Results",
-      "audit_id": "9VbyLVY",
-      "target_id": "tc_4Gky",
-      "question_id": "u9MRoux",
-      "grade": "5",
-      "id": "EZ6b2sG"
-    },
-    {
-      "type": "Results",
-      "audit_id": "9VbyLVY",
-      "target_id": "tc_4Gky",
-      "question_id": "3GaPAQ9",
-      "grade": "3",
-      "id": "e4y15eF"
-    },
-    {
-      "type": "Results",
-      "audit_id": "9VbyLVY",
-      "target_id": "tc_4Gky",
-      "question_id": "Id5TKmx",
-      "grade": "3",
-      "id": "Qv3ks9D"
-    },
-    {
-      "type": "Results",
-      "audit_id": "9VbyLVY",
-      "target_id": "tc_4Gky",
-      "question_id": "4RBIJsB",
-      "grade": "5",
-      "id": "a_uoBhQ"
-    },
-    {
-      "type": "Results",
-      "audit_id": "9VbyLVY",
-      "target_id": "tc_4Gky",
-      "question_id": "QOIWKBL",
-      "grade": "5",
-      "id": "c6BwWfZ"
-    },
-    {
-      "type": "Results",
-      "audit_id": "9VbyLVY",
-      "target_id": "tc_4Gky",
-      "question_id": "U74~xmD",
-      "grade": "5",
-      "id": "niWQyxS"
-    },
-    {
-      "type": "Results",
-      "audit_id": "p5nkuhM",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
       "target_id": "mgIMSox",
+      "target_name": "Roof",
+      "date": "2018-08-28",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "id": "HUbMzVU",
+      "average_grade": 100
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "u9MRoux",
+      "target_id": "qy08imY",
+      "id": "KdHZ9zT"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "4RBIJsB",
+      "target_id": "qy08imY",
+      "id": "qyEUv5F"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "3GaPAQ9",
+      "target_id": "qy08imY",
+      "id": "Ui8kpB1"
+    },
+    {
+      "type": "Question-Target-Link",
       "question_id": "Id5TKmx",
-      "grade": "5",
-      "id": "oQanQ_P"
+      "target_id": "qy08imY",
+      "id": "2qTa4Xj"
     },
     {
-      "type": "Results",
-      "audit_id": "NmynflG",
-      "target_id": "F0GaQ5_",
-      "question_id": "aDNTsuQ",
-      "grade": "5",
-      "id": "GJ8_pox"
+      "type": "Audit_case",
+      "corporation_id": "bKf3rYa",
+      "corporation_name": "Metsä Fibre",
+      "office_id": "xNRoIc5",
+      "office_name": "Äänekoski",
+      "target_id": "qy08imY",
+      "target_name": "Warehouse",
+      "date": "2018-08-30",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "0"
+        },
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "0"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "id": "RS48E9T",
+      "average_grade": 40
     },
     {
-      "type": "Results",
-      "audit_id": "NmynflG",
-      "target_id": "F0GaQ5_",
-      "question_id": "QOIWKBL",
-      "grade": "3",
-      "id": "8MSmbsZ"
+      "type": "Audit_case",
+      "corporation_id": "bKf3rYa",
+      "corporation_name": "Metsä Fibre",
+      "office_id": "xNRoIc5",
+      "office_name": "Äänekoski",
+      "target_id": "qy08imY",
+      "target_name": "Warehouse",
+      "date": "2018-08-26",
+      "auditor": "Juha Seikkailija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "100"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 90,
+      "id": "mAbLqWi"
     },
     {
-      "type": "Results",
-      "audit_id": "NmynflG",
-      "target_id": "F0GaQ5_",
-      "question_id": "ndwbkm1",
-      "grade": "3",
-      "id": "l6eQQcI"
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-09-06",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "0"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "100"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "100"
+        }
+      ],
+      "comments": "Very good",
+      "stage": "ready",
+      "average_grade": 66,
+      "id": "jMi8K6_"
     },
     {
-      "type": "Results",
-      "audit_id": "NmynflG",
-      "target_id": "F0GaQ5_",
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "k7zGAfN",
+      "target_name": "Second floor",
+      "date": "2018-09-02",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "50"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "100"
+        }
+      ],
+      "comments": "Some comments is here",
+      "stage": "ready",
+      "average_grade": 75,
+      "id": "uiwxL8a"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "k7zGAfN",
+      "target_name": "Second floor",
+      "date": "2018-07-09",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "50"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 50,
+      "id": "XhHlRvF"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-06-07",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        }
+      ],
+      "comments": "Some comments",
+      "stage": "ready",
+      "average_grade": 66,
+      "id": "nNmejtq"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-06-07",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "100"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        }
+      ],
+      "comments": "Second audit",
+      "stage": "ready",
+      "average_grade": 83,
+      "id": "dkxhR9S"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "k7zGAfN",
+      "target_name": "Second floor",
+      "date": "2018-09-03",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "50"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 50,
+      "id": "cDrVJYz"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "bKf3rYa",
+      "corporation_name": "Metsä Fibre",
+      "office_id": "fRjc_yw",
+      "office_name": "Laukaa",
+      "target_id": "PwOM7fh",
+      "target_name": "Warehouse",
+      "date": "2018-06-04",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "t637cuJ",
+          "question_text": "Floors clean, vacummed & mopped.",
+          "grade": "100"
+        },
+        {
+          "question_id": "QOIWKBL",
+          "question_text": "Bin emptied",
+          "grade": "50"
+        },
+        {
+          "question_id": "m1ARPTU",
+          "question_text": "Tiles screens are clean",
+          "grade": "50"
+        },
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 75,
+      "id": "CWJNLER"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "4p5nZc~",
+      "target_name": "Cellar",
+      "date": "2018-09-01",
+      "stage": "started",
+      "id": "zuEwHar"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2018-01-10",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "50"
+        },
+        {
+          "question_id": "ndwbkm1",
+          "question_text": "All equipment is in a clean condition",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 75,
+      "id": "pZ~FnAj"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mgIMSox",
+      "target_name": "Roof",
+      "date": "2018-02-14",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 100,
+      "id": "xDpVVyQ"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2018-03-09",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "0"
+        },
+        {
+          "question_id": "ndwbkm1",
+          "question_text": "All equipment is in a clean condition",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 25,
+      "id": "dSF9PoO"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2017-12-28",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "0"
+        },
+        {
+          "question_id": "ndwbkm1",
+          "question_text": "All equipment is in a clean condition",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 25,
+      "id": "_1ZTXJd"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2017-12-28",
+      "stage": "started",
+      "id": "hXhv1lI"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2017-12-28",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "50"
+        },
+        {
+          "question_id": "ndwbkm1",
+          "question_text": "All equipment is in a clean condition",
+          "grade": "0"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 25,
+      "id": "4vaPD02"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2017-11-14",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "0"
+        },
+        {
+          "question_id": "ndwbkm1",
+          "question_text": "All equipment is in a clean condition",
+          "grade": "0"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 0,
+      "id": "OumPMXv"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "k7zGAfN",
+      "target_name": "Second floor",
+      "date": "2018-05-09",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "50"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "0"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 25,
+      "id": "gng594q"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "k7zGAfN",
+      "target_name": "Second floor",
+      "date": "2018-05-15",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "50"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 75,
+      "id": "ZBj4VNX"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-01-17",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "0"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "0"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 16,
+      "id": "k84v8a2"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2018-07-12",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "100"
+        },
+        {
+          "question_id": "ndwbkm1",
+          "question_text": "All equipment is in a clean condition",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 75,
+      "id": "S4JSsJN"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2018-07-11",
+      "stage": "started",
+      "id": "oN1lYgV"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-04-10",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "0"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "0"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 16,
+      "id": "doXQC1k"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-04-10",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "0"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 33,
+      "id": "WxlFjo0"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2018-09-12",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "100"
+        },
+        {
+          "question_id": "ndwbkm1",
+          "question_text": "All equipment is in a clean condition",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "started",
+      "average_grade": 100,
+      "id": "GWcypml"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-03-06",
+      "stage": "started",
+      "id": "0XKMQQH"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mgIMSox",
+      "target_name": "Roof",
+      "date": "2018-02-28",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "0"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 0,
+      "id": "CwwSBI5"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "k7zGAfN",
+      "target_name": "Second floor",
+      "date": "2018-02-01",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "0"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 25,
+      "id": "QyKY8TT"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-07-13",
+      "stage": "started",
+      "id": "YHxeWZK"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "k7zGAfN",
+      "target_name": "Second floor",
+      "date": "2018-07-18",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "100"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 75,
+      "id": "av~5dvC"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mgIMSox",
+      "target_name": "Roof",
+      "date": "2018-03-06",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 50,
+      "id": "IYMi~fE"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "u9MRoux",
+      "target_id": "mgIMSox",
+      "id": "R3U7~q8"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "4RBIJsB",
+      "target_id": "mgIMSox",
+      "id": "lotGFOT"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "3GaPAQ9",
+      "target_id": "mgIMSox",
+      "id": "ZC0tXtj"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2018-05-03",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "50"
+        },
+        {
+          "question_id": "ndwbkm1",
+          "question_text": "All equipment is in a clean condition",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 75,
+      "id": "OCPtgad"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mgIMSox",
+      "target_name": "Roof",
+      "date": "2018-02-08",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "100"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 62,
+      "id": "zLqTBoS"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-01-10",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "100"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "0"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 66,
+      "id": "5uxThTr"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mgIMSox",
+      "target_name": "Roof",
+      "date": "2018-05-15",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "100"
+        },
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "100"
+        }
+      ],
+      "comments": "No comments",
+      "stage": "ready",
+      "average_grade": 87.5,
+      "id": "2LV4qiY"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "k7zGAfN",
+      "target_name": "Second floor",
+      "date": "2018-04-18",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "100"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "50"
+        }
+      ],
+      "comments": "Nothing speсial",
+      "stage": "ready",
+      "average_grade": 75,
+      "id": "Jd3xxFb"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mgIMSox",
+      "target_name": "Roof",
+      "date": "2018-09-18",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "100"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "100"
+        },
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "started",
+      "average_grade": 100,
+      "id": "28Sz_S8"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-08-23",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "50"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "100"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 83,
+      "id": "4mnwzyF"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-09-20",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 66,
+      "id": "r0Z_cAD"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mgIMSox",
+      "target_name": "Roof",
+      "date": "2018-09-20",
+      "auditor": "Antti Auditoija",
+      "results": [],
+      "stage": "started",
+      "id": "0~TnqNq"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-09-20",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "100"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 100,
+      "id": "qeJZeiK"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "k7zGAfN",
+      "target_name": "Second floor",
+      "date": "2018-03-15",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "50"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 50,
+      "id": "8HiO1FA"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2018-01-18",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "50"
+        },
+        {
+          "question_id": "ndwbkm1",
+          "question_text": "All equipment is in a clean condition",
+          "grade": "0"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 25,
+      "id": "z4sfleQ"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "4RBIJsB",
+      "target_id": "4p5nZc~",
+      "id": "3qoFZX9"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "t637cuJ",
+      "target_id": "dLATv1b",
+      "id": "YeG87DQ"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "U74~xmD",
+      "target_id": "dLATv1b",
+      "id": "cr9mA~I"
+    },
+    {
+      "type": "Question-Target-Link",
       "question_id": "hn~ft5x",
-      "grade": "0",
-      "id": "Gq9MvZw"
+      "target_id": "dLATv1b",
+      "id": "ejRsLsh"
     },
     {
-      "type": "Results",
-      "audit_id": "NmynflG",
-      "target_id": "F0GaQ5_",
-      "question_id": "m1ARPTU",
-      "grade": "5",
-      "id": "UCzUP73"
+      "type": "Question-Target-Link",
+      "question_id": "QOIWKBL",
+      "target_id": "dLATv1b",
+      "id": "JzqgWV3"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "sUZgG2x",
+      "target_id": "dLATv1b",
+      "id": "irTKi9T"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "3GaPAQ9",
+      "target_id": "tG11Ugy",
+      "id": "LCf3N5_"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "4RBIJsB",
+      "target_id": "tG11Ugy",
+      "id": "F2ILkmj"
+    },
+    {
+      "type": "Question-Target-Link",
+      "question_id": "u9MRoux",
+      "target_id": "tG11Ugy",
+      "id": "0dDpXKj"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "dLATv1b",
+      "target_name": "Storeroom",
+      "date": "2018-09-20",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "50"
+        },
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "100"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "100"
+        },
+        {
+          "question_id": "t637cuJ",
+          "question_text": "Floors clean, vacummed & mopped.",
+          "grade": "100"
+        },
+        {
+          "question_id": "QOIWKBL",
+          "question_text": "Bin emptied",
+          "grade": "100"
+        }
+      ],
+      "comments": "Walls should be cleaned",
+      "stage": "ready",
+      "average_grade": 90,
+      "id": "Gcgwtjt"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "tG11Ugy",
+      "target_name": "Kitchen",
+      "date": "2018-09-20",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 83,
+      "id": "ijP_2T9"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "4p5nZc~",
+      "target_name": "Cellar",
+      "date": "2018-08-09",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "100"
+        },
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "50"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 87,
+      "id": "HVpziYe"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "dLATv1b",
+      "target_name": "Storeroom",
+      "date": "2018-08-07",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "t637cuJ",
+          "question_text": "Floors clean, vacummed & mopped.",
+          "grade": "100"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "100"
+        },
+        {
+          "question_id": "QOIWKBL",
+          "question_text": "Bin emptied",
+          "grade": "100"
+        },
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "100"
+        },
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 100,
+      "id": "CupNO3t"
     }
   ]
 }

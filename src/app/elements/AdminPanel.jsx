@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 
 
-function Panel() {
+function AdminPanel() {
   return (
     <header>
       <AppBar position="absolute">
@@ -56,4 +56,4 @@ function Panel() {
   )
 }
 
-export default Panel;
+export default AdminPanel;

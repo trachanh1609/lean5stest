@@ -20,13 +20,20 @@ import TargetsLocal from './components/start/TargetsLocal';
 import QuestionsLocal from './components/start/QuestionsLocal';
 import AuditLocal from './components/start/AuditLocal';
 import ResultsLocal from './components/start/ResultsLocal';
-
-
+import Testcsv from './components/start/Testcsv';
+import ReduxTest from './components/redux/ReduxTest';
+import AuditReports from './components/start/AuditReports';
+import AuditCaseCreation from './components/audit/AuditCaseCreation';
+import Report from './components/administration/Report';
+import AuditQuestions from './components/audit/AuditQuestions';
 import reducers from './reducers';
-
+import rootReducer from './reducers/index';
 import './components/bundle.scss';
 
+/*
+/////////////// Vu /////////////////
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+
 const store = createStoreWithMiddleware(
   reducers,
   {
@@ -35,6 +42,12 @@ const store = createStoreWithMiddleware(
   },
   window.devToolsExtension && window.devToolsExtension()
 );
+*/
+
+
+const store = createStore(rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
 
 ReactDOM.render(
   <Provider store={store}>
@@ -53,7 +66,12 @@ ReactDOM.render(
         <Route path="/administration_local/questions" component={QuestionsLocal} />
         <Route path="/administration_local/audit_cases" component={AuditLocal} />
         <Route path="/results" component={ResultsLocal} />
-        
+        <Route path="/testcsv" component={Testcsv} />
+        <Route path="/reduxtest" component={ReduxTest} />
+        <Route path="/auditreports" component={AuditReports} />
+        <Route path="/audit" component={AuditCaseCreation} />
+        <Route path="/administration/report" component={Report} />
+        <Route path="/audit_questions" component={AuditQuestions} />
       </Route>
     </Router>
   </Provider>

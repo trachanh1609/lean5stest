@@ -1,6 +1,10 @@
 import { UPDATE_USER } from '../actions/userActions'
+var init = {
+    name: "Markku Tarkastaja",
+    email: "markku@mail.com"
+}
 
-export default function userReducer(state= '', action){
+export default function userReducer(state= init, action){
     switch (action.type) {
         case UPDATE_USER:
             return action.payload ;
