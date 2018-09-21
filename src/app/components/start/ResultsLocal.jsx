@@ -9,13 +9,17 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import {createAudit, updateSelectedCorporation, updateSelectedDate, updateSelectedFactory, updateSelectedTarget } from "../../actions/index";
+import {createAudit, updateSelectedCorporation, updateSelectedDate, updateSelectedFactory, updateSelectedTarget, clearFactories, addFactory, clearTargets, addTarget } from "../../actions/index";
 import Button from '@material-ui/core/Button';
 
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        startedAudit: state.startedAudit
+        startedAudit: state.startedAudit,
+        selectedCorporation: state.selectedCorporation,
+        selectedFactory: state.selectedFactory,
+        factories: state.factories,
+        targets: state.targets
     }
 };
 
@@ -25,7 +29,11 @@ const mapDispatchToProps = dispatch => {
       updateSelectedTarget: selectedTarget => dispatch(updateSelectedTarget(selectedTarget)),
       updateSelectedFactory: selectedFactory => dispatch(updateSelectedFactory(selectedFactory)),
       updateSelectedCorporation: selectedCorporation => dispatch(updateSelectedCorporation(selectedCorporation)),
-      updateSelectedDate: selectedDate => dispatch(updateSelectedDate(selectedDate))
+      updateSelectedDate: selectedDate => dispatch(updateSelectedDate(selectedDate)),
+      clearFactories: factories => dispatch(clearFactories(factories)),
+      addFactory: factories => dispatch(addFactory(factories)),
+      clearTargets: targets => dispatch(clearTargets(targets)),
+      addTarget: targets => dispatch(addTarget(targets))
     };
   }
 
@@ -33,18 +41,20 @@ class ResultsLocal extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            audits: []
+            audits: [],
+            audits_not_filtered: []
         }
     }
     componentDidMount() {
-        this.loadData();
+        setTimeout(function() {this.loadData()}.bind(this),1000);
+        
     }
 
     loadData = () => {
-        setTimeout(function() {this.getAudits(this.refs.selectedAuditor.value)}.bind(this),500);
-        //this.getAudits(this.refs.selectedAuditor.value);
-        setTimeout(function() {this.showResults()}.bind(this),1000);
-        //this.showResults();
+        
+        this.getAudits(this.refs.selectedAuditor.value);
+        setTimeout(function() {this.showResults()}.bind(this),500);
+        
     }
 
     getAudits = (auditor) => {
@@ -55,7 +65,7 @@ class ResultsLocal extends React.Component {
           return response.json();
         })
         .then(function(json){
-            self.setState({audits: json});
+            self.setState({audits_not_filtered: json});
         })
         .catch(function(err){
           console.error(err)
@@ -64,18 +74,13 @@ class ResultsLocal extends React.Component {
     }
 
     showResults = () => {
-        
-        
-        var tempData = this.state.audits;
+        var tempData = this.state.audits_not_filtered;
         tempData.sort(function(a,b) {
             if(a.date < b.date) return 1;
             if(a.date > b.date) return -1;
             return 0;
         } );
-        
         this.setState({audits: tempData});
-        
-   
     }
 
     modify = (id) => {
@@ -106,12 +111,70 @@ class ResultsLocal extends React.Component {
         this.props.updateSelectedCorporation({id:audit.corporation_id,name:audit.corporation_name});
         this.props.updateSelectedFactory({id:audit.office_id,name:audit.office_name});
         this.props.updateSelectedDate(audit.date);
+        
+        this.getFactories(audit.corporation_id);
+        this.getTargets(audit.office_id);
+        
+       
+    }
+
+    getFactories = (corporation_id) => {
+        this.props.clearFactories();
+        console.log("Old factories are cleared");
+        var self = this;
+        var filter = "";
+        console.log("selectedCorporation.id="+this.props.selectedCorporation.id);
+        if (corporation_id != "") filter = "&corporation_id="+corporation_id;
+        let url = API_URL + "?type=Office"+filter;
+        console.log(url);
+        fetch(url)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(json){
+            json.map(factory=>{
+                    self.props.addFactory({
+                        id:factory.id,
+                        office_name:factory.office_name
+                    });
+            });
+        })
+        .catch(function(err){
+          console.error(err)
+        });
+    }
+
+    getTargets = (office_id) => {
+        this.props.clearTargets();
+        var self = this;
+        var filter = "";
+        if (office_id != "") filter = "&office_id="+office_id;
+        let url = API_URL + "?type=Target"+filter;
+        fetch(url)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(json){
+            json.map(target=>{
+                self.props.addTarget({
+                    id:target.id,
+                    target_name:target.target_name
+                });
+               
+            });
+        })
+        .catch(function(err){
+          console.error(err)
+        });
+    }
+
+    deleteItem = (id) => {
+        axios.delete(API_URL+'/'+id);
+        setTimeout(function(){this.loadData()}.bind(this),2000);
     }
 
     render() {
-        
-            
-            
+ 
         return (
             <div>
                 <UserPanel/>
@@ -197,6 +260,7 @@ class ResultsLocal extends React.Component {
                         Modify
                     </Button>
                 </Link>
+                <Button onClick={this.deleteItem.bind(this,audit.id)} variant="outlined" color="primary" size="small">Delete</Button>
                 </div>);
                 
             })

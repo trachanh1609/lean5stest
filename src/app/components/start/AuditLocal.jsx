@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {CSVLink} from 'react-csv';
 import { connect } from "react-redux";
+import { Link } from 'react-router';
 import Panel from './Panel';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,6 +13,7 @@ import SelectCorporations from '../../elements/SelectCorporations';
 import Button from '@material-ui/core/Button';
 import SelectFactories from '../../elements/SelectFactories';
 import SelectTargets from '../../elements/SelectTargets';
+import {createAudit, updateSelectedCorporation, updateSelectedDate, updateSelectedFactory, updateSelectedTarget, clearFactories, addFactory, clearTargets, addTarget } from "../../actions/index";
 
 
 const API_URL = "http://localhost:4000/api2/audits";
@@ -24,10 +26,26 @@ const mapStateToProps = state => {
     return { 
         selectedTarget: state.selectedTarget,
         selectedFactory: state.selectedFactory,
-        selectedCorporation: state.selectedCorporation
+        selectedCorporation: state.selectedCorporation,
+        startedAudit: state.startedAudit,
+        factories: state.factories,
+        targets: state.targets
     };
   };
 
+  const mapDispatchToProps = dispatch => {
+    return {
+      createAudit: startedAudit => dispatch(createAudit(startedAudit)),
+      updateSelectedTarget: selectedTarget => dispatch(updateSelectedTarget(selectedTarget)),
+      updateSelectedFactory: selectedFactory => dispatch(updateSelectedFactory(selectedFactory)),
+      updateSelectedCorporation: selectedCorporation => dispatch(updateSelectedCorporation(selectedCorporation)),
+      updateSelectedDate: selectedDate => dispatch(updateSelectedDate(selectedDate)),
+      clearFactories: factories => dispatch(clearFactories(factories)),
+      addFactory: factories => dispatch(addFactory(factories)),
+      clearTargets: targets => dispatch(clearTargets(targets)),
+      addTarget: targets => dispatch(addTarget(targets))
+    };
+  }
 
 class AuditLocal extends React.Component {
     constructor(props){
@@ -86,8 +104,15 @@ class AuditLocal extends React.Component {
         .then(function(json){
             
             self.prepareCSV(json);
-            self.setState({audit_cases: json});
-            self.setState({audit_cases_filtered: json});
+            
+            var sorting = json;
+            sorting.sort(function(a,b) {
+                if(a.date < b.date) return 1;
+                if(a.date > b.date) return -1;
+                return 0;
+            } );
+            self.setState({audit_cases: sorting});
+            self.setState({audit_cases_filtered: sorting});
             
         })
         .catch(function(err){
@@ -163,7 +188,76 @@ class AuditLocal extends React.Component {
         else this.setState({audit_cases_filtered: this.state.audit_cases});
         if (array.length>0) this.prepareCSV(array);
     }
-    
+
+    modifyAudit = (id) => {
+        var modifAudit = [];
+        this.state.audit_cases_filtered.map(audit=>{
+            if(audit.id == id) modifAudit = audit;
+        });
+        this.saveAuditDataToStore(modifAudit);
+    }
+
+    saveAuditDataToStore = (audit) => {
+        this.props.createAudit(audit);
+        this.props.updateSelectedTarget({id:audit.target_id,name:audit.target_name});
+        this.props.updateSelectedCorporation({id:audit.corporation_id,name:audit.corporation_name});
+        this.props.updateSelectedFactory({id:audit.office_id,name:audit.office_name});
+        this.props.updateSelectedDate(audit.date);
+        this.getFactories(audit.corporation_id);
+        this.getTargets(audit.office_id);
+
+    }
+
+    getFactories = (corporation_id) => {
+        this.props.clearFactories();
+        console.log("Old factories are cleared");
+        var self = this;
+        var filter = "";
+        console.log("selectedCorporation.id="+this.props.selectedCorporation.id);
+        if (corporation_id != "") filter = "&corporation_id="+corporation_id;
+        let url = API_URL + "?type=Office"+filter;
+        console.log(url);
+        fetch(url)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(json){
+            json.map(factory=>{
+                    self.props.addFactory({
+                        id:factory.id,
+                        office_name:factory.office_name
+                    });
+            });
+        })
+        .catch(function(err){
+          console.error(err)
+        });
+    }
+
+    getTargets = (office_id) => {
+        this.props.clearTargets();
+        var self = this;
+        var filter = "";
+        if (office_id != "") filter = "&office_id="+office_id;
+        let url = API_URL + "?type=Target"+filter;
+        fetch(url)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(json){
+            json.map(target=>{
+                self.props.addTarget({
+                    id:target.id,
+                    target_name:target.target_name
+                });
+               
+            });
+        })
+        .catch(function(err){
+          console.error(err)
+        });
+    }
+
     render() {
         return (
             <div className="container home">
@@ -193,19 +287,23 @@ class AuditLocal extends React.Component {
                             {
                                 this.state.audit_cases_filtered.map(audit=> {
                                         var color="red";
-                                        if(audit.average_grade>=0) color="normal";
-                                        return (<TableRow onClick={this.rowClicked.bind(this,audit.id)} className={color} >
-                                        <TableCell> {audit.id}</TableCell>
-                                        <TableCell>{audit.date}</TableCell>
-                                        <TableCell>{audit.auditor}</TableCell>
-                                        <TableCell>{audit.average_grade}%</TableCell>
-                                        <TableCell>{audit.target_name}</TableCell>
-                                        <TableCell>{audit.office_name}</TableCell>
-                                        <TableCell>{audit.corporation_name}</TableCell>
+                                        if(audit.stage=="ready") color="normal";
+                                        return (<TableRow className={color} >
+                                        <TableCell onClick={this.rowClicked.bind(this,audit.id)}> {audit.id}</TableCell>
+                                        <TableCell onClick={this.rowClicked.bind(this,audit.id)}>{audit.date}</TableCell>
+                                        <TableCell onClick={this.rowClicked.bind(this,audit.id)}>{audit.auditor}</TableCell>
+                                        <TableCell onClick={this.rowClicked.bind(this,audit.id)} >{audit.average_grade}%</TableCell>
+                                        <TableCell onClick={this.rowClicked.bind(this,audit.id)}>{audit.target_name}</TableCell>
+                                        <TableCell onClick={this.rowClicked.bind(this,audit.id)}>{audit.office_name}</TableCell>
+                                        <TableCell onClick={this.rowClicked.bind(this,audit.id)}>{audit.corporation_name}</TableCell>
                                         
                                         <TableCell>
+                                        
+                                         
+                                        <Link to="/audit_questions" style={{ textDecoration: 'none' }}>
+                                            <button onClick={this.modifyAudit.bind(this,audit.id)}>Modify</button>
+                                        </Link>
                                         <button onClick={this.deleteItem.bind(this,audit.id)}>Delete</button>
-                                             
                                         </TableCell></TableRow>)
                                 })
                             }
@@ -232,4 +330,4 @@ class AuditLocal extends React.Component {
     
   }
 
-export default connect(mapStateToProps)(AuditLocal);
+export default connect(mapStateToProps,mapDispatchToProps)(AuditLocal);

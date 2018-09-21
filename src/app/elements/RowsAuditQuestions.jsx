@@ -5,10 +5,19 @@ import PropTypes from "prop-types";
 import {clearAudit, setQuestions } from "../actions/index";
 import {API_URL} from "../constants/urls";
 import axios from 'axios';
+import Img from 'react-image';
+
+
+var results = [];
+const good_img = 'https://www.musikteatret.dk/wp-content/uploads/2017/02/Groen_smiley.jpg';
+const ok_img = 'https://images.vexels.com//media/users/3/134541/isolated/preview/02f3c0cba01ca5fb7405293c55253afd-emoji-emoticon-straight-face-by-vexels.png';
+const bad_img = 'https://i.ebayimg.com/images/g/qEsAAOSw~OdVWblA/s-l1600.jpg';
+
 const mapStateToProps = state => {
     return { 
         startedAudit: state.startedAudit,
-        questions: state.questions
+        questions: state.questions,
+        selectedDate: state.selectedDate
     };
   };
   const mapDispatchToProps = dispatch => {
@@ -28,24 +37,24 @@ class RowsAuditQuestions extends React.Component {
         }
     }
     componentDidMount() {
-        
         setTimeout(function() {this.questionsDataRetrieving()}.bind(this),2000);
-        
+    }
+
+    componentWillUnmount() {
+        this.props.setQuestions("");
     }
 
     questionsDataRetrieving = () => {
-        //console.log("questionsDataRetrieving");
-        //console.log("props.startedAudit.target_id: "+this.props.startedAudit.target_id);
         this.setState({target_id: this.props.startedAudit.target_id});
         var target_id = this.state.target_id;
        
         if (target_id =! "") {
-            
-            //this.getLinks();
-            setTimeout(function () {this.getLinks()}.bind(this),500);
-            
-            //this.getQuestions();   /// it was 2 times
-            //setTimeout(function () {this.setTargetQuestions()}.bind(this),1000);
+            console.log("started audit data is in store already");
+            if (this.props.startedAudit.results!=null) {
+                console.log("It has results: "+this.props.startedAudit.results.length);
+                this.readResults();
+            }
+            else setTimeout(function () {this.getLinks()}.bind(this),500);
         }
     } 
     
@@ -62,14 +71,14 @@ class RowsAuditQuestions extends React.Component {
         })
         .then(function(json){
             self.setState({links: json});
-            self.getQuestions();
+            self.getQuestionsFromDB();
         })
         .catch(function(err){
           console.error(err)
         });
     }
 
-    getQuestions = () => {
+    getQuestionsFromDB = () => {
         var self = this;
         let url;
         var array = [];
@@ -81,14 +90,9 @@ class RowsAuditQuestions extends React.Component {
               return response.json();
             })
             .then(function(json){
-                
-               
                 json.map(j=>{
-                   
                     array.push({id:link.question_id,question_text:j.question_text});
-                    
                 });
-                
             })
             .catch(function(err){
               console.error(err)
@@ -96,33 +100,116 @@ class RowsAuditQuestions extends React.Component {
         });
         
         const payload = array;
-        
         setTimeout(function () {this.props.setQuestions(payload)}.bind(this),500);
         
     }
-
+    
+    readResults = () => {
+        var array = [];
+       
+        this.props.startedAudit.results.map(r=>{
+            var grade_good = "";
+            var grade_ok = "";
+            var grade_bad = "";
+            switch(r.grade) {
+                case "100":
+                    grade_good = "checked";
+                    break;
+                case "50":
+                    grade_ok = "checked";
+                    break;
+                case "0":
+                    grade_bad = "checked";
+                    break;
+                default:
+                    break;
+            }
+            array.push({id:r.question_id,question_text:r.question_text,grade_good:grade_good,grade_ok:grade_ok,grade_bad:grade_bad});
+        });
+        const payload = array;
+        setTimeout(function () {this.props.setQuestions(payload)}.bind(this),500);
+    }
     
     readyClicked = () => {
         //alert(event.target.value); 
-        var results = [];
+        this.pushResults();
         var comments = this.refs.comments.value;
+       
+        this.updateResults(results, comments, "ready");
+    }
+    pushResults = () => {
+        results = [];
         this.props.questions.map(q=>{
+            var grade = "";
             if (document.getElementById(q.id+"-01").checked) {
-                var grade = document.getElementById(q.id+"-01").value;
+               grade = document.getElementById(q.id+"-01").value;
             } else if (document.getElementById(q.id+"-02").checked){
-                var grade = document.getElementById(q.id+"-02").value;
+               grade = document.getElementById(q.id+"-02").value;
             } else if (document.getElementById(q.id+"-03").checked){
-                var grade = document.getElementById(q.id+"-03").value;
-            }
+               grade = document.getElementById(q.id+"-03").value;
+           }
             results.push({"question_id":q.id,"question_text":q.question_text,"grade":grade});
         });
-        this.updateResults(results, comments);
     }
-    
+     
+    saveClicked = () => {
+        this.pushResults();
+        var comments = this.refs.comments.value;
+        this.saveResults(results, comments);
+    }
 
-    updateResults = (results, comments) => {
-        var clearReadyAuditCase = this.props.clearAudit;
-        var clearQuestions = this.props.setQuestions;
+    saveResults = (results, comments) => {
+        
+            var self = this;
+            var sum = 0;
+            var i = 0;
+            results.map(r=>{
+                i++;
+                sum += parseInt(r.grade);
+            });
+            var average = parseFloat(sum)/i;
+            axios.put(API_URL+'/'+this.props.startedAudit.id, {
+                type: 'Audit_case',
+                corporation_id: this.props.startedAudit.corporation_id,
+                corporation_name: this.props.startedAudit.corporation_name,
+                office_id: this.props.startedAudit.office_id,
+                office_name: this.props.startedAudit.office_name,
+                target_id: this.props.startedAudit.target_id,
+                target_name: this.props.startedAudit.target_name,
+                date: this.props.selectedDate,
+                auditor: this.props.startedAudit.auditor,
+                results: results,
+                comments: comments,
+                stage: "started",
+                average_grade: parseInt(average)
+            })
+            .then(function (response) {
+                console.log(response);
+                self.displaySavedData(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert("Something went wrong, please try again");
+            });  
+    
+        
+    }
+
+        displaySavedData = (response) => {
+	        var text = "Results are saved: \n";
+	        response.data.results.map(r=> {
+	            
+	            text += r.question_text + " - (grade: " + r.grade + "%)\n";
+	            
+	        });
+	        alert(text);
+	        
+	    }
+            
+
+    updateResults = (results, comments, stage) => {
+        //var clearReadyAuditCase = this.props.clearAudit;
+        
         var sum = 0;
         var i = 0;
         results.map(r=>{
@@ -138,18 +225,18 @@ class RowsAuditQuestions extends React.Component {
             office_name: this.props.startedAudit.office_name,
             target_id: this.props.startedAudit.target_id,
             target_name: this.props.startedAudit.target_name,
-            date: this.props.startedAudit.date,
+            date: this.props.selectedDate,
             auditor: this.props.startedAudit.auditor,
             results: results,
             comments: comments,
-            stage: "ready",
+            stage: stage,
             average_grade: parseInt(average)
         })
         .then(function (response) {
             //console.log(response);
             alert("Database is updated");
-            clearReadyAuditCase();
-            clearQuestions("");
+            //clearReadyAuditCase();
+            
 
 
         })
@@ -170,9 +257,25 @@ class RowsAuditQuestions extends React.Component {
                     <td colSpan="3" style={{backgroundColor: "lightgrey"}}><br/>{q.question_text}</td>
                 </tr>
                 <tr>
-                    <td style={{width: "200px"}}><input type="radio" id={q.id+"-01"} name={q.id} value="100" />Good</td>
-                    <td style={{width: "200px"}}><input type="radio" id={q.id+"-02"} name={q.id} value="50" />Ok</td>
-                    <td style={{width: "200px"}}><input type="radio" id={q.id+"-03"} name={q.id} value="0" />Bad</td>
+                    
+                    <td style={{width: "200px"}}>
+                        <label>
+                            <input type="radio" className="good" id={q.id+"-01"} name={q.id} value="100" defaultChecked={q.grade_good}/>
+                            <Img style={{width: "40px"}} src={good_img}/>
+                        </label>
+                    </td>
+                    <td style={{width: "200px"}}>
+                        <label>
+                            <input type="radio" id={q.id+"-02"} name={q.id} value="50" defaultChecked={q.grade_ok}/>
+                            <Img style={{width: "40px"}} src={ok_img}/>
+                        </label>
+                    </td>
+                    <td style={{width: "200px"}}>
+                        <label>
+                            <input type="radio" id={q.id+"-03"} name={q.id} value="0" defaultChecked={q.grade_bad}/>
+                            <Img style={{width: "40px"}} src={bad_img}/>
+                        </label>    
+                    </td>
                 </tr>
                 <tr>
                     <td colSpan="3" style={{backgroundColor: "black"}}></td>
@@ -186,7 +289,7 @@ class RowsAuditQuestions extends React.Component {
             <td colSpan="3">
             Comments:<br/> <textarea ref="comments" style={{height: '50px', width: '100%'}}/><br/>
             <Link to="/results"><button onClick={this.readyClicked}>Ready</button></Link>
-            
+            <button onClick={this.saveClicked}>Save</button>
                     
             </td>
             </tr>

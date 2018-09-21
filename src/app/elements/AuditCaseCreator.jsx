@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {API_URL} from "../constants/urls";
 import axios from 'axios';
-import { createAudit } from "../actions/index";
+import { createAudit, clearAudit } from "../actions/index";
 import RowsAuditQuestions from './RowsAuditQuestions';
+import SelectDate from './SelectDate';
 
 const mapStateToProps = state => {
     return { 
@@ -18,7 +19,8 @@ const mapStateToProps = state => {
   };
   const mapDispatchToProps = dispatch => {
     return {
-      createAudit: startedAudit => dispatch(createAudit(startedAudit))
+      createAudit: startedAudit => dispatch(createAudit(startedAudit)),
+      clearAudit: startedAudit => dispatch(clearAudit(startedAudit))
     };
 };
 
@@ -33,6 +35,10 @@ class AuditCaseCreator extends React.Component {
     componentDidMount() {
        this.checkStartedAudit();
        //setTimeout(function(){this.checkStartedAudit()}.bind(this),500);
+    }
+
+    componentWillUnmount() {
+        this.props.clearAudit();
     }
 
     checkStartedAudit = () => {
@@ -95,6 +101,8 @@ class AuditCaseCreator extends React.Component {
     render() {
         return (
             <div>
+            Date: <SelectDate/>
+            <br/>
             <p>Audit id number: {this.props.startedAudit.id}</p>
             Corporation: {this.props.startedAudit.corporation_name}
             <br/>
@@ -102,8 +110,7 @@ class AuditCaseCreator extends React.Component {
             <br/>
             Target: {this.props.startedAudit.target_name}
             <br/>
-            Date: {this.props.startedAudit.date}
-            <br/>
+           
             Auditor: {this.props.startedAudit.auditor}
             <br/>
             <RowsAuditQuestions/>

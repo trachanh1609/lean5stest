@@ -64,12 +64,12 @@ export function updateSelectedTarget(id){
     }    
 }
 
-export const clearFactories = (payload) => ({
+export const clearFactories = () => ({
     type: CLEAR_FACTORIES,
     payload: ""
 });
 
-export function clearTargets(payload) {
+export function clearTargets() {
     return {
         type : CLEAR_TARGETS,
         payload: ""

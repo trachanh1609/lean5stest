@@ -819,18 +819,6 @@
       "type": "Audit_case",
       "corporation_id": "~TBV0ir",
       "corporation_name": "Metsä Group",
-      "office_id": "e7Fq~FS",
-      "office_name": "Tampere",
-      "target_id": "4p5nZc~",
-      "target_name": "Cellar",
-      "date": "2018-09-01",
-      "stage": "started",
-      "id": "zuEwHar"
-    },
-    {
-      "type": "Audit_case",
-      "corporation_id": "~TBV0ir",
-      "corporation_name": "Metsä Group",
       "office_id": "4TbGQIH",
       "office_name": "Jyväskylä",
       "target_id": "Htyf541",
@@ -1221,7 +1209,26 @@
       "target_id": "mPDlzoy",
       "target_name": "Warehouse #5",
       "date": "2018-03-06",
-      "stage": "started",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "0"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 50,
       "id": "0XKMQQH"
     },
     {
@@ -1480,9 +1487,9 @@
           "grade": "100"
         }
       ],
-      "comments": "No comments",
+      "comments": "",
       "stage": "ready",
-      "average_grade": 87.5,
+      "average_grade": 87,
       "id": "2LV4qiY"
     },
     {
@@ -1580,84 +1587,6 @@
       "stage": "ready",
       "average_grade": 83,
       "id": "4mnwzyF"
-    },
-    {
-      "type": "Audit_case",
-      "corporation_id": "~TBV0ir",
-      "corporation_name": "Metsä Group",
-      "office_id": "4TbGQIH",
-      "office_name": "Jyväskylä",
-      "target_id": "mPDlzoy",
-      "target_name": "Warehouse #5",
-      "date": "2018-09-20",
-      "auditor": "Antti Auditoija",
-      "results": [
-        {
-          "question_id": "u9MRoux",
-          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
-          "grade": "100"
-        },
-        {
-          "question_id": "3GaPAQ9",
-          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
-          "grade": "50"
-        },
-        {
-          "question_id": "4RBIJsB",
-          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
-          "grade": "50"
-        }
-      ],
-      "comments": "",
-      "stage": "ready",
-      "average_grade": 66,
-      "id": "r0Z_cAD"
-    },
-    {
-      "type": "Audit_case",
-      "corporation_id": "~TBV0ir",
-      "corporation_name": "Metsä Group",
-      "office_id": "4TbGQIH",
-      "office_name": "Jyväskylä",
-      "target_id": "mgIMSox",
-      "target_name": "Roof",
-      "date": "2018-09-20",
-      "auditor": "Antti Auditoija",
-      "results": [],
-      "stage": "started",
-      "id": "0~TnqNq"
-    },
-    {
-      "type": "Audit_case",
-      "corporation_id": "~TBV0ir",
-      "corporation_name": "Metsä Group",
-      "office_id": "4TbGQIH",
-      "office_name": "Jyväskylä",
-      "target_id": "mPDlzoy",
-      "target_name": "Warehouse #5",
-      "date": "2018-09-20",
-      "auditor": "Antti Auditoija",
-      "results": [
-        {
-          "question_id": "u9MRoux",
-          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
-          "grade": "100"
-        },
-        {
-          "question_id": "3GaPAQ9",
-          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
-          "grade": "100"
-        },
-        {
-          "question_id": "4RBIJsB",
-          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
-          "grade": "100"
-        }
-      ],
-      "comments": "",
-      "stage": "ready",
-      "average_grade": 100,
-      "id": "qeJZeiK"
     },
     {
       "type": "Audit_case",
@@ -1781,7 +1710,7 @@
         {
           "question_id": "U74~xmD",
           "question_text": "Walls clean",
-          "grade": "50"
+          "grade": "100"
         },
         {
           "question_id": "sUZgG2x",
@@ -1791,7 +1720,7 @@
         {
           "question_id": "hn~ft5x",
           "question_text": "Are operators using materials in the correct order?",
-          "grade": "100"
+          "grade": "50"
         },
         {
           "question_id": "t637cuJ",
@@ -1804,7 +1733,7 @@
           "grade": "100"
         }
       ],
-      "comments": "Walls should be cleaned",
+      "comments": "",
       "stage": "ready",
       "average_grade": 90,
       "id": "Gcgwtjt"
@@ -1919,6 +1848,399 @@
       "stage": "ready",
       "average_grade": 100,
       "id": "CupNO3t"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "tG11Ugy",
+      "target_name": "Kitchen",
+      "date": "2018-08-15",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "100"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "100"
+        },
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 100,
+      "id": "WLISPIL"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "4p5nZc~",
+      "target_name": "Cellar",
+      "date": "2018-07-18",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "100"
+        },
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "50"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 75,
+      "id": "XK50q4x"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "4p5nZc~",
+      "target_name": "Cellar",
+      "date": "2018-06-21",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "50"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 62,
+      "id": "blsa9cA"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "dLATv1b",
+      "target_name": "Storeroom",
+      "date": "2018-06-21",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "100"
+        },
+        {
+          "question_id": "t637cuJ",
+          "question_text": "Floors clean, vacummed & mopped.",
+          "grade": "50"
+        },
+        {
+          "question_id": "QOIWKBL",
+          "question_text": "Bin emptied",
+          "grade": "50"
+        },
+        {
+          "question_id": "sUZgG2x",
+          "question_text": "Do employees follow each step of standard work instructions?",
+          "grade": "100"
+        },
+        {
+          "question_id": "hn~ft5x",
+          "question_text": "Are operators using materials in the correct order?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 70,
+      "id": "WICNG~A"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "tG11Ugy",
+      "target_name": "Kitchen",
+      "date": "2018-06-21",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 50,
+      "id": "69tl4MI"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "dLATv1b",
+      "target_name": "Storeroom",
+      "date": "2018-05-09",
+      "auditor": "Markku Tarkastaja",
+      "results": [],
+      "stage": "started",
+      "id": "YJT~JZH"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "tG11Ugy",
+      "target_name": "Kitchen",
+      "date": "2018-05-16",
+      "auditor": "Markku Tarkastaja",
+      "results": [],
+      "stage": "started",
+      "id": "gn~q0XK"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "tG11Ugy",
+      "target_name": "Kitchen",
+      "date": "2018-05-16",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?"
+        }
+      ],
+      "comments": "",
+      "stage": "started",
+      "average_grade": null,
+      "id": "gPaIF8R"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "4p5nZc~",
+      "target_name": "Cellar",
+      "date": "2018-09-21",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "50"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "100"
+        },
+        {
+          "question_id": "Id5TKmx",
+          "question_text": "Onko kaikki kunnossa?",
+          "grade": "50"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "started",
+      "average_grade": 62,
+      "id": "YNhK0ug"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "e7Fq~FS",
+      "office_name": "Tampere",
+      "target_id": "tG11Ugy",
+      "target_name": "Kitchen",
+      "date": "2018-09-23",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "100"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 66,
+      "id": "L~FA7M5"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "mPDlzoy",
+      "target_name": "Warehouse #5",
+      "date": "2018-09-13",
+      "auditor": "Antti Auditoija",
+      "results": [
+        {
+          "question_id": "u9MRoux",
+          "question_text": "Ovatko tavarat ja työkalut järjestyksessä?",
+          "grade": "50"
+        },
+        {
+          "question_id": "3GaPAQ9",
+          "question_text": "Onko roska-astioille ja/tai muille pysyville esineille merkattu paikat?",
+          "grade": "50"
+        },
+        {
+          "question_id": "4RBIJsB",
+          "question_text": "Onko työkaluille ja siivousvälineille määritelty ja merkattu säilytyspaikat?",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 66,
+      "id": "BiXOIL2"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2018-09-23",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "100"
+        },
+        {
+          "question_id": "ndwbkm1",
+          "question_text": "All equipment is in a clean condition",
+          "grade": "100"
+        }
+      ],
+      "comments": "",
+      "stage": "started",
+      "average_grade": 100,
+      "id": "k0tzt3B"
+    },
+    {
+      "type": "Audit_case",
+      "corporation_id": "~TBV0ir",
+      "corporation_name": "Metsä Group",
+      "office_id": "4TbGQIH",
+      "office_name": "Jyväskylä",
+      "target_id": "Htyf541",
+      "target_name": "Cellar",
+      "date": "2018-08-16",
+      "auditor": "Markku Tarkastaja",
+      "results": [
+        {
+          "question_id": "U74~xmD",
+          "question_text": "Walls clean",
+          "grade": "100"
+        },
+        {
+          "question_id": "ndwbkm1",
+          "question_text": "All equipment is in a clean condition",
+          "grade": "50"
+        }
+      ],
+      "comments": "",
+      "stage": "ready",
+      "average_grade": 75,
+      "id": "tcDgSFa"
     }
   ]
 }
