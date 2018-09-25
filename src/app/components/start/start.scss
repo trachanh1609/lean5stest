@@ -87,7 +87,7 @@ button {
   font-size: 8px;
 }
 
-.red {
+.blue {
   background-color: rgb(173, 204, 250);
 }
 
@@ -99,4 +99,37 @@ table {
   margin: auto;
 }
 
+input[type="radio"]{
+  display: none;
+    
+}
 
+input[type="radio"] + label
+{
+    background: rgb(245, 243, 243);
+    height: 40px;
+    width: 210px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    cursor:pointer;
+}
+
+input[type="radio"]:checked + label
+{
+    background:#B2FF66;
+    height: 40px;
+    width: 210px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    cursor:pointer;
+}
+
+
+.others input[type="radio"]:checked + label
+{
+    background-image:url(http://student.labranet.jamk.fi/~K8993/ttms0500-harkat/h7/t05-toDoList/images/delete.jpg);
+}
+
+label {
+  padding: 10px;
+}

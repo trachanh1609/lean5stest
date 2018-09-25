@@ -36,7 +36,37 @@ const mapDispatchToProps = dispatch => {
       addTarget: targets => dispatch(addTarget(targets))
     };
   }
+class SelectAuditor extends React.Component {
+    constructor(props){
+        super(props);
+    }
+    render () {
+        if (this.props.user == "Antti Auditoija") {
+            return (
+            <select ref="selectedAuditor" onChange={this.props.loadData} defaultValue={this.props.user}>
+            
+            <option value="Antti Auditoija">Antti Auditoija</option>
+            <option value="Markku Tarkastaja">Markku Tarkastaja</option>
+            <option value="Juha Seikkailija">Juha Seikkailija</option>
+            
+        </select>
+        ) 
+        } else {
+            return (
+                <select ref="selectedAuditor" onChange={this.props.loadData} defaultValue={this.props.user}>
+            
+                    <option value={this.props.user}>{this.props.user}</option>
+            
+            
+                </select>
+            )
+        }
 
+        
+    }
+        
+    
+}
 class ResultsLocal extends React.Component {
     constructor(props){
         super(props);
@@ -45,16 +75,14 @@ class ResultsLocal extends React.Component {
             audits_not_filtered: []
         }
     }
+    
     componentDidMount() {
         setTimeout(function() {this.loadData()}.bind(this),1000);
-        
     }
 
     loadData = () => {
-        
         this.getAudits(this.refs.selectedAuditor.value);
         setTimeout(function() {this.showResults()}.bind(this),500);
-        
     }
 
     getAudits = (auditor) => {
@@ -92,9 +120,7 @@ class ResultsLocal extends React.Component {
     }
 
     saveAuditDataToStore = (audit) => {
-        
         this.props.createAudit(audit);
-
         /* in data security purposes better to retreave only needed data
         this.props.createAudit({
             id: audit.id,
@@ -111,11 +137,8 @@ class ResultsLocal extends React.Component {
         this.props.updateSelectedCorporation({id:audit.corporation_id,name:audit.corporation_name});
         this.props.updateSelectedFactory({id:audit.office_id,name:audit.office_name});
         this.props.updateSelectedDate(audit.date);
-        
         this.getFactories(audit.corporation_id);
         this.getTargets(audit.office_id);
-        
-       
     }
 
     getFactories = (corporation_id) => {
@@ -160,7 +183,6 @@ class ResultsLocal extends React.Component {
                     id:target.id,
                     target_name:target.target_name
                 });
-               
             });
         })
         .catch(function(err){
@@ -173,6 +195,24 @@ class ResultsLocal extends React.Component {
         setTimeout(function(){this.loadData()}.bind(this),2000);
     }
 
+    convertToGrade = (grade) => {
+        console.log(grade);
+        switch(grade) {
+            case 100:
+                return "Good";
+                break;
+            case 50:
+                return "Ok";
+                break;
+            case 0:
+                return "Bad";
+                break;
+            default:
+                return "-";
+                break;
+        }
+    }
+
     render() {
  
         return (
@@ -180,43 +220,40 @@ class ResultsLocal extends React.Component {
                 <UserPanel/>
                 <br/>
         <h1>Audit results</h1>
-
-        
-        <select ref="selectedAuditor" onChange={this.loadData} defaultValue={this.props.user.name}>
-            <option value="all">Select auditor</option>
+            
+            <select ref="selectedAuditor" onChange={this.loadData} defaultValue={this.props.user.name}>
+            
             <option value="Antti Auditoija">Antti Auditoija</option>
             <option value="Markku Tarkastaja">Markku Tarkastaja</option>
             <option value="Juha Seikkailija">Juha Seikkailija</option>
-            <option value="User_name_from_account">Test user</option>
-            <option value="Super Auditor">Super Auditor</option>
+            
         </select>
+        
         {
             this.state.audits.map(audit => {
                 return(
                     <div className="bordered">
                 <Table>
                     <TableHead>
-                    
                         <TableRow>
                             <TableCell style={{width:"150px"}}>Audit Id</TableCell>
                             <TableCell style={{width:"150px"}}>Date</TableCell>
-                            
                             <TableCell style={{width:"150px"}}>Target</TableCell>
                             <TableCell style={{width:"150px"}}>Factory</TableCell>
                             <TableCell style={{width:"150px"}}>Corporation</TableCell>
                             <TableCell style={{width:"150px"}}>Av.grade</TableCell>
-                            
-
+                            <TableCell style={{width:"150px"}}>Stage</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         <TableRow>
                             <TableCell>{audit.id}</TableCell>
-                            <TableCell>{audit.date}</TableCell>
-                            <TableCell>{audit.target_name}</TableCell>
+                            <TableCell style={{padding:"5px"}}>{audit.date}</TableCell>
+                            <TableCell style={{padding:"5px"}}>{audit.target_name}</TableCell>
                             <TableCell>{audit.office_name}</TableCell>
                             <TableCell>{audit.corporation_name}</TableCell>
                             <TableCell>{audit.average_grade}</TableCell>
+                            <TableCell>{audit.stage}</TableCell>
                         </TableRow>
                     </TableBody>
                     </Table>
@@ -230,29 +267,18 @@ class ResultsLocal extends React.Component {
                     <TableBody>
                         {
                             audit.results.map(r=>{
-                                
                                     return (
                                         <TableRow>
                                             <TableCell>{r.grade}</TableCell>
                                             <TableCell style={{textAlign:"left"}}>{r.question_text}</TableCell>
-                                            
                                         </TableRow>
-                                    
                                 );
-                                
                             })
-                            
                         }
-                        
-                        
                         <TableRow>
                             <TableCell>Comments</TableCell>
                             <TableCell style={{textAlign:"left"}}>{audit.comments}</TableCell>
                         </TableRow>
-                        
-                        
-                        
-
                     </TableBody>
                 </Table>
                 <Link to="/audit_questions" style={{ textDecoration: 'none' }}>
@@ -262,12 +288,9 @@ class ResultsLocal extends React.Component {
                 </Link>
                 <Button onClick={this.deleteItem.bind(this,audit.id)} variant="outlined" color="primary" size="small">Delete</Button>
                 </div>);
-                
             })
         }
-        
         </div>
-
         );
         
         

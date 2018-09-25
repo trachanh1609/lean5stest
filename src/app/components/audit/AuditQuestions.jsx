@@ -29,10 +29,6 @@ class AuditQuestions extends React.Component {
                 <AuditCaseCreator />
                 
                 
-                    
-                
-                
-                <Link to="/audit"><button>Back</button></Link>
                 
                 </div>
             </div>

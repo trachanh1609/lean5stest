@@ -20,7 +20,8 @@ import {
     UPDATE_REPORT,
     CLEAR_REPORT,
     SET_QUESTIONS,
-    SET_CSV_ARRAY
+    SET_CSV_ARRAY,
+    UPDATE_AUDITORS
 } from "../constants/action-types";
 
 export const addAuditReport = audit => ({ 
@@ -140,4 +141,9 @@ export const setQuestions = (payload) => ({
 export const setCSVArray = (payload) => ({
     type: SET_CSV_ARRAY,
     payload: payload
-})
+});
+
+export const updateAuditor = (payload) => ({
+    type: UPDATE_AUDITORS,
+    payload: payload
+});

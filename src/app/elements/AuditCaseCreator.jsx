@@ -53,10 +53,8 @@ class AuditCaseCreator extends React.Component {
             //alert("Please, select target");
             var link = "/audit";
             location.href = link;
-        // there is started audit
-        } else if (this.props.startedAudit.id != "") {
-            //console.log("startedAudit detected: "+this.props.startedAudit.id);
-        }
+
+        } 
     }
 
     changeStoreAuditCaseId = () => {
@@ -69,7 +67,8 @@ class AuditCaseCreator extends React.Component {
             corporation_id: this.props.selectedCorporation.id,
             corporation_name: this.props.selectedCorporation.name,
             date: this.props.selectedDate,
-            auditor: this.props.user.name
+            auditor: this.props.user.name,
+            stage: "started"
             
         });
     }
@@ -110,8 +109,9 @@ class AuditCaseCreator extends React.Component {
             <br/>
             Target: {this.props.startedAudit.target_name}
             <br/>
-           
             Auditor: {this.props.startedAudit.auditor}
+            <br/>
+            Stage: {this.props.startedAudit.stage}
             <br/>
             <RowsAuditQuestions/>
             

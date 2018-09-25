@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router';
 import PropTypes from "prop-types";
-import {clearAudit, setQuestions } from "../actions/index";
+import {clearAudit, setQuestions,updateAuditor } from "../actions/index";
+
 import {API_URL} from "../constants/urls";
 import axios from 'axios';
 import Img from 'react-image';
@@ -17,13 +18,15 @@ const mapStateToProps = state => {
     return { 
         startedAudit: state.startedAudit,
         questions: state.questions,
-        selectedDate: state.selectedDate
+        selectedDate: state.selectedDate,
+        user: state.user
     };
   };
   const mapDispatchToProps = dispatch => {
     return {
       clearAudit: startedAudit => dispatch(clearAudit(startedAudit)),
-      setQuestions: questions => dispatch(setQuestions(questions))
+      setQuestions: questions => dispatch(setQuestions(questions)),
+      updateAuditor: selectedAuditor => dispatch(updateAuditor(selectedAuditor))
     };
   }
 class RowsAuditQuestions extends React.Component {
@@ -129,13 +132,18 @@ class RowsAuditQuestions extends React.Component {
         const payload = array;
         setTimeout(function () {this.props.setQuestions(payload)}.bind(this),500);
     }
-    
+    deleteClicked = () => {
+        var id = this.props.startedAudit.id;
+        alert("Audit report '"+id+"' will be deleted");
+        axios.delete(API_URL+'/'+id);
+    }
     readyClicked = () => {
         //alert(event.target.value); 
         this.pushResults();
         var comments = this.refs.comments.value;
        
         this.updateResults(results, comments, "ready");
+        this.updateAuditor(this.props.user.name);
     }
     pushResults = () => {
         results = [];
@@ -177,7 +185,7 @@ class RowsAuditQuestions extends React.Component {
                 target_id: this.props.startedAudit.target_id,
                 target_name: this.props.startedAudit.target_name,
                 date: this.props.selectedDate,
-                auditor: this.props.startedAudit.auditor,
+                auditor: this.props.user.name,
                 results: results,
                 comments: comments,
                 stage: "started",
@@ -191,19 +199,14 @@ class RowsAuditQuestions extends React.Component {
                 console.log(error);
                 alert("Something went wrong, please try again");
             });  
-    
-        
     }
 
         displaySavedData = (response) => {
 	        var text = "Results are saved: \n";
 	        response.data.results.map(r=> {
-	            
-	            text += r.question_text + " - (grade: " + r.grade + "%)\n";
-	            
-	        });
+ 	            text += r.question_text + " - (grade: " + r.grade + "%)\n";
+            });
 	        alert(text);
-	        
 	    }
             
 
@@ -226,7 +229,7 @@ class RowsAuditQuestions extends React.Component {
             target_id: this.props.startedAudit.target_id,
             target_name: this.props.startedAudit.target_name,
             date: this.props.selectedDate,
-            auditor: this.props.startedAudit.auditor,
+            auditor: this.props.user.name,
             results: results,
             comments: comments,
             stage: stage,
@@ -258,23 +261,21 @@ class RowsAuditQuestions extends React.Component {
                 </tr>
                 <tr>
                     
-                    <td style={{width: "200px"}}>
-                        <label>
-                            <input type="radio" className="good" id={q.id+"-01"} name={q.id} value="100" defaultChecked={q.grade_good}/>
-                            <Img style={{width: "40px"}} src={good_img}/>
-                        </label>
+                    <td style={{width: "200px"}} className="good">
+                        <input type="radio"  id={q.id+"-01"} name={q.id} value="100" defaultChecked={q.grade_good}/>
+                        <label for={q.id+"-01"}> Good </label>
                     </td>
-                    <td style={{width: "200px"}}>
-                        <label>
+                    <td style={{width: "200px"}} className="ok" >
+                        
                             <input type="radio" id={q.id+"-02"} name={q.id} value="50" defaultChecked={q.grade_ok}/>
-                            <Img style={{width: "40px"}} src={ok_img}/>
-                        </label>
+                            
+                            <label for={q.id+"-02"}> Ok </label>
                     </td>
-                    <td style={{width: "200px"}}>
-                        <label>
+                    <td style={{width: "200px"}} className="bad" >
+                        
                             <input type="radio" id={q.id+"-03"} name={q.id} value="0" defaultChecked={q.grade_bad}/>
-                            <Img style={{width: "40px"}} src={bad_img}/>
-                        </label>    
+                            
+                            <label for={q.id+"-03"}> Bad </label>
                     </td>
                 </tr>
                 <tr>
@@ -288,8 +289,9 @@ class RowsAuditQuestions extends React.Component {
             <tr>
             <td colSpan="3">
             Comments:<br/> <textarea ref="comments" style={{height: '50px', width: '100%'}}/><br/>
-            <Link to="/results"><button onClick={this.readyClicked}>Ready</button></Link>
+            <Link to="/administration_local/audit_cases"><button onClick={this.readyClicked}>Ready</button></Link>
             <button onClick={this.saveClicked}>Save</button>
+            <Link to="/administration_local/audit_cases"><button onClick={this.deleteClicked}>Delete</button></Link>
                     
             </td>
             </tr>

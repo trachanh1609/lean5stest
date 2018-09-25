@@ -18,3 +18,4 @@ export const SET_YEAR = "SET_YEAR";
 export const UPDATE_REPORT = "UPDATE_REPORT";
 export const SET_QUESTIONS = "SET_QUESTIONS";
 export const SET_CSV_ARRAY = "SET_CSV_ARRAY";
+export const UPDATE_AUDITORS = "UPDATE_AUDITORS";

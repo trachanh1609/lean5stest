@@ -192,8 +192,8 @@ Dashboard.propTypes = {
 const mapStateToProps = (state, props) => {
   return {
     posts : state.posts,
-    user : state.user,
-    aRandomProp : `Hello ${state.user}`,
+    user : state.user.name,
+    aRandomProp : `Hello ${state.user.name}`,
   }
 };
 

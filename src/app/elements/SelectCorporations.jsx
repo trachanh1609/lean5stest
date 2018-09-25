@@ -17,7 +17,6 @@ const mapStateToProps = state => {
         selectedCorporation: state.selectedCorporation,
         selectedFactory: state.selectedFactory,
         selectedTarget: state.selectedTarget
-        
     };
   };
 

@@ -13,6 +13,7 @@ import SelectCorporations from '../../elements/SelectCorporations';
 import Button from '@material-ui/core/Button';
 import SelectFactories from '../../elements/SelectFactories';
 import SelectTargets from '../../elements/SelectTargets';
+import SelectAuditors from '../../elements/SelectAuditors';
 import {createAudit, updateSelectedCorporation, updateSelectedDate, updateSelectedFactory, updateSelectedTarget, clearFactories, addFactory, clearTargets, addTarget } from "../../actions/index";
 
 
@@ -27,6 +28,7 @@ const mapStateToProps = state => {
         selectedTarget: state.selectedTarget,
         selectedFactory: state.selectedFactory,
         selectedCorporation: state.selectedCorporation,
+        selectedAuditor: state.selectedAuditor,
         startedAudit: state.startedAudit,
         factories: state.factories,
         targets: state.targets
@@ -65,8 +67,8 @@ class AuditLocal extends React.Component {
 
     componentDidMount() {
         this.getAuditCases();
-        
-        }
+        setTimeout(function(){this.getAuditCases()}.bind(this),1500);
+    }
 
     getQuestionText = (id) => {
         var q_text="";
@@ -112,7 +114,8 @@ class AuditLocal extends React.Component {
                 return 0;
             } );
             self.setState({audit_cases: sorting});
-            self.setState({audit_cases_filtered: sorting});
+            self.filtering();
+            
             
         })
         .catch(function(err){
@@ -158,6 +161,7 @@ class AuditLocal extends React.Component {
         
         axios.delete(API_URL+'/'+id);
         setTimeout(function() {this.getAuditCases()}.bind(this), 500);
+        this.setState({results_visibility: 'invisible'});
        
     }
 
@@ -167,26 +171,61 @@ class AuditLocal extends React.Component {
 
     filtering = () => {
         var array = [];
+        
         if(this.props.selectedTarget.id != "") {
             this.state.audit_cases.map(audit=>{
-                if(audit.target_id == this.props.selectedTarget.id) array.push(audit);
+                if(audit.target_id == this.props.selectedTarget.id) {
+                    if (this.checkAuditor(audit.auditor, this.props.selectedAuditor.name)) array.push(audit)};
             });
             this.setState({audit_cases_filtered: array});
         }
         else if(this.props.selectedFactory.id != "") {
             this.state.audit_cases.map(audit=>{
-                if(audit.office_id == this.props.selectedFactory.id) array.push(audit);
+                if(audit.office_id == this.props.selectedFactory.id) {
+                    if (this.checkAuditor(audit.auditor, this.props.selectedAuditor.name)) array.push(audit)};
             });
+            
             this.setState({audit_cases_filtered: array});
         }
         else if(this.props.selectedCorporation.id != "") {
             this.state.audit_cases.map(audit=>{
-                if(audit.corporation_id == this.props.selectedCorporation.id) array.push(audit);
+                if(audit.corporation_id == this.props.selectedCorporation.id) {
+                    if (this.checkAuditor(audit.auditor, this.props.selectedAuditor.name)) array.push(audit)};
             });
             this.setState({audit_cases_filtered: array});
         }
-        else this.setState({audit_cases_filtered: this.state.audit_cases});
+        else if (this.props.selectedAuditor.name == "All") {
+            console.log("Now all auditors selected");
+            this.setState({audit_cases_filtered: this.state.audit_cases});
+            
+        }
+        else {
+            this.state.audit_cases.map(audit=>{
+                if (this.checkAuditor(audit.auditor, this.props.selectedAuditor.name)) 
+                    array.push(audit);
+            });
+            this.setState({audit_cases_filtered: array});
+    }
+        
+        
         if (array.length>0) this.prepareCSV(array);
+    }
+
+    checkAuditor = (auditAuditor, selectedAuditor) => {
+        if (selectedAuditor == "All") {
+            
+            return true;
+        }
+        else if (selectedAuditor == auditAuditor) {
+            
+            return true;
+        }
+        
+        else {
+            
+            return false;
+        }
+        
     }
 
     modifyAudit = (id) => {
@@ -275,7 +314,7 @@ class AuditLocal extends React.Component {
                             <TableRow>
                                 <TableCell>ID</TableCell>
                                 <TableCell>Date</TableCell>
-                                <TableCell>Auditor</TableCell>
+                                <TableCell><SelectAuditors/></TableCell>
                                 <TableCell>Average grade</TableCell>
                                 <TableCell><SelectTargets/></TableCell>
                                 <TableCell><SelectFactories/></TableCell>
@@ -286,7 +325,7 @@ class AuditLocal extends React.Component {
                             <TableBody>
                             {
                                 this.state.audit_cases_filtered.map(audit=> {
-                                        var color="red";
+                                        var color="blue";
                                         if(audit.stage=="ready") color="normal";
                                         return (<TableRow className={color} >
                                         <TableCell onClick={this.rowClicked.bind(this,audit.id)}> {audit.id}</TableCell>

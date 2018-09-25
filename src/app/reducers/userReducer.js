@@ -1,7 +1,7 @@
 import { UPDATE_USER } from '../actions/userActions'
 var init = {
-    name: "Markku Tarkastaja",
-    email: "markku@mail.com"
+    name: "Antti Auditoija",
+    email: "antti@mail.com"
 }
 
 export default function userReducer(state= init, action){

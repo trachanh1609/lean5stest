@@ -6,6 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
+import ProfileMenu from './ProfileMenu';
+import classNames from 'classnames';
 const mapStateToProps = (state) => {
   return {
       
@@ -18,6 +20,7 @@ class UserPanel extends React.Component {
     super(props);
   }
   render () {
+    const {classes} = this.props ;
   return (
     <header>
       <AppBar position="absolute">
@@ -42,7 +45,7 @@ class UserPanel extends React.Component {
           <Link to="/audit" className="whiteText">Demo (Redux)</Link>
           </li>
           <li>
-            <Link to="/administration_local" className="whiteText">Administration panel</Link>
+            <Link to="/administration_local/audit_cases" className="whiteText">Administration panel</Link>
           </li>
           <li>
             <Link to="/results" className="whiteText">Audit results</Link>
@@ -53,7 +56,8 @@ class UserPanel extends React.Component {
           
         </ul>
       </nav>
-        <p className="smallText">logged as {this.props.user.name}</p>
+        
+        <ProfileMenu user={this.props.user} />
           </Toolbar>
          </AppBar>
       

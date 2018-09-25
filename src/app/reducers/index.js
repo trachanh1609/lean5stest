@@ -15,6 +15,7 @@ import questionsReducer from "./questionsReducer";
 import postsReducer from "./postsReducer";
 import userReducer from "./userReducer";
 import csvReportReducer from "./csvReportReducer";
+import auditorReducer from "./auditorReducer";
 
 export default combineReducers({ 
     
@@ -33,6 +34,7 @@ export default combineReducers({
     questions: questionsReducer,
     posts: postsReducer,
     user: userReducer,
-    csvReport: csvReportReducer
+    csvReport: csvReportReducer,
+    selectedAuditor: auditorReducer
 
 });
